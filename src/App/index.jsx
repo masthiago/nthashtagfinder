@@ -1,3 +1,4 @@
+// Paulo
 import {
   StyledHeader,
   StyledButton,
@@ -6,10 +7,14 @@ import {
 import iconAbout from './assets/iconAbout.svg';
 import iconUser from './assets/iconUser.svg';
 
+// Thiago 
+import Results from '../components/Results';
+
 
 function App() {
   return (
     <>
+      {/* Paulo - Inicio */}
       <StyledHeader>
         <div>
           hashtag<strong>finder</strong>
@@ -20,16 +25,19 @@ function App() {
             Sobre
           </StyledButton>
           <StyledButton >
-            <a href="./components/login/Login.jsx">
             <img className='iconHeader' src={iconUser} alt='ícone Login'/>
               Login
-            </a>
           </StyledButton>
         </div>
       </StyledHeader>
       <StyledMain>
         <></>
       </StyledMain>
+      {/* Paulo - Fim */}
+
+      {/* Thiago - Incio */}
+      <Results />
+      {/* Thiago - Fim */}
     </>
   );
 }
