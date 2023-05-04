@@ -6,6 +6,7 @@ import {
 import iconAbout from './assets/iconAbout.svg';
 import iconUser from './assets/iconUser.svg';
 
+
 function App() {
   return (
     <>
@@ -18,9 +19,11 @@ function App() {
             <img className='iconHeader' src={iconAbout} alt='ícone Sobre' />
             Sobre
           </StyledButton>
-          <StyledButton>
-            <img className='iconHeader' src={iconUser} alt='ícone Login' />
-            Login
+          <StyledButton >
+            <a href="./components/login/Login.jsx">
+            <img className='iconHeader' src={iconUser} alt='ícone Login'/>
+              Login
+            </a>
           </StyledButton>
         </div>
       </StyledHeader>
