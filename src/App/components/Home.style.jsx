@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import heroBg from '../assets/heroBg.jpg';
 
 /*Estilização do header*/
 export const StyledHeader = styled.header`
@@ -30,11 +29,4 @@ export const StyledButton = styled.button`
     transition: all 0.1s ease;
     transform: translate(2%) scale(0.8);
   }
-`;
-
-/* Inclusão e estilização da imagem Home*/
-export const StyledMain = styled.main`
-  background-image: url(${heroBg});
-  background-size: cover;
-  height: 100vh;
 `;

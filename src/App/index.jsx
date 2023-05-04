@@ -1,8 +1,6 @@
-import {
-  StyledHeader,
-  StyledButton,
-  StyledMain,
-} from './components/Home.style';
+import { StyledHeader, StyledButton } from './components/Home.style';
+import { StyledMain } from './components/Main.style';
+import SearchBar from './components/SearchBar';
 import iconAbout from './assets/iconAbout.svg';
 import iconUser from './assets/iconUser.svg';
 
@@ -25,7 +23,15 @@ function App() {
         </div>
       </StyledHeader>
       <StyledMain>
-        <></>
+        <h1>
+          Encontre hashtags <br />
+          de maneira fácil.
+        </h1>
+        <p>
+          Digite o que deseja no campo de buscas e <br />
+          confira os resultados do Twitter abaixo
+        </p>
+        <SearchBar />
       </StyledMain>
     </>
   );
