@@ -1,6 +1,8 @@
+import Results from "../components/Results";
+
 function App() {
   return (
-    <>Hello world. Hashtag Finder.</>
+    <Results />
   );
 }
 
