@@ -1,12 +1,19 @@
-import { StyledHeader, StyledButton } from './components/Home.style';
-import { StyledMain } from './components/Main.style';
-import SearchBar from './components/SearchBar';
+// Paulo
+import {
+  StyledHeader,
+  StyledButton,
+  StyledMain,
+} from './components/Home.style';
 import iconAbout from './assets/iconAbout.svg';
 import iconUser from './assets/iconUser.svg';
+
+// Thiago
+import Results from '../components/Results';
 
 function App() {
   return (
     <>
+      {/* Paulo - Inicio */}
       <StyledHeader>
         <div>
           hashtag<strong>finder</strong>
@@ -33,6 +40,11 @@ function App() {
         </p>
         <SearchBar />
       </StyledMain>
+      {/* Paulo - Fim */}
+
+      {/* Thiago - Incio */}
+      <Results />
+      {/* Thiago - Fim */}
     </>
   );
 }
