@@ -1,5 +1,5 @@
 import React from 'react'
-import { Access, Box, Field, FormFields, Title, Wrapper } from './login.style'
+import { Access, Box, Field, FormFields, Title, Wrapper } from './style'
 
 export default function Login() {
   return (
@@ -13,8 +13,7 @@ export default function Login() {
             <Access>ACESSAR</Access>
           </FormFields>
         </Box>
-      </Wrapper>
-      
+      </Wrapper> 
     </>
   )
 }
