@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { GlobalStyle } from './App/components/Global.style';
-import Login from './components/Login';
+import Login from './components/Login/login';
+import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
