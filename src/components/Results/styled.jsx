@@ -24,45 +24,81 @@ export const ResultsHeader = styled.div`
 `;
 
 export const ResultsDynamicContainer = styled.div`
-  background-color: blueviolet;
-  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  max-width: 1280px;
+  min-width: 340px;
+  @media screen and (min-width: 1024px) {
+    display: grid;
+    grid-template-columns: 3fr 4fr;
+    grid-template-rows: 1fr;
+    align-items: start;
+  }
 `;
 
 export const ResultsImageContainer = styled.div`
-  background-color: pink;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
   padding: 5px;
+  width: 100%;
 `;
 
 export const ResultImage = styled.div`
-  background-color: orange;
-  padding: 5px;
+  background-image: url(${props => props.background});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 10%;
+  cursor: pointer;
+  margin: 0 5% 5% 5%;
+  padding-bottom: 15px;
+  padding-left: 15px;
+  padding-top: calc(40% - 40px);
+  width: 40%;
+  box-sizing: border-box;
 `;
 
 export const ResultsPostContainer = styled.div`
-  background-color: olivedrab;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 5px;
+  padding-right: 20px;
 `;
 
 export const ResultPost = styled.div`
-  background-color: aquamarine;
-  padding: 5px;
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+  justify-content: start;
+  align-items: start;
+  background-color: #ffffff05;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  border: 1px solid #ffffff20;
 `;
 
 export const Tab = styled.button`
   background-color: transparent;
   border: 0;
   cursor: pointer;
-  color: #ffffff;
+  color: #72efdb;
   font-size: 20px;
   outline: 0;
   padding: 10px 60px;
-  border-bottom: 2px solid #ffffff;
+  border-bottom: 2px solid #72efdb;
   ${({ active }) =>
-    active && `
-    border-bottom: 6px solid #ffffff;
+    active &&
+    `
+    border-bottom: 6px solid #72efdb;
   `}
 `;
 
 export const ButtonGroup = styled.div`
   display: flex;
+  /* margin-bottom: 32px; */
 `;
