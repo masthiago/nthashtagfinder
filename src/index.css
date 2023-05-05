@@ -1,0 +1,11 @@
+:root {
+  --font-default: 'Rubik', sans-serif;
+}
+
+*, html, body {
+  font-family: var(--font-default);
+  /* The same size and appearance for everything 
+     that is not explicitly modified */
+  /* font-size: 16px; */
+  /* font-weight: 400; */
+}
