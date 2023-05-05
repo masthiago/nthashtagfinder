@@ -2,6 +2,8 @@ import styled from "styled-components";
 import heroBg from '../../App/assets/heroBg.jpg'
 import mobileHeroBg from '../../App/assets/mobileHeroBg.jpg'
 
+
+// style for main container
 export const Wrapper = styled.div`
     width: 100%;
     height: 100vh;
@@ -18,7 +20,8 @@ export const Wrapper = styled.div`
 
 `
 
-export const Box = styled.div`
+// style for form container
+export const FormContainer = styled.div`
     width: 558px;
     height: 608px; 
     background-color: rgba(24, 50, 107, 0.5);
@@ -30,6 +33,8 @@ export const Box = styled.div`
         height: 460px;
     }
 `
+
+// style for the form itself
 export const FormFields = styled.form`
     display: flex;
     flex-direction: column;
@@ -39,6 +44,8 @@ export const FormFields = styled.form`
         margin: 62px 37px;
     }
 `
+
+// style for form title
 export const Title = styled.h1`
     color: #72EFDB;
     display: flex;
@@ -47,6 +54,7 @@ export const Title = styled.h1`
     font-family: Rubik, Bold;
 `
 
+// style for input field
 export const Field = styled.input`
     border: none;
     background: none;
@@ -54,6 +62,7 @@ export const Field = styled.input`
     margin-bottom: 44px;
     height: 31px; 
     color: #FFFFFF;
+    font-size: ;
     font-family: Rubik, Regular;
     
     :focus {
@@ -66,6 +75,7 @@ export const Field = styled.input`
     }
 ` 
 
+// access button style
 export const Access = styled.button`
     width: 204px; 
     height: 46px;

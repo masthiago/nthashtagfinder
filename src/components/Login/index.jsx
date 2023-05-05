@@ -1,19 +1,19 @@
 import React from 'react'
-import { Access, Box, Field, FormFields, Title, Wrapper } from './style'
+import { Access, Field, FormContainer, FormFields, Title, Wrapper } from './style'
 
 export default function Login() {
   return (
     <>
       <Wrapper>
-        <Box>
-          <FormFields action="">
+        <FormContainer>
+          <FormFields>
             <Title>Login</Title>
             <Field type="text" placeholder="Usuário"/>
             <Field type="password" placeholder="Senha"/>
             <Access>ACESSAR</Access>
           </FormFields>
-        </Box>
+        </FormContainer>
       </Wrapper> 
     </>
-  )
+  );
 }
