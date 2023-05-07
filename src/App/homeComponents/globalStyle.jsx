@@ -9,9 +9,4 @@ export const GlobalStyle = createGlobalStyle`
     outline: 0;
     font-family: Sans-serif;
     color: #fff;
-}
-.iconHeader {
-    margin-right: 10px;
-    width: 10px;
-}
-`;
+}`;
