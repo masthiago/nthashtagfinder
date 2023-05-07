@@ -23,9 +23,9 @@ function App() {
             <img className='iconHeader' src={iconAbout} alt='ícone Sobre' />
             Sobre
           </StyledButton>
-          <StyledButton>
-            <img className='iconHeader' src={iconUser} alt='ícone Login' />
-            Login
+          <StyledButton >
+            <img className='iconHeader' src={iconUser} alt='ícone Login'/>
+              Login
           </StyledButton>
         </div>
       </StyledHeader>
@@ -50,3 +50,4 @@ function App() {
 }
 
 export default App;
+   {/* <div>Hello world. Hashtag Finder.</div> */}
