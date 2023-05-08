@@ -28,7 +28,6 @@ export function SearchBar(props) {
 function Home() {
   return (
     <>
-
       <StyledMain>
         <h1>
           Encontre hashtags <br />

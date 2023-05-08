@@ -4,8 +4,8 @@ import iconAbout from '../../App/assets/iconAbout.svg';
 import iconUser from '../../App/assets/iconUser.svg';
 import { Link } from 'react-router-dom';
 
-
 export default function Header() {
+
   return (
     <>
         <StyledHeader>
@@ -21,13 +21,14 @@ export default function Header() {
                     <img className='iconHeader' src={iconAbout} alt='ícone Sobre' />
                     Sobre
                 </Link>
-            </StyledButton>
-            <StyledButton>
+            </StyledButton> 
+            {window.location.pathname !== '/login' ? 
+            <StyledButton> 
                 <Link to='/login'>
                     <img className='iconHeader' src={iconUser} alt='ícone Login' />
                     Login
                 </Link>
-            </StyledButton>
+            </StyledButton> : ''}
             </div>
         </StyledHeader>
     </>
