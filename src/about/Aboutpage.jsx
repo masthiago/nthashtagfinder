@@ -5,11 +5,15 @@ import aboutContentImage from "../about/imagesSvg/aboutImage.svg"
 import gitHubIcon from "../about/imagesSvg/github.svg"
 import emailBoxIcon from "../about/imagesSvg/envelope_font_awesome.svg"
 import linkednIcon from "../about/imagesSvg/linkedin.svg"
+import Header from "../components/Header/indexHeader";
+import Footer from "../components/Footer/indexFooter";
 
 
-export default function aboutPageContent() {
+export default function AboutPageContent() {
     const userData = [...developerInfos];
     return (
+        <> 
+        <Header /> 
         <AboutMainStyled>
            {/*  <div style={{height:'100%',display:'flex',justifyContent:"center"}}> */}
                 <AboutTextAndImageStyle>
@@ -47,7 +51,8 @@ export default function aboutPageContent() {
                 </AboutUsStyle>
             {/* </div> */}
         </AboutMainStyled>
-
+        <Footer /> 
+        </>
 
     )
 };
