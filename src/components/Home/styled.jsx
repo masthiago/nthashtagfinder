@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import heroBg from '../assets/heroBg.jpg';
-import mobileHeroBg from '../assets/mobileHeroBg.jpg';
-import iconSearch from '../assets/iconSearch.svg';
+import styled from "styled-components";
+import heroBg from "../../assets/img/heroBg.jpg";
+import mobileHeroBg from "../../assets/img/mobileHeroBg.jpg";
+import iconSearch from "../../assets/img/iconSearch.svg";
 
 /*Estilização do header*/
 export const StyledHeader = styled.header`
@@ -16,8 +16,8 @@ export const StyledHeader = styled.header`
   div {
     display: flex;
   }
-  
-  a { 
+
+  a {
     text-decoration: none;
   }
 
@@ -30,9 +30,9 @@ export const StyledHeader = styled.header`
 /*Inclusão dos elementos no header*/
 export const StyledButton = styled.button`
   background-color: ${(prop) =>
-    prop.backgroundColor ? prop.backgroundColor : '#1E3E7B'};
+    prop.backgroundColor ? prop.backgroundColor : "#1E3E7B"};
 
-  color: ${(prop) => (prop.color ? prop.color : '#fff')};
+  color: ${(prop) => (prop.color ? prop.color : "#fff")};
 
   font-family: Rubik, sans-serif;
   width: 100px;
@@ -65,12 +65,13 @@ export const StyledMain = styled.main`
     background-image: url(${mobileHeroBg});
   }
 
-  h1 {
+  h1 {  /* Causando transbordamento */
     position: relative;
     font-family: Rubik, sans-serif;
     font-size: 60px;
     top: 17vh;
     left: 8vw;
+    font-weight: bold;
 
     @media screen and (max-width: 440px) {
       font-size: 30px;
@@ -84,7 +85,7 @@ export const StyledMain = styled.main`
     }
   }
 
-  p {
+  p { /* Causando transbordamento */
     position: relative;
     font-size: 20px;
     top: 17vh;
@@ -103,7 +104,7 @@ export const StyledMain = styled.main`
     }
   }
   /*Form para barra e botão de pesquisa */
-  form {
+  form { /* Causando transbordamento */
     display: flex;
     position: relative;
     top: 40vh;

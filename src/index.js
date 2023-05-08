@@ -1,32 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import { GlobalStyle } from './App/homeComponents/globalStyle';
-import './index.css';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import AboutPageContent from './about/Aboutpage';
-import Login from './components/Login';
-import Header from './components/Header/indexHeader';
+import React from "react";
+import ReactDOM from "react-dom/client";
+// import AboutPageContent from './about/Aboutpage';
+import AboutPageContent from "./components/About";
+import App from "./App";
+import Login from "./components/Login";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import "./index.css";
+// import { GlobalStyle } from './App/homeComponents/globalStyle';
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: <App /> 
-  }, 
+    path: "/",
+    element: <App />,
+  },
   {
-    path: '/about', 
-    element: <AboutPageContent /> 
-  }, 
+    path: "/about",
+    element: <AboutPageContent />,
+  },
   {
-    path: '/login',
-    element: <Login /> 
-  }
-])
+    path: "/login",
+    element: <Login />,
+  },
+]);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <RouterProvider router={router} />
-    <GlobalStyle />
+    {/* <GlobalStyle /> */}
   </React.StrictMode>
 );

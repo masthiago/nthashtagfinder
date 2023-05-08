@@ -1,27 +1,17 @@
-// Paulo
-import Home from './homeComponents/indexHome';
-import Footer from '../components/Footer/indexFooter';
-// Thiago
-import Results from '../components/Results';
-import Header from '../components/Header/indexHeader';
+import Footer from "../components/Footer";
+import Header from "../components/Header";
+import Home from "../components/Home";
+import Results from "../components/Results";
 
 function App() {
   return (
     <>
       <Header />
-      {/* Paulo - Inicio */}
       <Home />
-      {/* Paulo - Fim */}
-      {/* Thiago - Incio */}
       <Results />
-      {/* Thiago - Fim */}
-      {/* Paulo - Footer */}
       <Footer />
     </>
   );
 }
 
 export default App;
-{
-  /* <div>Hello world. Hashtag Finder.</div> */
-}
