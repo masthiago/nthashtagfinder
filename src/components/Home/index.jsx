@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {   StyledMain } from './homeStyle';
+import {   StyledMain } from './styled';
 
 
 export function SearchBar(props) {

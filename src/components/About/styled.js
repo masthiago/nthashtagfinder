@@ -38,6 +38,9 @@ export const AboutTextAndImageStyle = styled.div`
         width: 45%;
         height:100%;
         color: #FCFCFC;
+        h1 {
+          font-weight: bold;
+        }
     };
     #aboutImageContent{
 
