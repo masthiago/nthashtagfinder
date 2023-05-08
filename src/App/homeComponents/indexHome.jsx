@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
-import {
-  StyledHeader,
-  StyledButton,
-  StyledMain,
-  StyledFooter,
-} from './homeStyle';
-import iconAbout from '../assets/iconAbout.svg';
-import iconUser from '../assets/iconUser.svg';
+import {   StyledMain } from './homeStyle';
+
 
 export function SearchBar(props) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -34,21 +28,7 @@ export function SearchBar(props) {
 function Home() {
   return (
     <>
-      <StyledHeader>
-        <p>
-          hashtag<strong>finder</strong>
-        </p>
-        <div>
-          <StyledButton backgroundColor='#72EFDB' color='#0a1744'>
-            <img className='iconHeader' src={iconAbout} alt='ícone Sobre' />
-            Sobre
-          </StyledButton>
-          <StyledButton>
-            <img className='iconHeader' src={iconUser} alt='ícone Login' />
-            Login
-          </StyledButton>
-        </div>
-      </StyledHeader>
+
       <StyledMain>
         <h1>
           Encontre hashtags <br />
@@ -65,10 +45,4 @@ function Home() {
 }
 
 export default Home;
-export function Footer() {
-  return (
-    <>
-      <StyledFooter>@Cocreare 2023. Todos os direitos reservados</StyledFooter>;
-    </>
-  );
-}
+

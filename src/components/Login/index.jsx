@@ -1,9 +1,12 @@
 import React from 'react'
 import { Access, Field, FormContainer, FormFields, Title, Wrapper } from './style'
+import Header from '../Header/indexHeader';
+import Footer from '../Footer/indexFooter';
 
 export default function Login() {
   return (
     <>
+    <Header /> 
       <Wrapper>
         <FormContainer>
           <FormFields>
@@ -14,6 +17,7 @@ export default function Login() {
           </FormFields>
         </FormContainer>
       </Wrapper> 
+      <Footer /> 
     </>
   );
 }

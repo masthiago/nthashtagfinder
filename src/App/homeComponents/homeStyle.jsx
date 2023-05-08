@@ -16,6 +16,10 @@ export const StyledHeader = styled.header`
   div {
     display: flex;
   }
+  
+  a { 
+    text-decoration: none;
+  }
 
   @media screen and (max-width: 440px) {
     padding: 10px;
