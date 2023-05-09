@@ -1,16 +1,20 @@
 import styled from "styled-components";
-
+import backImage from "../../assets/img/aboutHeroBg.jpg";
 
 export const AboutMainStyled = styled.div`
 
-    background-image: linear-gradient(#1E3E9B,#0A1720);
+    /* background-image: linear-gradient(#1E3E9B,#0A1720); */
+ 
+    background-repeat:no-repeat;
+    background-size:cover;
+    background:  linear-gradient(darkblue, #0A1744);
     width: 100%;
     height: 1000px;
     color:white;
     display:flex;
     flex-direction:column;
     align-items:center ;
-    justify-content:center ;
+    justify-content:space-evenly;
         h1{
             margin:0px;
             text-align: left;
@@ -34,10 +38,9 @@ export const AboutTextAndImageStyle = styled.div`
         display:flex;
         flex-direction:column;
         justify-content:space-between;
-        font-size: 22px ;
-        width: 45%;
+        letter-spacing:0.5px;
+        width: 40%;
         height:100%;
-        color: #FCFCFC;
         h1 {
           font-weight: bold;
         }
@@ -47,8 +50,6 @@ export const AboutTextAndImageStyle = styled.div`
         display:flex;
         justify-content:flex-end;  
         color:black;
-
-       
             img{
              width:400px;
                 height:350px;
@@ -100,7 +101,11 @@ export const AboutUsStyle = styled.div`
     height:500px;
     display:flex;
     flex-direction:column;
-    justify-content:center ;
+    justify-content:space-evenly ;
+        h2{
+            font-weight:bold;
+            font-size:25px;
+        };
         #itensPositions{
             display:flex;
             flex-direction:row;
@@ -109,11 +114,11 @@ export const AboutUsStyle = styled.div`
         #developersDataContent{
             width:19%;
             height:300px;
-            background-color:#0B1A49; 
+            background-color:#0B1A57; 
             display:flex;
             flex-direction:column;
             align-items:center;
-            justify-content:center;
+            justify-content:space-evenly;
             border: 1px solid #FFFFFF24;
             border-radius: 10px;
                 #developersImage{

@@ -16,18 +16,18 @@ export default function AboutPageContent() {
     <>
       <Header />
       <AboutMainStyled>
-        {/*  <div style={{height:'100%',display:'flex',justifyContent:"center"}}> */}
         <AboutTextAndImageStyle>
           <div id="titleAndTextContent">
             <h1>Sobre o projeto</h1>
             <p style={{ margin: "0px" }}>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-              erat, sed diam voluptua. At vero eos et accusam et justo duo
-              dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-              sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
-              amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-              invidunt ut labore et dolore magna aliquyam erat, sed diam
+              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
+              et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+              Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+              amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+              erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+              no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
+              elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+              At vero eos et accusam et justo duo .
             </p>
           </div>
           <div id="aboutImageContent">
@@ -48,7 +48,7 @@ export default function AboutPageContent() {
                   <h3 style={{ color: "#72EFDB" }}>
                     {developersInfoUnit.UserTitle}
                   </h3>
-                  <p /* style={{backgroundColor:"gray", textAlign:"center"}} */>
+                  <p>
                     {developersInfoUnit.userText}
                   </p>
                   <div id="iconsBoxContent">
@@ -57,7 +57,7 @@ export default function AboutPageContent() {
                       alt="github icon"
                       style={{
                         width: "20px",
-                        height: "20px" /* , backgroundColor: "red" */,
+                        height: "20px",
                       }}
                     />
                     <img
@@ -65,7 +65,7 @@ export default function AboutPageContent() {
                       alt="github icon"
                       style={{
                         width: "20px",
-                        height: "20px" /* , backgroundColor: "red"  */,
+                        height: "20px",
                       }}
                     />
                     <img
@@ -73,7 +73,7 @@ export default function AboutPageContent() {
                       alt="github icon"
                       style={{
                         width: "20px",
-                        height: "20px" /* , backgroundColor: "red"  */,
+                        height: "20px",
                       }}
                     />
                   </div>
@@ -82,7 +82,6 @@ export default function AboutPageContent() {
             })}
           </div>
         </AboutUsStyle>
-        {/* </div> */}
       </AboutMainStyled>
       <Footer />
     </>
