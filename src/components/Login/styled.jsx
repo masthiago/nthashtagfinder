@@ -86,6 +86,7 @@ export const Access = styled.button`
   font-size: 19px;
   font-weight: medium;
   cursor: pointer;
+  
   &:hover {
     transition: all 0.1s ease;
     transform: translate(2%) scale(0.8);

@@ -4,7 +4,7 @@ import { StyledButton, StyledHeader } from "../Home/styled";
 import iconAbout from "../../assets/img/iconAbout.svg";
 import iconUser from "../../assets/img/iconUser.svg";
 import iconHome from "../../assets/img/iconHome.svg";
-
+import iconOff from "../../assets/img/iconOff.svg";
 
 export default function Header() {  
   const currentPath = window.location.pathname;
@@ -22,7 +22,7 @@ export default function Header() {
             {currentPath !== "/login" && currentPath !== "/search" && (
               <StyledButton backgroundColor="#72EFDB" color="#0a1744">
                 <img className="iconHeader" src={iconAbout} alt="ícone Sobre" />
-                  Sobre            
+                  SOBRE            
               </StyledButton> 
             )}        
           </Link>
@@ -30,7 +30,7 @@ export default function Header() {
             {currentPath !== "/login" && currentPath !== "/search" && (
               <StyledButton>            
                 <img className="iconHeader" src={iconUser} alt="ícone Login" />
-                  Login            
+                  LOGIN            
               </StyledButton> 
             )}
           </Link>            
@@ -38,7 +38,15 @@ export default function Header() {
             {currentPath === "/" || currentPath === "/about" ? null : (
               <StyledButton backgroundColor="#72EFDB" color="#0a1744" >
                 <img className="iconHeader" src={iconHome} alt="ícone Home" />
-                  Home
+                  HOME
+              </StyledButton>  
+            )}
+          </Link>
+          <Link to='/login'>
+            {currentPath === "/" || currentPath === "/about" || currentPath === "/login" ? null : (
+              <StyledButton>
+                <img className="iconHeader" src={iconOff} alt="ícone Home" />
+                  SAIR
               </StyledButton>  
             )}
           </Link>
