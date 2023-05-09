@@ -2,12 +2,10 @@ import React from "react";
 import { AboutMainStyled, AboutTextAndImageStyle, AboutUsStyle, } from "./styled";
 import Header from "../Header";
 import Footer from "../Footer";
-
 import aboutContentImage from "../../assets/img/aboutImage.svg";
 import emailBoxIcon from "../../assets/img/envelope_font_awesome.svg";
 import gitHubIcon from "../../assets/img/github.svg";
 import linkednIcon from "../../assets/img/linkedin.svg";
-
 import developerInfos from "./developers.json";
 
 export default function AboutPageContent() {
@@ -19,15 +17,14 @@ export default function AboutPageContent() {
         <AboutTextAndImageStyle>
           <div id="titleAndTextContent">
             <h1>Sobre o projeto</h1>
-            <p style={{ margin: "0px" }}>
+            <p style={{ margin: "0px", color:'#e6e6e6' }}>
               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
               et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
               Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
               amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
               erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
               no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
-              elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-              At vero eos et accusam et justo duo .
+              elitr, sed diam nonumy eirmod tempor.
             </p>
           </div>
           <div id="aboutImageContent">
@@ -45,10 +42,10 @@ export default function AboutPageContent() {
                     key={index}
                     src={developersInfoUnit.userImage}
                   />
-                  <h3 style={{ color: "#72EFDB" }}>
+                  <h3 style={{ color: "#72EFDB" , fontWeight:"bold"}}>
                     {developersInfoUnit.UserTitle}
                   </h3>
-                  <p>
+                  <p style={{color:'#bfbfbf', fontSize:'11px', letterSpacing:'0.23px'}}>
                     {developersInfoUnit.userText}
                   </p>
                   <div id="iconsBoxContent">

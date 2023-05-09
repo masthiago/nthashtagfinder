@@ -1,13 +1,9 @@
 import styled from "styled-components";
-import backImage from "../../assets/img/aboutHeroBg.jpg";
+
 
 export const AboutMainStyled = styled.div`
 
-    /* background-image: linear-gradient(#1E3E9B,#0A1720); */
- 
-    background-repeat:no-repeat;
-    background-size:cover;
-    background:  linear-gradient(darkblue, #0A1744);
+    background:  linear-gradient(#003390, #0A1744);
     width: 100%;
     height: 1000px;
     color:white;
@@ -22,6 +18,10 @@ export const AboutMainStyled = styled.div`
         }
         @media screen and (max-width: 970px) {
             height: 2500px;
+            
+        };
+        @media screen and (max-width: 414px) {
+            background:  linear-gradient(#003390, #0A1744, #0A1744);
             
         };  
     
@@ -83,13 +83,18 @@ export const AboutTextAndImageStyle = styled.div`
             };
             #aboutImageContent{
                 width:100%;
+                background-color:yellow;
             };
     };
     @media screen and (max-width: 414px) {
-            
+            #aboutImageContent{
+                justify-content:center;
+                background-color:yellow;
+            };
             #aboutImageContent{
                 img{
-                    width:100%;
+                    width:90%;
+                    background-color:red;
                 }
             };
     };
