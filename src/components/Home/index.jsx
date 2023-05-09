@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import {   StyledMain } from './styled';
-
+import { StyledMain } from './styled';
 
 export function SearchBar(props) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -28,16 +27,17 @@ export function SearchBar(props) {
 function Home() {
   return (
     <>
-
       <StyledMain>
-        <h1>
-          Encontre hashtags <br />
-          de maneira fácil.
-        </h1>
-        <p>
-          Digite o que deseja no campo de buscas e <br />
-          confira os resultados do Twitter abaixo
-        </p>
+        <div className='presentationText'>
+          <h1>
+            Encontre hashtags <br />
+            de maneira fácil.
+          </h1>
+          <p>
+            Digite o que deseja no campo de buscas e <br />
+            confira os resultados do Twitter abaixo
+          </p>
+        </div>
         <SearchBar />
       </StyledMain>
     </>
@@ -45,4 +45,3 @@ function Home() {
 }
 
 export default Home;
-
