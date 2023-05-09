@@ -20,8 +20,8 @@ export const Wrapper = styled.div`
 
 // style for form container
 export const FormContainer = styled.div`
-  width: 558px;
-  height: 608px;
+  width: 508px;
+  height: 558px;
   background-color: rgba(24, 50, 107, 0.5);
   backdrop-filter: blur(6px);
   border-radius: 14px;
@@ -49,7 +49,8 @@ export const Title = styled.h1`
   display: flex;
   justify-content: center;
   margin-bottom: 50px;
-  font-family: Rubik, Bold;
+  font-size: 35px;
+  font-weight: bold;
 `;
 
 // style for input field
@@ -60,8 +61,8 @@ export const Field = styled.input`
   margin-bottom: 44px;
   height: 31px;
   color: #ffffff;
-  font-size: ;
-  font-family: Rubik, Regular;
+  font-size: 17px;
+
 
   :focus {
     box-shadow: 0 0 0 0;
@@ -78,13 +79,14 @@ export const Access = styled.button`
   width: 204px;
   height: 46px;
   border: none;
-  font-family: Rubik, Medium;
   border-radius: 24px;
   background: #72efdb;
-  margin: 10px 126px 0;
+  margin: 30px 101px 0;
   color: #0b1741;
+  font-size: 19px;
+  font-weight: medium;
 
   @media screen and (max-width: 600px) {
-    margin: 0 30px;
+    margin: 20px 15px 0;
   }
 `;
