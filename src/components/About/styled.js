@@ -21,7 +21,7 @@ export const AboutMainStyled = styled.div`
             font-size:40px;
         }
         @media screen and (max-width: 970px) {
-            height: 2800px;
+            height: 2500px;
             
         };  
     
@@ -85,7 +85,7 @@ export const AboutTextAndImageStyle = styled.div`
                 width:100%;
             };
     };
-    @media screen and (max-width: 410px) {
+    @media screen and (max-width: 414px) {
             
             #aboutImageContent{
                 img{
@@ -146,10 +146,9 @@ export const AboutUsStyle = styled.div`
                 h2{
                     text-align:center;
                 }
-                #itensPositions{
+                #itensPositions{  
                     width:100%;
                     height:90%;
-                   
                     flex-direction:column;
                     align-items:center;
                     justify-content:space-around;
@@ -159,5 +158,15 @@ export const AboutUsStyle = styled.div`
                     height:250px;
                     justify-content:space-around; 
                 };
+        };
+        @media screen and (max-width: 414px) {
+            height:1600px;
+                h2{
+                    text-align:start;
+                    margin-left:20px;
+                    width:200px;
+                   
+                }
+              
         };
 `
