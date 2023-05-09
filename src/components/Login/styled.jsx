@@ -85,6 +85,11 @@ export const Access = styled.button`
   color: #0b1741;
   font-size: 19px;
   font-weight: medium;
+  cursor: pointer;
+  &:hover {
+    transition: all 0.1s ease;
+    transform: translate(2%) scale(0.8);
+  }
 
   @media screen and (max-width: 600px) {
     margin: 20px 15px 0;
