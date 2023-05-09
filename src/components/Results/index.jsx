@@ -1,27 +1,18 @@
-import React, { Fragment } from "react";
-import {
-  ButtonGroup,
-  ResultImage,
-  ResultPost,
-  ResultsContainer,
-  ResultsDynamicContainer,
-  ResultsHeader,
-  ResultsImageContainer,
-  ResultsPostContainer,
-  Tab,
-} from "./styled"; // Styled components
+import React from "react";
+import { ImageItem, PostItem } from "./components";
+import { ResultsContainer, ButtonGroup, Tab } from "./styled";
 
 export default class Results extends React.Component {
+  tabTypes = ["Tweets", "Imagens"];
+
   constructor(props) {
     super(props);
     this.state = {
-      active: this.types[0],
-      size: window.innerWidth,
+      activeTab: this.tabTypes[0],
+      windowWidth: window.innerWidth,
     };
     this.handleResize = this.handleResize.bind(this);
   }
-
-  types = ["Tweets", "Imagens"];
 
   componentDidMount() {
     window.addEventListener("resize", this.handleResize);
@@ -32,155 +23,108 @@ export default class Results extends React.Component {
 
   handleResize = () => {
     // Update the state with the new window size
-    this.setState({ size: window.innerWidth });
+    this.setState({ windowWidth: window.innerWidth });
   };
 
-  displayWithTabs = () => {
-    // Use the TabGroup component to display the results
-    // TODO Revise this function and TabGroup to reduce code
-    return this.TabGroup();
-  };
-
-  displayWithoutTabs = () => {
-    const TwitterImages = this.TwitterImages;
-    const TwitterPosts = this.TwitterPosts;
-    return (
-      <>
-        <TwitterImages />
-        <TwitterPosts />
-      </>
-    );
-  };
-
-  TwitterImages = () => {
+  twitterImages = () => {
     // Random image generator
     // This will be removed when API is implemented
     const ImgGen = () => {
-      let tags = [];
+      let images = [];
       for (let i = 0; i < 10; i++) {
-        tags.push(
-          <ResultImage
+        images.push(
+          <ImageItem
             key={"image" + (i + 1)}
             background={`https://loremflickr.com/720/720/`}
-          >
-            <p>
-              <small>Publicado por:</small>
-            </p>
-            <p>
-              <b>@twitterusername</b>
-            </p>
-          </ResultImage>
+          />
         );
       }
-      return tags;
+      return images;
     };
 
     return (
-      <ResultsImageContainer>
+      <ul className="listImages">
         <ImgGen />
-      </ResultsImageContainer>
+      </ul>
     );
   };
+  // };
 
-  TwitterPosts = () => {
+  twitterPosts = () => {
     // Random post generator
     // This will be removed when API is implemented
     const PostGen = () => {
-      let tags = [];
+      let posts = [];
       for (let i = 0; i < 10; i++) {
-        tags.push(
-          <ResultPost key={"post" + (i + 1)}>
-            <div>
-              <img
-                alt=""
-                src="https://loremflickr.com/360/360/face/"
-                style={{
-                  width: "64px",
-                  height: "64px",
-                  borderRadius: "100%",
-                }}
-              />
-            </div>
-            <div>
-              <p>
-                <strong>UserName </strong>
-                <small> @username</small>
-              </p>
-              <p>
-                Laborum ut nostrud voluptate reprehenderit id ullamco nisi non
-                aliquip ad et.
-              </p>
-              <br />
-              <p
-                style={{
-                  color: "#72efdb",
-                  fontWeight: "bold",
-                }}
-              >
-                Ver mais no twitter
-              </p>
-            </div>
-          </ResultPost>
+        posts.push(
+          <PostItem
+            key={"post" + (i + 1)}
+            avatar={"https://loremflickr.com/720/720/face/"}
+            order={i + 1}
+          />
         );
       }
-      return tags;
+      return posts;
     };
 
     return (
-      <ResultsPostContainer>
+      <ul className="listPost">
         <PostGen />
-      </ResultsPostContainer>
+      </ul>
     );
   };
 
-  TabGroup = () => {
+  displayWithoutTabs = () => {
+    const TwitterImages = this.twitterImages;
+    const TwitterPosts = this.twitterPosts;
+    return (
+      <div className="listContainer">
+        <TwitterImages />
+        <TwitterPosts />
+      </div>
+    );
+  };
+
+  displayWithTabs = () => {
     // Check which tab is active and displays the corresponding
-    // content according to the {state.active}
+    // content according to {state.activeTab}
     return (
       <>
         <ButtonGroup>
-          {this.types.map((type) => (
+          {this.tabTypes.map((type) => (
             <Tab
               key={type}
-              active={this.state.active === type}
-              onClick={() => this.setState({ active: type })}
+              active={this.state.activeTab === type}
+              onClick={() => this.setState({ activeTab: type })}
             >
               {type}
             </Tab>
           ))}
         </ButtonGroup>
 
-        {this.state.active === "Tweets"
-          ? this.TwitterPosts()
-          : this.TwitterImages()}
+        {this.state.activeTab === "Tweets"
+          ? this.twitterPosts()
+          : this.twitterImages()}
       </>
     );
   };
 
   render() {
-    // The methods this.displayWithTabs and this.displayWithoutTabs return React components,
-    // but to be called they need to start with capital letters, so here they
-    // are referenced as the constants DisplayWithTabs and DisplayWithoutTabs for that purpose.
-    const DisplayWithTabs = this.displayWithTabs;
     const DisplayWithoutTabs = this.displayWithoutTabs;
-
+    const DisplayWithTabs = this.displayWithTabs;
     return (
       <ResultsContainer>
-        <ResultsHeader>
-          Exibindo os 10 resultados mais recentes para #natureza
-        </ResultsHeader>
-
-        <ResultsDynamicContainer>
-          {/* 
-            Alternates between display forms with or without tabs 
-            depending on the size of the screen. 
-          */}
-          {this.state.size > 1024 ? (
-            <DisplayWithoutTabs />
-          ) : (
-            <DisplayWithTabs />
-          )}
-        </ResultsDynamicContainer>
+        <h2 className="listTitle">
+          Exibindo os <span className="tagCount">10</span> resultados mais
+          recentes para #<span className="tagName">natureza</span>
+        </h2>
+        {/* <div className="listContainer"> */}
+        {this.state.windowWidth > 1024 ? (
+          <DisplayWithoutTabs />
+        ) : (
+          <DisplayWithTabs />
+        )}
+        {/* </div> */}
       </ResultsContainer>
     );
   }
