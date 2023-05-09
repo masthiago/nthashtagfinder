@@ -7,6 +7,7 @@ import iconHome from "../../assets/img/iconHome.svg";
 
 
 export default function Header() {  
+  const currentPath = window.location.pathname;
 
   return (
     <>
@@ -18,35 +19,28 @@ export default function Header() {
         </Link>
         <div>
           <Link to="/about">  
-            {
-              window.location.pathname !== '/login' &&
-              window.location.pathname !== '/search' ? 
+            {currentPath !== "/login" && currentPath !== "/search" && (
               <StyledButton backgroundColor="#72EFDB" color="#0a1744">
                 <img className="iconHeader" src={iconAbout} alt="ícone Sobre" />
                   Sobre            
-              </StyledButton> : ''
-            }        
-              
+              </StyledButton> 
+            )}        
           </Link>
           <Link to="/login">
-            { 
-              window.location.pathname !== '/login' &&
-              window.location.pathname !== '/search' ?
+            {currentPath !== "/login" && currentPath !== "/search" && (
               <StyledButton>            
                 <img className="iconHeader" src={iconUser} alt="ícone Login" />
                   Login            
-              </StyledButton> : ''
-            }
+              </StyledButton> 
+            )}
           </Link>            
           <Link to="/">
-            {
-              window.location.pathname === '/' || 
-              window.location.pathname === '/about' ?  '' :
+            {currentPath === "/" || currentPath === "/about" ? null : (
               <StyledButton backgroundColor="#72EFDB" color="#0a1744" >
                 <img className="iconHeader" src={iconHome} alt="ícone Home" />
                   Home
               </StyledButton>  
-            }
+            )}
           </Link>
         </div>
       </StyledHeader>

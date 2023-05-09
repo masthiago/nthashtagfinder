@@ -6,6 +6,12 @@ import { Link } from "react-router-dom";
 
 
 export default function Login() {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    window.location.href = "/search";
+  };
+
   return (
     <>
       <Header />
@@ -17,7 +23,7 @@ export default function Login() {
             <Field type="password" placeholder="Senha" />
             <Link  to='/search'> 
             {/* access to search page */}
-              <Access>ACESSAR</Access> 
+              <Access type="submit" onClick={handleSubmit }>ACESSAR</Access> 
             </Link>
           </FormFields>
         </FormContainer>
