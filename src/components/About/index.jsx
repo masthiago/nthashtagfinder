@@ -28,7 +28,7 @@ export default function AboutPageContent() {
             </p>
           </div>
           <div id="aboutImageContent">
-            <img src={aboutContentImage} alt="ilustrative image" />
+            <img src={aboutContentImage} alt="ilustrative developer" />
           </div>
         </AboutTextAndImageStyle>
         <AboutUsStyle>
