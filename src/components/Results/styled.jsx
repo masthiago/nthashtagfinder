@@ -53,17 +53,21 @@ export const ResultsContainer = styled.div`
     padding-bottom: 10%;
     padding-left: 10%;
     width: 100%;
-    min-height: 180px;
-    min-width: 180px;
+    min-height: 160px;
+    min-width: 160px;
     justify-content: start;
     box-sizing: border-box;
     font-size: 14px;
+    cursor: pointer;
   }
   span.imageUser {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 700;
     display: inline-block;
     padding-top: 5px;
+    @media screen and (min-width: 1024px) {
+      font-size: 16px;
+    }
   }
   ul.listPost {
     padding-left: 0;
@@ -74,16 +78,19 @@ export const ResultsContainer = styled.div`
   ul.listPost li {
     align-items: start;
     background-color: #ffffff05;
-    border-radius: 10px;
+    border-radius: 5px;
     border: 1px solid #ffffff20;
     box-sizing: border-box;
     display: flex;
-    padding: 32px;
+    padding: 16px;
     gap: 32px;
     justify-content: start;
     margin-bottom: 25px;
     min-height: 100px;
     width: 100%;
+    @media screen and (min-width: 1024px) {
+      border-radius: 15px;
+    }
   }
   img.userAvatar {
     border-radius: 100%;
@@ -93,28 +100,41 @@ export const ResultsContainer = styled.div`
   div.tweetContainer {
   }
   h4.userInfo {
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 700;
     padding-bottom: 16px;
+    @media screen and (min-width: 1024px) {
+      font-size: 24px;
+    }
   }
   span.userName {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
     color: #ffffffa0;
+    @media screen and (min-width: 1024px) {
+      font-size: 16px;
+    }
   }
   p.userPost {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
     color: #ffffffd0;
     padding-bottom: 32px;
+    width: 100%;
+    @media screen and (min-width: 1024px) {
+      font-size: 16px;
+    }
   }
   a.userLink {
     color: #72efdb;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 700;
     text-decoration: none;
     :hover {
       color: #72efdbc0;
+    }
+    @media screen and (min-width: 1024px) {
+      font-size: 16px;
     }
   }
 `;
@@ -123,19 +143,22 @@ export const Tab = styled.button`
   background-color: transparent;
   border: 0;
   cursor: pointer;
-  color: #72efdb;
+  color: #ffffff;
   font-size: 20px;
+  font-weight: 400;
   outline: 0;
   padding: 10px 0;
   min-width: 180px;
   max-width: 460px;
   width: 90%;
   box-sizing: border-box;
-  border-bottom: 2px solid #72efdb;
+  border-bottom: 1px solid #72efdb50;
   ${({ active }) =>
     active &&
     `
-    border-bottom: 6px solid #72efdb;
+    color: #72efdb;
+    border-bottom: 4px solid #72efdb;
+    font-weight: 700;
   `}
 `;
 
