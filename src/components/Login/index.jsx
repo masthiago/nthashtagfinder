@@ -2,8 +2,16 @@ import React from "react";
 import { Access, Field, FormContainer, FormFields, Title, Wrapper } from "./styled";
 import Header from "../Header";
 import Footer from "../Footer";
+import { Link } from "react-router-dom";
+
 
 export default function Login() {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    window.location.href = "/search";
+  };
+
   return (
     <>
       <Header />
@@ -13,7 +21,10 @@ export default function Login() {
             <Title>Login</Title>
             <Field type="text" placeholder="Usuário" />
             <Field type="password" placeholder="Senha" />
-            <Access>ACESSAR</Access>
+            <Link  to='/search'> 
+            {/* access to search page */}
+              <Access type="submit" onClick={handleSubmit }>ACESSAR</Access> 
+            </Link>
           </FormFields>
         </FormContainer>
       </Wrapper>

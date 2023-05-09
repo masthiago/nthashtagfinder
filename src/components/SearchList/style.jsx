@@ -95,7 +95,6 @@ export const TextList = styled.div`
   margin-top: 23px;
   border-bottom: ;
   box-shadow: 0px 1px 0px 0px rgb(219 220 227 / 16%);
-}
 `;
 
 export const TextHashtag = styled.p`

@@ -6,6 +6,7 @@ import App from "./App";
 import Login from "./components/Login";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./index.css";
+import SearchList from "./components/SearchList";
 // import { GlobalStyle } from './App/homeComponents/globalStyle';
 
 const router = createBrowserRouter([
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
     path: "/login",
     element: <Login />,
   },
+  {
+    path: "/search", 
+    element: <SearchList />
+  }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
