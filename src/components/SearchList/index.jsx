@@ -16,7 +16,6 @@ import {
   Text
 } from "./style";
 import Header from "../Header";
-import Footer from '../Footer'
 
 const SearchList = () => {
   var listing = [
@@ -40,7 +39,6 @@ const SearchList = () => {
   }
   /* ------------------ */
 
-  /*  const listingMap = listing.map((number) => <li>{number}</li>); */
   return (
     <>
       <Background />
@@ -74,7 +72,6 @@ const SearchList = () => {
           </List>
         </Container>
       </Wrapper>
-      <Footer /> 
     </>
   );
 };
