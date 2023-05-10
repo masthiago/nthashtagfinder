@@ -1,7 +1,6 @@
 import React from "react";
 import { Access, Field, FormContainer, FormFields, Title, Wrapper } from "./styled";
 import Header from "../Header";
-import Footer from "../Footer";
 import { Link } from "react-router-dom";
 
 
@@ -28,7 +27,6 @@ export default function Login() {
           </FormFields>
         </FormContainer>
       </Wrapper>
-      <Footer />
     </>
   );
 }

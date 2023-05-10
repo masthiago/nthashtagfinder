@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import tableBg from "../../assets/img/tableBg.jpg";
+import styled from 'styled-components';
+import tableBg from '../../assets/img/tableBg.jpg';
 
 export const Background = styled.div`
   position: fixed;
@@ -19,6 +19,11 @@ export const Wrapper = styled.div`
 export const Container = styled.div`
   width: 80%;
   margin: auto;
+
+  @media screen and (max-width: 850px) {
+    width: 90%;
+
+  }
 `;
 
 export const Title = styled.h1`
@@ -27,6 +32,11 @@ export const Title = styled.h1`
   color: #72efdb;
   margin-top: 33px;
   font-size: 40px;
+
+  @media screen and (max-width: 850px) {
+    font-size: 33px;
+    text-align: center;
+  }
 `;
 
 export const List = styled.div`
@@ -50,6 +60,10 @@ export const HeadList = styled.div`
   border-top-right-radius: 13px;
   position: relative;
   display: flex;
+
+  @media screen and (max-width: 850px) {
+    height: 49px;
+  }
 `;
 
 export const HeadListItems = styled.div`
@@ -66,6 +80,12 @@ export const ItemHashtag = styled.p`
   color: rgb(114, 239, 219);
   margin: 10px;
   margin-left: 20px;
+
+  @media screen and (max-width: 850px) {
+    font-size: 20px;
+    margin-bottom: 0;
+    margin-left: 15px;
+  }
 `;
 export const Items = styled.div`
   display: flex;
@@ -83,6 +103,11 @@ export const Item = styled.p`
   color: rgb(114, 239, 219);
   margin: 10px;
   margin-left: 119px;
+
+  @media screen and (max-width: 850px) {
+    font-size: 20px;
+    margin-left: 15px;
+  }
 `;
 
 //List
@@ -103,15 +128,23 @@ export const TextHashtag = styled.p`
   font-weight: 1;
   margin-left: 20px;
   color: white;
+  align-items: center;
+
+  @media screen and (max-width: 850px) {
+    font-size: 18px;
+    height: 50px;
+    margin-left: 15px;
+  }
 `;
 
-export const Texts = styled.p`
+export const Texts = styled.div`
   display: flex;
   width: auto;
   margin: 0;
   right: 10px;
   position: absolute;
   padding: 0;
+  height: 50px;
 `;
 
 export const Text = styled.p`
@@ -121,4 +154,10 @@ export const Text = styled.p`
   color: white;
   margin: 10px;
   margin-left: 119px;
+  align-items: center;
+
+  @media screen and (max-width: 850px) {
+    font-size: 18px;
+    margin-left: 15px;
+  }
 `;

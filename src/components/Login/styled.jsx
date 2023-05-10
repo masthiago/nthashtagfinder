@@ -15,6 +15,8 @@ export const Wrapper = styled.div`
   
   @media screen and (max-width: 414px) {
     background-image: url(${mobileHeroBg});
+    background-size: 140%; 
+    background-position: left bottom;
   }
 `;
 
@@ -23,7 +25,7 @@ export const FormContainer = styled.div`
   width: 508px;
   height: 558px;
   background-color: rgba(24, 50, 107, 0.5);
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(15px);
   border-radius: 14px;
   
   @media screen and (max-width: 600px) {
