@@ -20,7 +20,7 @@ export const StyledHeader = styled.header`
 
   @media screen and (max-width: 440px) {
     padding: 10px;
-    place-content: space-evenly;
+
   }
 `;
 
