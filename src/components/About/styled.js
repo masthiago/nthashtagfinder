@@ -17,16 +17,16 @@ export const AboutMainStyled = styled.div`
             font-size:40px;
         }
         @media screen and (max-width: 1516px) {
-            height: 1300px;
+            height: 1200px;
             
         };
         @media screen and (max-width: 970px) {
-            height: 2300px;
+            height: 2500px;
             
         };
         @media screen and (max-width: 414px) {
-            height: 2600px;
-          
+            height: 3800px;
+            
             
         };  
     
@@ -281,16 +281,38 @@ export const AboutUsStyle = styled.div`
                 };
         };
         @media screen and (max-width: 414px) {
-            height:1600px;
+            height:3000px;
+            margin-top:20px;
                 h2{
                     text-align:start;
                     margin-left:20px;
                     font-size:30px;
                     
-                }
-                #developersDataContent{
-                    height:270px;
                 };
+                #itensPositions{  
+                    height:95%;
+                    justify-content:space-evenly;
+                
+                };
+                #developersDataContent{
+                    height:471px;
+                    padding:30px;
+                    h3{
+                        font: normal normal bold 25px/29px Rubik;
+                    }
+                    p{
+                        font: normal normal normal 19px/25px Rubik;
+                        letter-spacing: 0.23px;
+                        width:80%;
+                    }
+                    #developersImage{
+                        width:150px;
+                        height:150px;
+                        border-radius:100%;
+                
+                    } 
+                };
+               
               
         };
 `
