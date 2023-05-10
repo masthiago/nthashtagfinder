@@ -17,7 +17,7 @@ export const AboutMainStyled = styled.div`
             font-size:40px;
         }
         @media screen and (max-width: 1516px) {
-            height: 1300px;
+            height: 1200px;
             
         };
         @media screen and (max-width: 970px) {
@@ -25,8 +25,8 @@ export const AboutMainStyled = styled.div`
             
         };
         @media screen and (max-width: 414px) {
-            height: 2600px;
-          
+            height: 3000px;
+            
             
         };  
     
@@ -281,16 +281,38 @@ export const AboutUsStyle = styled.div`
                 };
         };
         @media screen and (max-width: 414px) {
-            height:1600px;
+            height:2000px;
+            
                 h2{
                     text-align:start;
                     margin-left:20px;
                     font-size:30px;
                     
-                }
-                #developersDataContent{
-                    height:270px;
                 };
+                #itensPositions{  
+                    height:95%;
+                    
+                
+                };
+                #developersDataContent{
+                    height:357px;
+                    padding:30px;
+                    h3{
+                        font: normal normal bold 28px/31px Rubik;
+                    }
+                    p{
+                        font: normal normal normal 19px/25px Rubik;
+                        letter-spacing: 0.23px;
+                        width:80%;
+                    }
+                    #developersImage{
+                        width:150px;
+                        height:150px;
+                        border-radius:100%;
+                
+                    } 
+                };
+               
               
         };
 `
