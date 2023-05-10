@@ -21,7 +21,7 @@ export const StyledHeader = styled.header`
     text-decoration: none;
   }
 
-  /*Logo da hashtagfinder feito manualmente devido a erro na imagem*/
+  /*Logo da hashtagfinder feito manualmente devido a erro no asset disponibilizado*/
   p {
     font-size: 39px;
     span {
@@ -29,9 +29,15 @@ export const StyledHeader = styled.header`
     }
   }
 
-  @media screen and (max-width: 440px) {
+  @media screen and (max-width: 420px) {
+    width: 420px;
+    height: 82px;
     padding: 10px;
     place-content: space-evenly;
+
+    p {
+      font-size: 19px;
+    }
   }
 `;
 
@@ -60,7 +66,14 @@ export const StyledButton = styled.button`
   }
 
   @media screen and (max-width: 440px) {
-    width: 85px;
+    width: 100px;
+    font-size: 10px;
+    height: 30px;
+
+    .iconHeader {
+      margin-right: 5px;
+      width: 9px;
+    }
   }
 `;
 
@@ -70,9 +83,10 @@ export const StyledMain = styled.main`
   width: 1920px;
   height: 1080px;
 
-  @media screen and (max-width: 440px) {
+  @media screen and (max-width: 420px) {
     background-image: url(${mobileHeroBg});
-    background-size: cover;
+    width: 420px;
+    height: 680px;
   }
 
   div.presentationText {
@@ -104,11 +118,6 @@ export const StyledMain = styled.main`
       margin-top: 28px;
       font-size: 31px;
 
-      @media screen and (max-width: 700px) {
-        margin-left: 40px;
-        font-size: 15px;
-      }
-
       @media screen and (max-width: 440px) {
         margin-left: 40px;
         font-size: 14px;
@@ -121,7 +130,8 @@ export const StyledMain = styled.main`
     margin-top: 360px;
     justify-content: center;
 
-    @media screen and (max-width: 700px) {
+    @media screen and (max-width: 440px) {
+      margin-top: 155px;
     }
   }
 
@@ -133,28 +143,30 @@ export const StyledMain = styled.main`
     border: none;
     border-radius: 72px 0px 0px 72px;
     width: 125px;
-    padding: 20px;
     font-size: 50px;
     cursor: pointer;
+
+    @media screen and (max-width: 420px) {
+      width: 40px;
+      font-size: 17px;
+      background-size: 10px;
+    }
   }
 
   input.textSearch {
     background-color: #1e3e7b;
     width: 875px;
-    height: 119px;
+    height: 109px;
     font-size: 50px;
     border-radius: 0px 72px 72px 0px;
     border: none;
     outline: none;
 
-    @media screen and (max-width: 700px) {
-      width: 60vh;
-      padding: 20px;
-    }
-
     @media screen and (max-width: 440px) {
-      padding: 10px;
-      width: 70vw;
+      padding: 8px;
+      height: 32px;
+      width: 270px;
+      font-size: 17px;
     }
 
     /*Ajuste no Placeholder*/
@@ -162,6 +174,11 @@ export const StyledMain = styled.main`
       color: #8d9da2;
       font-size: 50px;
       align-items: center;
+
+      @media screen and (max-width: 440px) {
+        font-size: 17px;
+        align-items: center;
+      }
     }
   }
 `;
