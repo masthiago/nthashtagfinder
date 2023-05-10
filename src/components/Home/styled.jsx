@@ -5,8 +5,8 @@ import iconSearch from '../../assets/img/iconSearch.svg';
 
 /*Estilização do header*/
 export const StyledHeader = styled.header`
-  width: 100%;
-  height: 70px;
+  width: 1920px;
+  height: 117px;
   padding: 35px;
   background-color: #0a1744;
   display: flex;
@@ -21,25 +21,33 @@ export const StyledHeader = styled.header`
     text-decoration: none;
   }
 
+  /*Logo da hashtagfinder feito manualmente devido a erro na imagem*/
+  p {
+    font-size: 39px;
+    span {
+      font-weight: bolder;
+    }
+  }
+
   @media screen and (max-width: 440px) {
     padding: 10px;
     place-content: space-evenly;
   }
 `;
 
-/*Inclusão dos elementos no header*/
+/*Estilização dos botões do Header*/
 export const StyledButton = styled.button`
   background-color: ${(prop) =>
     prop.backgroundColor ? prop.backgroundColor : '#1E3E7B'};
 
   color: ${(prop) => (prop.color ? prop.color : '#fff')};
 
-  font-family: Rubik, sans-serif;
-  width: 100px;
-  height: 30px;
+  width: 170px;
+  height: 49px;
   margin: 8px;
-  border: none;
   border-radius: 50px;
+  border: none;
+  font-size: 17px;
   font-weight: bold;
   cursor: pointer;
   &:hover {
@@ -48,7 +56,7 @@ export const StyledButton = styled.button`
   }
   .iconHeader {
     margin-right: 10px;
-    width: 10px;
+    width: 13px;
   }
 
   @media screen and (max-width: 440px) {
@@ -59,8 +67,8 @@ export const StyledButton = styled.button`
 /* Inclusão e estilização da imagem Home*/
 export const StyledMain = styled.main`
   background-image: url(${heroBg});
-  background-size: cover;
-  height: 100vh;
+  width: 1920px;
+  height: 1080px;
 
   @media screen and (max-width: 440px) {
     background-image: url(${mobileHeroBg});
@@ -73,8 +81,8 @@ export const StyledMain = styled.main`
 
     h1 {
       margin-top: 115px;
-      margin-left: 70px;
-      font-size: 55px;
+      margin-left: 140px;
+      font-size: 82px;
       font-weight: bold;
 
       @media screen and (max-width: 700px) {
@@ -92,8 +100,9 @@ export const StyledMain = styled.main`
     }
 
     p {
-      margin-left: 70px;
-      font-size: 20px;
+      margin-left: 140px;
+      margin-top: 28px;
+      font-size: 31px;
 
       @media screen and (max-width: 700px) {
         margin-left: 40px;
@@ -109,7 +118,7 @@ export const StyledMain = styled.main`
   /*Form para barra e botão de pesquisa */
   form {
     display: flex;
-    margin-top: 150px;
+    margin-top: 360px;
     justify-content: center;
 
     @media screen and (max-width: 700px) {
@@ -120,18 +129,21 @@ export const StyledMain = styled.main`
     background-color: #1e3e7b;
     background-image: url(${iconSearch});
     background-repeat: no-repeat;
-    background-position: right center;
-    background-size: 15px;
-    padding: 20px;
+    background-position: center;
     border: none;
-    border-radius: 50px 0px 0px 50px;
+    border-radius: 72px 0px 0px 72px;
+    width: 125px;
+    padding: 20px;
+    font-size: 50px;
+    cursor: pointer;
   }
 
   input.textSearch {
     background-color: #1e3e7b;
-    padding: 25px;
-    width: 85vh;
-    border-radius: 0px 50px 50px 0px;
+    width: 875px;
+    height: 119px;
+    font-size: 50px;
+    border-radius: 0px 72px 72px 0px;
     border: none;
     outline: none;
 
@@ -147,8 +159,9 @@ export const StyledMain = styled.main`
 
     /*Ajuste no Placeholder*/
     ::-webkit-input-placeholder {
-      color: #bbbbbb;
-      font-size: 20px;
+      color: #8d9da2;
+      font-size: 50px;
+      align-items: center;
     }
   }
 `;

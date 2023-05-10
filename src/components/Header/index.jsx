@@ -13,7 +13,7 @@ export default function Header() {
       <StyledHeader>
         <Link to='/'>
           <p>
-            hashtag<strong>finder</strong>
+            hashtag<span>finder</span>
           </p>
         </Link>
         <div>
@@ -21,15 +21,15 @@ export default function Header() {
             {currentPath !== '/login' && currentPath !== '/search' && (
               <StyledButton backgroundColor='#72EFDB' color='#0a1744'>
                 <img className='iconHeader' src={iconAbout} alt='ícone Sobre' />
-                Sobre
+                S O B R E
               </StyledButton>
             )}
           </Link>
           <Link to='/login'>
             {currentPath !== '/login' && currentPath !== '/search' && (
               <StyledButton>
-                <img className='iconHeader' src={iconUser} alt='ícone Login' />
-                Login
+                <img className='iconHeader' src={iconUser} alt='ícone Login' />L
+                O G I N
               </StyledButton>
             )}
           </Link>
