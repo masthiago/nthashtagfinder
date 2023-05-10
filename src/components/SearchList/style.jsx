@@ -19,6 +19,11 @@ export const Wrapper = styled.div`
 export const Container = styled.div`
   width: 80%;
   margin: auto;
+
+  @media screen and (max-width: 850px) {
+    width: 90%;
+
+  }
 `;
 
 export const Title = styled.h1`
