@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import tableBg from "../../assets/img/tableBg.jpg";
+import styled from 'styled-components';
+import tableBg from '../../assets/img/tableBg.jpg';
 
 export const Background = styled.div`
   position: fixed;
