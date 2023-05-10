@@ -24,8 +24,7 @@ export default function AboutPageContent() {
         <AboutTextAndImageStyle>
           <div id='titleAndTextContent'>
             <h1>Sobre o projeto</h1>
-<<<<<<< HEAD
-            <p style={{ margin: '0px' }}>
+            <p>
               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
               nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
               erat, sed diam voluptua. At vero eos et accusam et justo duo
@@ -33,17 +32,11 @@ export default function AboutPageContent() {
               sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
               amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
               invidunt ut labore et dolore magna aliquyam erat, sed diam
-=======
-            <p>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
-              aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-              sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo
-              duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
-              dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-              erat, sed diam.
-
->>>>>>> f4e2b0ef1c408f7e9f972466601bf448268db12a
+              voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+              Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
+              dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
+              elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
+              magna aliquyam erat, sed diam.
             </p>
           </div>
           <div id='aboutImageContent'>
@@ -61,57 +54,31 @@ export default function AboutPageContent() {
                     key={index}
                     src={developersInfoUnit.userImage}
                   />
-<<<<<<< HEAD
-                  <h3 style={{ color: '#72EFDB' }}>
-                    {developersInfoUnit.UserTitle}
-                  </h3>
-                  <p /* style={{backgroundColor:"gray", textAlign:"center"}} */>
-=======
-                  <h3>
-                    {developersInfoUnit.UserTitle}
-                  </h3>
-                  <p>
->>>>>>> f4e2b0ef1c408f7e9f972466601bf448268db12a
-                    {developersInfoUnit.userText}
-                  </p>
+                  <h3>{developersInfoUnit.UserTitle}</h3>
+                  <p>{developersInfoUnit.userText}</p>
                   <div id='iconsBoxContent'>
                     <img
                       src={gitHubIcon}
                       alt='github icon'
                       style={{
-<<<<<<< HEAD
-                        width: '20px',
-                        height: '20px' /* , backgroundColor: "red" */,
-=======
-                        width: "25px",
-                        height: "25px",
->>>>>>> f4e2b0ef1c408f7e9f972466601bf448268db12a
+                        width: '25px',
+                        height: '25px',
                       }}
                     />
                     <img
                       src={emailBoxIcon}
                       alt='github icon'
                       style={{
-<<<<<<< HEAD
-                        width: '20px',
-                        height: '20px' /* , backgroundColor: "red"  */,
-=======
-                        width: "25px",
-                        height: "25px",
->>>>>>> f4e2b0ef1c408f7e9f972466601bf448268db12a
+                        width: '25px',
+                        height: '25px',
                       }}
                     />
                     <img
                       src={linkednIcon}
                       alt='github icon'
                       style={{
-<<<<<<< HEAD
-                        width: '20px',
-                        height: '20px' /* , backgroundColor: "red"  */,
-=======
-                        width: "25px",
-                        height: "25px",
->>>>>>> f4e2b0ef1c408f7e9f972466601bf448268db12a
+                        width: '25px',
+                        height: '25px',
                       }}
                     />
                   </div>

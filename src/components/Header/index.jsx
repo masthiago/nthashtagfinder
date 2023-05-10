@@ -1,19 +1,10 @@
-<<<<<<< HEAD
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { StyledButton, StyledHeader } from '../Home/styled';
+import { StyledButton, StyledHeader } from '../Header/styled';
 import iconAbout from '../../assets/img/iconAbout.svg';
 import iconUser from '../../assets/img/iconUser.svg';
 import iconHome from '../../assets/img/iconHome.svg';
-=======
-import React from "react";
-import { Link } from "react-router-dom";
-import { StyledButton, StyledHeader } from "../Header/styled";
-import iconAbout from "../../assets/img/iconAbout.svg";
-import iconUser from "../../assets/img/iconUser.svg";
-import iconHome from "../../assets/img/iconHome.svg";
-import iconOff from "../../assets/img/iconOff.svg";
->>>>>>> f4e2b0ef1c408f7e9f972466601bf448268db12a
+import iconOff from '../../assets/img/iconOff.svg';
 
 export default function Header() {
   const currentPath = window.location.pathname;
