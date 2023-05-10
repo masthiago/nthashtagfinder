@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { StyledButton, StyledHeader } from "../Home/styled";
+import { StyledButton, StyledHeader } from "../Header/styled";
 import iconAbout from "../../assets/img/iconAbout.svg";
 import iconUser from "../../assets/img/iconUser.svg";
 import iconHome from "../../assets/img/iconHome.svg";
