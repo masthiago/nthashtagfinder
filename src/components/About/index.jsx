@@ -20,6 +20,7 @@ export default function AboutPageContent() {
     <>
       <Header />
       <AboutMainStyled>
+        {/*  <div style={{height:'100%',display:'flex',justifyContent:"center"}}> */}
         <AboutTextAndImageStyle>
           <div id='titleAndTextContent'>
             <h1>Sobre o projeto</h1>
@@ -51,12 +52,7 @@ export default function AboutPageContent() {
                   <h3 style={{ color: '#72EFDB' }}>
                     {developersInfoUnit.UserTitle}
                   </h3>
-                  <p
-                    style={{
-                      color: '#bfbfbf',
-                      fontSize: '11px',
-                      letterSpacing: '0.23px',
-                    }}>
+                  <p /* style={{backgroundColor:"gray", textAlign:"center"}} */>
                     {developersInfoUnit.userText}
                   </p>
                   <div id='iconsBoxContent'>
@@ -90,6 +86,7 @@ export default function AboutPageContent() {
             })}
           </div>
         </AboutUsStyle>
+        {/* </div> */}
       </AboutMainStyled>
       <Footer />
     </>

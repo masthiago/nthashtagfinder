@@ -1,10 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { StyledButton, StyledHeader } from "../Home/styled";
-import iconAbout from "../../assets/img/iconAbout.svg";
-import iconUser from "../../assets/img/iconUser.svg";
-import iconHome from "../../assets/img/iconHome.svg";
-import iconOff from "../../assets/img/iconOff.svg";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { StyledButton, StyledHeader } from '../Home/styled';
+import iconAbout from '../../assets/img/iconAbout.svg';
+import iconUser from '../../assets/img/iconUser.svg';
+import iconHome from '../../assets/img/iconHome.svg';
 
 export default function Header() {
   const currentPath = window.location.pathname;
@@ -25,37 +24,25 @@ export default function Header() {
                 Sobre
               </StyledButton>
             )}
-          <Link to="/about">  
-            {currentPath !== "/login" && currentPath !== "/search" && (
-              <StyledButton backgroundColor="#72EFDB" color="#0a1744">
-                <img className="iconHeader" src={iconAbout} alt="ícone Sobre" />
-                  SOBRE            
-              </StyledButton> 
-            )}        
           </Link>
           <Link to='/login'>
             {currentPath !== '/login' && currentPath !== '/search' && (
-              <><StyledButton>
-                  <img className='iconHeader' src={iconUser} alt='ícone Login' />
-                  Login
-                </StyledButton><Link to="/login">
-                    {currentPath !== "/login" && currentPath !== "/search" && (
-                      <StyledButton>
-                        <img className="iconHeader" src={iconUser} alt="ícone Login" />
-                        LOGIN
-                      </StyledButton>
-                    )}
-                  </Link><Link to='/'>
-                    {currentPath === '/' || currentPath === '/about' ? null : (
-                      <StyledButton backgroundColor='#72EFDB' color='#0a1744'>
-                        <img className='iconHeader' src={iconHome} alt='ícone Home' />
-                        Home
-                      </StyledButton>
-                    )}
-                  </Link></>
-            </div>
+              <StyledButton>
+                <img className='iconHeader' src={iconUser} alt='ícone Login' />
+                Login
+              </StyledButton>
+            )}
+          </Link>
+          <Link to='/'>
+            {currentPath === '/' || currentPath === '/about' ? null : (
+              <StyledButton backgroundColor='#72EFDB' color='#0a1744'>
+                <img className='iconHeader' src={iconHome} alt='ícone Home' />
+                Home
+              </StyledButton>
+            )}
+          </Link>
+        </div>
       </StyledHeader>
     </>
   );
 }
-

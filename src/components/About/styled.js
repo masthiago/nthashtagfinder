@@ -3,25 +3,21 @@ import styled from "styled-components";
 
 export const AboutMainStyled = styled.div`
 
-    background:  linear-gradient(#003390, #0A1744);
+    background-image: linear-gradient(#1E3E9B,#0A1720);
     width: 100%;
     height: 1000px;
     color:white;
     display:flex;
     flex-direction:column;
     align-items:center ;
-    justify-content:space-evenly;
+    justify-content:center ;
         h1{
             margin:0px;
             text-align: left;
             font-size:40px;
         }
         @media screen and (max-width: 970px) {
-            height: 2500px;
-            
-        };
-        @media screen and (max-width: 414px) {
-            background:  linear-gradient(#003390, #0A1744, #0A1744);
+            height: 2800px;
             
         };  
     
@@ -38,9 +34,10 @@ export const AboutTextAndImageStyle = styled.div`
         display:flex;
         flex-direction:column;
         justify-content:space-between;
-        letter-spacing:0.5px;
-        width: 40%;
+        font-size: 22px ;
+        width: 45%;
         height:100%;
+        color: #FCFCFC;
         h1 {
           font-weight: bold;
         }
@@ -50,6 +47,8 @@ export const AboutTextAndImageStyle = styled.div`
         display:flex;
         justify-content:flex-end;  
         color:black;
+
+       
             img{
              width:400px;
                 height:350px;
@@ -83,18 +82,13 @@ export const AboutTextAndImageStyle = styled.div`
             };
             #aboutImageContent{
                 width:100%;
-                background-color:yellow;
             };
     };
-    @media screen and (max-width: 414px) {
-            #aboutImageContent{
-                justify-content:center;
-                background-color:yellow;
-            };
+    @media screen and (max-width: 410px) {
+            
             #aboutImageContent{
                 img{
-                    width:90%;
-                    background-color:red;
+                    width:100%;
                 }
             };
     };
@@ -106,11 +100,7 @@ export const AboutUsStyle = styled.div`
     height:500px;
     display:flex;
     flex-direction:column;
-    justify-content:space-evenly ;
-        h2{
-            font-weight:bold;
-            font-size:25px;
-        };
+    justify-content:center ;
         #itensPositions{
             display:flex;
             flex-direction:row;
@@ -119,11 +109,11 @@ export const AboutUsStyle = styled.div`
         #developersDataContent{
             width:19%;
             height:300px;
-            background-color:#0B1A57; 
+            background-color:#0B1A49; 
             display:flex;
             flex-direction:column;
             align-items:center;
-            justify-content:space-evenly;
+            justify-content:center;
             border: 1px solid #FFFFFF24;
             border-radius: 10px;
                 #developersImage{
@@ -151,9 +141,10 @@ export const AboutUsStyle = styled.div`
                 h2{
                     text-align:center;
                 }
-                #itensPositions{  
+                #itensPositions{
                     width:100%;
                     height:90%;
+                   
                     flex-direction:column;
                     align-items:center;
                     justify-content:space-around;
@@ -163,15 +154,5 @@ export const AboutUsStyle = styled.div`
                     height:250px;
                     justify-content:space-around; 
                 };
-        };
-        @media screen and (max-width: 414px) {
-            height:1600px;
-                h2{
-                    text-align:start;
-                    margin-left:20px;
-                    width:200px;
-                   
-                }
-              
         };
 `
