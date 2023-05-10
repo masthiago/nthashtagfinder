@@ -17,7 +17,7 @@ export default function AboutPageContent() {
         <AboutTextAndImageStyle>
           <div id="titleAndTextContent">
             <h1>Sobre o projeto</h1>
-            <p style={{ margin: "0px", color: '#e6e6e6' }}>
+            <p>
               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
               aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no
               sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam

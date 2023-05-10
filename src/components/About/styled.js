@@ -11,14 +11,13 @@ export const AboutMainStyled = styled.div`
     flex-direction:column;
     align-items:center ;
     justify-content:space-evenly;
-
         h1{
             margin:0px;
             text-align: left;
             font-size:40px;
         }
         @media screen and (max-width: 1516px) {
-            height: 1100px;
+            height: 1300px;
             
         };
         @media screen and (max-width: 970px) {
@@ -26,7 +25,8 @@ export const AboutMainStyled = styled.div`
             
         };
         @media screen and (max-width: 414px) {
-            background:  linear-gradient(#003390, #0A1744, #0A1744);
+            height: 2600px;
+          
             
         };  
     
@@ -34,12 +34,10 @@ export const AboutMainStyled = styled.div`
 
 export const AboutTextAndImageStyle = styled.div`
 
-    /* width:90%; */
     height:550px; 
     display:flex;
     align-items:center ;
     justify-content:space-around;
-     /* background-color:red;  */
     margin-top:100px;
     #titleAndTextContent{
         display:flex;
@@ -49,7 +47,6 @@ export const AboutTextAndImageStyle = styled.div`
         width: 45%;
         height:100%;
         font-size:20px;
-       /*  background-color:green;  */
         font: normal normal normal 21px/38px Rubik;
         h1 {
           font-weight: bold;
@@ -68,6 +65,7 @@ export const AboutTextAndImageStyle = styled.div`
             };
     };
     @media screen and (max-width: 1516px) {
+
         width: 90%; 
         height: 380px;
         display:flex;
@@ -75,7 +73,6 @@ export const AboutTextAndImageStyle = styled.div`
         margin-top:0px;
         #titleAndTextContent{
             width:55%;
-           /*  height:400px; */
             justify-content:space-around;
             margin:5px;
             font: normal normal normal 16px/28px Rubik;
@@ -85,7 +82,6 @@ export const AboutTextAndImageStyle = styled.div`
         };
         #aboutImageContent{
            
-            /* background-color:yellow; */
             justify-content:flex-end;
             height:100%;
             img{
@@ -99,59 +95,80 @@ export const AboutTextAndImageStyle = styled.div`
     @media screen and (max-width: 1170px) {
 
         width: 100%;
-        height:350px;
+        height:400px;
         display:flex;
         justify-content:space-between;
-        background-color:red;
-        
+
             #titleAndTextContent{
                 width:60%;
                 justify-content:space-around;
-                font: normal normal normal 13px/25px Rubik;
+                font: normal normal normal 15px/27px Rubik;
             };
             #aboutImageContent{
                 width:350px;
                 img{
-                   background-color:yellow;
                    width:95%;
                 }
             };
             
     };
-    @media screen and (max-width: 800px) {
+    @media screen and (max-width: 970px) {
 
-        height:850px;
-        display:flex;
-        flex-direction:column;
-        margin-top:20px;
+            display:flex;
+            flex-direction:column;
+            height:900px;
+            margin-top:50px;
+
             #titleAndTextContent{
                 width:90%;
-                justify-content:space-around;
-                font: normal normal normal 14px/26px Rubik;
-               /*  background-color:darkblue; */
-                margin:0px;
-                    h1{
-                        font: normal normal bold 35px/25px Rubik;
-                    }
+                p{
+                    margin: "0px";
+                    color: #e6e6e6 ;
+                    font: normal normal normal 17px/30px Rubik;
+                }
+                
             };
             #aboutImageContent{
+                width:100%;
+                height:400px;
+   
+            };
+        
+        };
+    @media screen and (max-width: 800px) {
+
+            #titleAndTextContent{
+
+                width:90%;
+                justify-content:space-around;
+                margin:0px;
+                h1{
+                
+                    font: normal normal bold 45px/50px Rubik;
+            
+                }
+            };
+            #aboutImageContent{
+
                 width:80%;
                 height:400px;
-              
-                /* background-color:gray; */
-                
+                margin-top:20px;
+
             };
     };
     @media screen and (max-width: 414px) {
-            #aboutImageContent{
-                justify-content:center;
+            height:1000px;
+            #titleAndTextContent{        
+                
+                h1{
+                    font: bold 37px Rubik;
+                }
 
             };
             #aboutImageContent{
-                img{
-                    width:90%;
-
-                }
+                width:100%;
+                margin-top:10px;
+                justify-content:center;
             };
     };
 `
@@ -163,7 +180,7 @@ export const AboutUsStyle = styled.div`
     display:flex;
     flex-direction:column;
     justify-content:space-between ;
-    /*  background-color:yellow; */
+
         h2{
             font-weight:bold;
             font-size:45px;
@@ -209,10 +226,13 @@ export const AboutUsStyle = styled.div`
                 };
         };
         @media screen and (max-width: 1550px) {
+            h2{
+                font-size:35px;
+            }
             #developersDataContent{
-
+                
                 h3{
-                    font-size:21px;
+                    font-size:19px;
                 }
                 p{
                     font: normal normal normal 17px/23px Rubik;
@@ -220,12 +240,12 @@ export const AboutUsStyle = styled.div`
             }
         };
         @media screen and (max-width: 1170px) {
+
             width: 100%; 
-           /* background-color:red; */
-           h2{
-            font-size:35px;
-           }
-           #developersDataContent{
+            h2{
+                font-size:35px;
+            }
+            #developersDataContent{
 
                 h3{
                     font-size:19px;
@@ -250,8 +270,14 @@ export const AboutUsStyle = styled.div`
                 };
                 #developersDataContent{
                     width:90%;
-                    height:270px;
-                    justify-content:space-around; 
+                    height:240px;
+                    justify-content:space-around;
+                    #developersImage{
+                        width:120px;
+                        height:120px;
+                        border-radius:100%;
+                
+                    } 
                 };
         };
         @media screen and (max-width: 414px) {
@@ -259,9 +285,12 @@ export const AboutUsStyle = styled.div`
                 h2{
                     text-align:start;
                     margin-left:20px;
-                    width:200px;
-                   
+                    font-size:30px;
+                    
                 }
+                #developersDataContent{
+                    height:270px;
+                };
               
         };
 `
