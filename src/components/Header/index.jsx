@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { StyledButton, StyledHeader } from '../Header/styled';
+import { StyledButton, StyledHeader } from './styled';
 import iconAbout from '../../assets/img/iconAbout.svg';
 import iconUser from '../../assets/img/iconUser.svg';
 import iconHome from '../../assets/img/iconHome.svg';
@@ -22,15 +22,15 @@ export default function Header() {
             {currentPath !== '/login' && currentPath !== '/search' && (
               <StyledButton backgroundColor='#72EFDB' color='#0a1744'>
                 <img className='iconHeader' src={iconAbout} alt='ícone Sobre' />
-                S O B R E
+                SOBRE
               </StyledButton>
             )}
           </Link>
           <Link to='/login'>
             {currentPath !== '/login' && currentPath !== '/search' && (
               <StyledButton>
-                <img className='iconHeader' src={iconUser} alt='ícone Login' />L
-                O G I N
+                <img className='iconHeader' src={iconUser} alt='ícone Login' />
+                LOGIN
               </StyledButton>
             )}
           </Link>
@@ -38,7 +38,17 @@ export default function Header() {
             {currentPath === '/' || currentPath === '/about' ? null : (
               <StyledButton backgroundColor='#72EFDB' color='#0a1744'>
                 <img className='iconHeader' src={iconHome} alt='ícone Home' />
-                Home
+                HOME
+              </StyledButton>
+            )}
+          </Link>
+          <Link to='/login'>
+            {currentPath === '/' ||
+            currentPath === '/about' ||
+            currentPath === '/login' ? null : (
+              <StyledButton>
+                <img className='iconHeader' src={iconOff} alt='ícone Home' />
+                SAIR
               </StyledButton>
             )}
           </Link>
