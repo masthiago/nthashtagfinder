@@ -1,66 +1,73 @@
-import styled from "styled-components";
-import heroBg from "../../assets/img/heroBg.jpg";
-import mobileHeroBg from "../../assets/img/mobileHeroBg.jpg";
-import iconSearch from "../../assets/img/iconSearch.svg";
+import styled from 'styled-components';
+import heroBg from '../../assets/img/heroBg.jpg';
+import mobileHeroBg from '../../assets/img/mobileHeroBg.jpg';
+import iconSearch from '../../assets/img/iconSearch.svg';
 
 /* Inclusão e estilização da imagem Home*/
 export const StyledMain = styled.main`
   background-image: url(${heroBg});
   background-size: cover;
-  height: 100vh;
+  width: 100%;
+  height: 1020px;
 
-  @media screen and (max-width: 440px) {
+  @media screen and (max-width: 420px) {
     background-image: url(${mobileHeroBg});
+    background-size: cover;
+    width: 100%;
+    height: 680px;
   }
 
-  h1 {  /* Causando transbordamento */
-    position: relative;
-    font-family: Rubik, sans-serif;
-    font-size: 60px;
-    top: 17vh;
-    left: 8vw;
-    font-weight: bold;
+  div.presentationText {
+    display: flex;
+    flex-flow: column;
 
-    @media screen and (max-width: 440px) {
-      font-size: 30px;
-      top: 8vh;
-      left: 6vw;
-    }
-    @media screen and (max-width: 700px) {
-      font-size: 45px;
-      top: 9vh;
-      left: 6vw;
-    }
-  }
+    h1 {
+      margin-top: 115px;
+      margin-left: 140px;
+      font-size: 82px;
+      font-weight: bold;
 
-  p { /* Causando transbordamento */
-    position: relative;
-    font-size: 20px;
-    top: 17vh;
-    left: 8vw;
+      @media screen and (max-width: 720px) {
+        margin-top: 75px;
+        margin-left: 60px;
+        font-size: 60px;
+      }
 
-    @media screen and (max-width: 440px) {
-      font-size: 12px;
-      top: 8vh;
-      left: 6vw;
+      @media screen and (max-width: 420px) {
+        margin-top: 65px;
+        margin-left: 40px;
+        font-size: 35px;
+      }
     }
 
-    @media screen and (max-width: 700px) {
-      font-size: 16px;
-      top: 9vh;
-      left: 6vw;
+    p {
+      margin-left: 140px;
+      margin-top: 28px;
+      font-size: 31px;
+
+      @media screen and (max-width: 720px) {
+        margin-top: 20px;
+        margin-left: 60px;
+        font-size: 17px;
+      }
+
+      @media screen and (max-width: 420px) {
+        margin-left: 40px;
+        font-size: 14px;
+      }
     }
   }
   /*Form para barra e botão de pesquisa */
-  form { /* Causando transbordamento */
+  form {
     display: flex;
-    position: relative;
-    top: 40vh;
-    left: 20vw;
+    margin-top: 360px;
+    justify-content: center;
 
-    @media screen and (max-width: 700px) {
-      top: 22vh;
-      left: 3vw;
+    @media screen and (max-width: 720px) {
+      margin-top: 120px;
+    }
+    @media screen and (max-width: 420px) {
+      margin-top: 155px;
     }
   }
 
@@ -68,31 +75,64 @@ export const StyledMain = styled.main`
     background-color: #1e3e7b;
     background-image: url(${iconSearch});
     background-repeat: no-repeat;
-    background-position: right center;
-    background-size: 15px;
-    padding: 20px;
+    background-position: center;
     border: none;
-    border-radius: 50px 0px 0px 50px;
+    border-radius: 72px 0px 0px 72px;
+    width: 125px;
+    font-size: 50px;
+    cursor: pointer;
+
+    @media screen and (max-width: 420px) {
+      width: 40px;
+      font-size: 17px;
+      background-size: 10px;
+    }
   }
 
   input.textSearch {
     background-color: #1e3e7b;
-    padding: 25px;
-    width: 85vh;
-    border-radius: 0px 50px 50px 0px;
+    width: 875px;
+    height: 109px;
+    font-size: 50px;
+    border-radius: 0px 72px 72px 0px;
     border: none;
-    align-items: center;
+    outline: none;
 
-    @media screen and (max-width: 440px) {
-      padding: 10px;
-      width: 70vw;
+    @media screen and (max-width: 720px) {
+      width: 440px;
+      height: 90px;
+      font-size: 25px;
     }
 
-    /*Placeholder para diversos navegadores*/
+    @media screen and (max-width: 420px) {
+      padding: 8px;
+      width: 200px;
+      height: 32px;
+      font-size: 17px;
+    }
+
+    /*Ajuste no Placeholder*/
     ::-webkit-input-placeholder {
-      color: #bbbbbb;
-      font-size: 20px;
+      color: #8d9da2;
+      font-size: 50px;
+      align-items: center;
+
+      @media screen and (max-width: 420px) {
+        font-size: 17px;
+        align-items: center;
+      }
     }
   }
 `;
 
+/*Estilização do Footer*/
+export const StyledFooter = styled.footer`
+  background-color: #1e3e7b;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  text-align: center;
+  height: 80px;
+`;
