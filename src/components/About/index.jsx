@@ -78,12 +78,15 @@ export default function AboutPageContent() {
         <AboutTextAndImageStyle>
           <div id="titleAndTextContent">
             <h1>Sobre o projeto</h1>  
-              {siteRecordState.map((siteRecordStateUnit,index)=>{
-                return <p key={index} style={{ wordWrap: 'break-word' }}>{siteRecordStateUnit}</p>
+              <p>
+                {siteRecordState.map((siteRecordStateUnit,index)=>{
+                return <p key={index} style={{ wordWrap: 'break-word', width:'100%' }}>{siteRecordStateUnit}</p>
               })}
+              </p>
+              
           </div>
           <div id="aboutImageContent">
-            <img src={aboutContentImage} alt="ilustrative image" />
+            <img src={aboutContentImage} alt='ilustrative developer' />
           </div>
         </AboutTextAndImageStyle>
         <AboutUsStyle>
