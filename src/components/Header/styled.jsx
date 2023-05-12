@@ -5,10 +5,13 @@ export const StyledHeader = styled.header`
   width: 100%;
   height: 117px;
   padding: 35px;
-  background-color: #0a1744;
   display: flex;
-  justify-content: space-between;
+  position: fixed;
   align-items: center;
+  justify-content: space-between;
+  background: #000927a6 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 29px #00000000;
+  backdrop-filter: blur(30px);
 
   div {
     display: flex;

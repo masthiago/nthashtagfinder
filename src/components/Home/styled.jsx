@@ -8,7 +8,7 @@ export const StyledMain = styled.main`
   background-image: url(${heroBg});
   background-size: cover;
   width: 100%;
-  height: 1020px;
+  height: 1137px;
 
   @media screen and (max-width: 420px) {
     background-image: url(${mobileHeroBg});
@@ -22,19 +22,19 @@ export const StyledMain = styled.main`
     flex-flow: column;
 
     h1 {
-      margin-top: 115px;
+      margin-top: 232px;
       margin-left: 140px;
       font-size: 82px;
       font-weight: bold;
 
       @media screen and (max-width: 720px) {
-        margin-top: 75px;
+        margin-top: 192px;
         margin-left: 60px;
         font-size: 60px;
       }
 
       @media screen and (max-width: 420px) {
-        margin-top: 65px;
+        margin-top: 130px;
         margin-left: 40px;
         font-size: 35px;
       }
