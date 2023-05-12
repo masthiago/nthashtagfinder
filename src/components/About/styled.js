@@ -17,11 +17,11 @@ export const AboutMainStyled = styled.div`
             font-size:40px;
         }
         @media screen and (max-width: 1516px) {
-            height: 1200px;
+            height: 1400px;
             
         };
         @media screen and (max-width: 970px) {
-            height: 2500px;
+            height: 2700px;
             
         };
         @media screen and (max-width: 414px) {
@@ -33,18 +33,19 @@ export const AboutMainStyled = styled.div`
 `
 
 export const AboutTextAndImageStyle = styled.div`
-
+    width:100%;
     height:550px; 
     display:flex;
     align-items:center ;
     justify-content:space-around;
-    margin-top:100px;
+    margin-top:200px;
+ 
     #titleAndTextContent{
         display:flex;
         flex-direction:column;
         justify-content:space-around;
         letter-spacing:0px;
-        width: 45%;
+        width: 40%;
         height:100%;
         font-size:20px;
         font: normal normal normal 21px/38px Rubik;
@@ -78,6 +79,7 @@ export const AboutTextAndImageStyle = styled.div`
             font: normal normal normal 16px/28px Rubik;
             h1{
                 font: normal normal bold 50px/55px Rubik;
+                
             }
         };
         #aboutImageContent{
@@ -126,6 +128,9 @@ export const AboutTextAndImageStyle = styled.div`
                     color: #e6e6e6 ;
                     font: normal normal normal 17px/30px Rubik;
                 }
+                h1{
+                    padding-top:60px;
+                }
                 
             };
             #aboutImageContent{
@@ -145,7 +150,7 @@ export const AboutTextAndImageStyle = styled.div`
                 h1{
                 
                     font: normal normal bold 45px/50px Rubik;
-            
+                    
                 }
             };
             #aboutImageContent{
@@ -162,6 +167,7 @@ export const AboutTextAndImageStyle = styled.div`
                 
                 h1{
                     font: bold 37px Rubik;
+                   
                 }
 
             };
