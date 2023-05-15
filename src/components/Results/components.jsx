@@ -1,32 +1,54 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export class ImageItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      id: this.props.id,
+      mediaKey: this.props.mediaKey,
+      mediaUrl: this.props.mediaUrl,
+      name: this.props.name,
+      url: this.props.url,
+      username: this.props.username,
+    };
+  }
   render() {
+    const mediaUrl = String("https://cors.eu.org/" + this.state.mediaUrl);
     return (
-      <li style={{ backgroundImage: `url(${this.props.background})` }}>
+      <li style={{ backgroundImage: `url(${mediaUrl})` }}>
         Postado por <br />
-        <span className="imageUser"> @twitterusername {this.props.order}</span>
+        <a className="imageUser"> @{this.state.username}</a>
       </li>
     );
   }
 }
 
 export class PostItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      avatar: this.props.avatar,
+      id: this.props.id,
+      text: this.props.text,
+      username: this.props.username,
+      name: this.props.name,
+      url: this.props.url,
+    };
+  }
   render() {
+    const avatar = String("https://cors.eu.org/" + this.state.avatar).replace("_normal", "");
     return (
       <li>
-        <img className="userAvatar" src={this.props.avatar} alt="" />
+        <img className="userAvatar" src={avatar} alt={this.state.username} />
         <div className="tweetContainer">
           <h4 className="userInfo">
-            UserName {this.props.order}{" "}
-            <span className="userName">@twitterusername{this.props.order}</span>{" "}
+            {this.state.name}  <span className="userName">@{this.state.username}</span>
           </h4>
           <p className="userPost">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam.
-            Elit ullamco est magna mollit minim in id sit. Lorem occaecat fugiat
-            pariatur elit. Laboris ad consequat do aute sint ut excepteur.
+            {this.state.text}
           </p>
-          <a href="/" className="userLink">
+          <a rel="noreferrer" href={this.state.url} className="userLink" target="_blank">
             Ver mais no Twitter
           </a>
         </div>

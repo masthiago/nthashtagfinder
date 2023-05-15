@@ -8,9 +8,10 @@ export const ResultsContainer = styled.div`
   flex-direction: column;
   justify-content: start;
   margin: 0;
-  min-height: 100vh;
+  min-height: 20vh;
   padding: 100px 20px;
   h2.listTitle {
+    text-align: center;
     font-weight: 400;
     font-size: 32px;
     display: none;
@@ -18,6 +19,11 @@ export const ResultsContainer = styled.div`
     @media screen and (min-width: 1024px) {
       display: block;
     }
+  }
+  span.errorMsg {
+    color: #ffcece;
+    font-size: 50%;
+    font-weight: 300;
   }
   span.tagName {
     font-weight: 400;
@@ -66,7 +72,7 @@ export const ResultsContainer = styled.div`
       font-size: 14px;
     }
   }
-  span.imageUser {
+  a.imageUser {
     font-size: 12px;
     font-weight: 500;
     display: inline-block;

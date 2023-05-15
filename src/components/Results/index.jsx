@@ -1,24 +1,33 @@
-import React from "react";
-import { ImageItem, PostItem } from "./components";
-import { ResultsContainer, ButtonGroup, Tab } from "./styled";
+import React from 'react';
+import { ImageItem, PostItem } from './components';
+import { ResultsContainer, ButtonGroup, Tab } from './styled';
+import { ThreeDots } from 'react-loader-spinner';
+import { doTheMagic } from './twitter';
+
 
 export default class Results extends React.Component {
-  tabTypes = ["Tweets", "Imagens"];
-
+  tabTypes = ['Tweets', 'Imagens'];
+  
   constructor(props) {
     super(props);
     this.state = {
       activeTab: this.tabTypes[0],
+      data: null,
+      loding: false,
       windowWidth: window.innerWidth,
+      error: null,
     };
     this.handleResize = this.handleResize.bind(this);
+    this.handleSearchForm = this.handleSearchForm.bind(this);
   }
 
-  componentDidMount() {
-    window.addEventListener("resize", this.handleResize);
+  async componentDidMount() {
+    window.addEventListener('resize', this.handleResize);
+    document.querySelector('.searchBar').addEventListener('submit', this.handleSearchForm);
   }
   componentWillUnmount() {
-    window.addEventListener("resize", null);
+    window.addEventListener('resize', null);
+    document.querySelector('form.searchBar').addEventListener('submit', null);
   }
 
   handleResize = () => {
@@ -26,59 +35,99 @@ export default class Results extends React.Component {
     this.setState({ windowWidth: window.innerWidth });
   };
 
+  handleSearchForm = async (event) => {
+    event.preventDefault();
+    const hashtag = event.target.querySelector('.textSearch').value
+    this.setState({ error: null, data: null, loding: true });
+    const data = await doTheMagic(hashtag);
+    this.setState({ data: data, loding: false  });
+    if (data.error) this.setState({ error: data.error });
+  }
+
   twitterImages = () => {
     // Random image generator
     // This will be removed when API is implemented
     const ImgGen = () => {
       let images = [];
-      for (let i = 0; i < 10; i++) {
-        images.push(
-          <ImageItem
-            key={"image" + (i + 1)}
-            background={`https://loremflickr.com/720/720/`}
-          />
-        );
+
+      if (this.state.data) {
+        this.state.data.images.map((post) => {
+          images.push(
+            <ImageItem
+              key={'image' + post.tweet.id}
+              id={post.tweet.id}
+              mediaKey={post.media.media_key}
+              mediaUrl={post.media.url}
+              name={post.user.name}
+              url={
+                'https://twitter.com/' +
+                post.user.username +
+                '/status/' +
+                post.tweet.id
+              }
+              username={post.user.username}
+            />
+          );
+        });
       }
       return images;
     };
 
     return (
-      <ul className="listImages">
+      <ul className='listImages'>
         <ImgGen />
       </ul>
     );
   };
-  // };
 
   twitterPosts = () => {
-    // Random post generator
-    // This will be removed when API is implemented
+    // Formatter for tweets
     const PostGen = () => {
       let posts = [];
-      for (let i = 0; i < 10; i++) {
-        posts.push(
-          <PostItem
-            key={"post" + (i + 1)}
-            avatar={"https://loremflickr.com/720/720/face/"}
-            order={i + 1}
-          />
-        );
+
+      if (this.state.data) {
+        this.state.data.tweets.map((post) => {
+          posts.push(
+            <PostItem
+              key={'tweet' + post.tweet.id}
+              avatar={post.user.profile_image_url}
+              id={post.tweet.id}
+              text={post.tweet.text}
+              name={post.user.name}
+              username={post.user.username}
+              url={
+                'https://twitter.com/' +
+                post.user.username +
+                '/status/' +
+                post.tweet.id
+              }
+            />
+          );
+        });
       }
       return posts;
     };
 
     return (
-      <ul className="listPost">
+      <ul className='listPost'>
         <PostGen />
       </ul>
     );
+  };
+
+  search = async (term) => {
+    this.setState({ error: null, data: null, loding: true });
+    const data = await doTheMagic(term);
+    this.setState({ data: data });
+    this.setState({ loding: false });
+    if (data.error) this.setState({ error: data.error });
   };
 
   displayWithoutTabs = () => {
     const TwitterImages = this.twitterImages;
     const TwitterPosts = this.twitterPosts;
     return (
-      <div className="listContainer">
+      <div className='listContainer'>
         <TwitterImages />
         <TwitterPosts />
       </div>
@@ -102,7 +151,7 @@ export default class Results extends React.Component {
           ))}
         </ButtonGroup>
 
-        {this.state.activeTab === "Tweets"
+        {this.state.activeTab === 'Tweets'
           ? this.twitterPosts()
           : this.twitterImages()}
       </>
@@ -113,19 +162,57 @@ export default class Results extends React.Component {
     const DisplayWithoutTabs = this.displayWithoutTabs;
     const DisplayWithTabs = this.displayWithTabs;
     return (
-      <ResultsContainer>
-        <h2 className="listTitle">
-          Exibindo os <span className="tagCount">10</span> resultados mais
-          recentes para #<span className="tagName">natureza</span>
-        </h2>
-        {/* <div className="listContainer"> */}
-        {this.state.windowWidth > 1024 ? (
-          <DisplayWithoutTabs />
+      <>
+        {/* <ResultsContainer>
+          <form onSubmit={this.search}>
+            <input
+              type='text'
+              name='hashtag'
+              id='hashtag'
+              style={{ color: '#000' }}
+            />
+            <button type='submit' style={{ color: '#000' }}>
+              Search
+            </button>
+          </form>
+        </ResultsContainer> */}
+        {this.state.data || this.state.loding ? (
+          <>
+            <ResultsContainer>
+              {this.state.loding ? (
+                <ThreeDots
+                  height='80'
+                  width='80'
+                  radius='1'
+                  color='#797abb'
+                  ariaLabel='three-dots-loading'
+                  wrapperStyle={{}}
+                  wrapperClassName=''
+                  visible={true}
+                />
+              ) : (
+                <>
+                  <h2 className='listTitle'>
+                    Exibindo os <span className='tagCount'>
+                      {this.state.data ? this.state.data.tweets.length : 0}
+                    </span> resultados mais recentes para #
+                    <span className='tagName'>
+                      {this.state.data ? this.state.data.hashtag : ''}
+                    </span>
+                  </h2>
+                  {this.state.windowWidth > 1024 ? (
+                    <DisplayWithoutTabs />
+                  ) : (
+                    <DisplayWithTabs />
+                  )}
+                </>
+              )}
+            </ResultsContainer>
+          </>
         ) : (
-          <DisplayWithTabs />
+          <ResultsContainer />
         )}
-        {/* </div> */}
-      </ResultsContainer>
+      </>
     );
   }
 }
