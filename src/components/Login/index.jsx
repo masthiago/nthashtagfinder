@@ -10,12 +10,13 @@ import {
 import Header from '../Header';
 import { AuthContext } from './AuthContext';
 import axios from 'axios';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const { login } = useContext(AuthContext);
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,15 +36,26 @@ export default function Login() {
     };
 
     axios
-      .request(config)
-      .then((response) => {
-        console.log(JSON.stringify(response.data));
-        login();
-        Navigate('/search');
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    .request(config)
+    .then((response) => {
+      console.log(JSON.stringify(response.data));
+      const records = response.data.records;
+  
+      if (records && records.length > 0) {
+        const record = records[0]; // Acessando o primeiro registro da matriz
+        const squadValue = record.fields.Squad; // Obtendo o valor da propriedade "Squad"
+  
+        if (squadValue === '05-23') {
+          login();
+          navigate('/search');
+        }
+      } else {
+        console.log('Nenhum registro encontrado.');
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   };
 
   return (

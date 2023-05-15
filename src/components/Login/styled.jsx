@@ -65,10 +65,6 @@ export const Field = styled.input`
   color: #ffffff;
   font-size: 17px;
 
-  :onfocus { 
-    border: red;
-  }
-  
   :focus {
     box-shadow: 0 0 0 0;
     outline: 0;
@@ -94,7 +90,7 @@ export const Access = styled.button`
   
   &:hover {
     transition: all 0.1s ease;
-    transform: translate(2%) scale(0.8);
+    transform: translate(1.5%) scale(1.1);
   }
 
   @media screen and (max-width: 600px) {
