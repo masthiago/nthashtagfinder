@@ -2,14 +2,17 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Home from "../components/Home";
 import Results from "../components/Results";
+import { AuthProvider } from "../components/Login/AuthContext";
 
 function App() {
   return (
     <>
-      <Header />
-      <Home />
-      <Results />
-      <Footer />
+      <AuthProvider>
+        <Header />
+        <Home />
+        <Results />
+        <Footer />
+      </AuthProvider>
     </>
   );
 }
