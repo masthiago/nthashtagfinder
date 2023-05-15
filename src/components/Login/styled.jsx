@@ -65,7 +65,10 @@ export const Field = styled.input`
   color: #ffffff;
   font-size: 17px;
 
-
+  :onfocus { 
+    border: red;
+  }
+  
   :focus {
     box-shadow: 0 0 0 0;
     outline: 0;
