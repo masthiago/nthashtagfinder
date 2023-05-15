@@ -91,7 +91,7 @@ export const Access = styled.button`
   
   &:hover {
     transition: all 0.1s ease;
-    transform: translate(2%) scale(0.8);
+    transform: translate(1.5%) scale(1.1);
   }
 
   @media screen and (max-width: 600px) {
