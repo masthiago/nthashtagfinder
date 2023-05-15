@@ -14,9 +14,9 @@ export default function AboutPageContent() {
 
   const [siteRecordState, setSiteRecordState] = useState([]);
   useEffect(() => {
-    let records = [];
-    var base = new Airtable({ apiKey: 'keykXHtsEPprqdSBF' }).base('app6wQWfM6eJngkD4');
-    var squadId = '05-23';
+    let aboutRecords = [];
+    let base = new Airtable({ apiKey: 'keykXHtsEPprqdSBF' }).base('app6wQWfM6eJngkD4');
+    let squadId = '05-23';
 
     base('Projeto')
       .select({
@@ -25,7 +25,7 @@ export default function AboutPageContent() {
       })
       .eachPage(
         function page(pageRecords, fetchNextPage) {
-           records.push(...pageRecords);
+          aboutRecords.push(...pageRecords);
           fetchNextPage();
         },
         function done(err) {
@@ -33,16 +33,63 @@ export default function AboutPageContent() {
             console.error(err);
             return;
           }
-          const atualizedResults = records.map(function (record) {
-            console.log('Retrieved', record.get('Sobre'));
-            return (record.get('Sobre'));
+          let atualizedResults = aboutRecords.map((aboutRecordUnit) => {
+            /*  console.log('Retrieved', aboutRecordUnit.get('Sobre')); */
+            return (aboutRecordUnit.get('Sobre'));
           });
           setSiteRecordState(atualizedResults);
         }
 
       );
-    console.log(siteRecordState)
-  }, [])
+    /*  console.log(siteRecordState) */
+  }, []);
+
+
+  const [developerState, setDeveloperState] = useState([]);
+
+
+  useEffect(() => {
+    let developersRecords = [];
+    let base = new Airtable({ apiKey: 'keykXHtsEPprqdSBF' }).base('app6wQWfM6eJngkD4');
+    let squadId = '05-23';
+
+    base('Equipe')
+      .select({
+        filterByFormula: `Squad = '${squadId}'`,
+        view: 'Grid s8'
+      })
+      .eachPage(
+        function page(pageRecords, fetchNextPage) {
+          developersRecords.push(...pageRecords);
+          fetchNextPage();
+        },
+        function done(err) {
+          if (err) {
+            console.error(err);
+            return;
+          }
+          let developersRecordsMapStorage = developersRecords.map((developersRecordsUnit) => {
+            /*  console.log('Retorno dos dados developers',developersRecordsUnit.get('Nome', 'Descrição', 'Github', 'Email', 'Linkedin', 'Imagem')) */
+            /*  console.log('Retrieved', aboutRecordUnit.get('Sobre')); */
+            return {
+              name: developersRecordsUnit.get('Nome'),
+              description: developersRecordsUnit.get('Descrição'),
+              github: developersRecordsUnit.get('Github'),
+              email: developersRecordsUnit.get('Email'),
+              linkedin: developersRecordsUnit.get('LinkedIn'),
+              imageUrl: developersRecordsUnit.get('Imagem')[0].url
+            };
+          });
+          setDeveloperState(developersRecordsMapStorage);
+          /*  console.log(developerState, 'estado dev nova função') */
+        }
+
+      );
+    /*  console.log(siteRecordState) */
+  }, []);
+
+  useEffect(() => { console.log(developerState, 'estado atualizado dev') }, [developerState])
+
 
   /*
   
@@ -77,13 +124,13 @@ export default function AboutPageContent() {
       <AboutMainStyled>
         <AboutTextAndImageStyle>
           <div id="titleAndTextContent">
-            <h1>Sobre o projeto</h1>  
-              <p>
-                {siteRecordState.map((siteRecordStateUnit,index)=>{
-                return <p key={index} style={{ wordWrap: 'break-word', width:'100%' }}>{siteRecordStateUnit}</p>
-              })}
-              </p>
-              
+            <h1>Sobre o projeto</h1>
+
+            {siteRecordState.map((siteRecordStateUnit, index) => {
+              return <p key={index} style={{ wordWrap: 'break-word', width: '100%' }}>{siteRecordStateUnit}</p>
+            })}
+
+
           </div>
           <div id="aboutImageContent">
             <img src={aboutContentImage} alt='ilustrative developer' />
@@ -92,7 +139,7 @@ export default function AboutPageContent() {
         <AboutUsStyle>
           <h2>Quem somos</h2>
           <div id="itensPositions">
-            {userData.map((developersInfoUnit, index) => {
+            {/* {userData.map((developersInfoUnit, index) => {
               return (
                 <div id="developersDataContent" key={index}>
                   <img
@@ -105,6 +152,45 @@ export default function AboutPageContent() {
                   </h3>
                   <p>
                     {developersInfoUnit.userText}
+                  </p>
+                  <div id="iconsBoxContent">
+                    <img
+                      src={gitHubIcon}
+                      alt="github icon"
+                      style={{
+                        width: "25px",
+                        height: "25px",
+                      }}
+                    />
+                    <img
+                      src={emailBoxIcon}
+                      alt="github icon"
+                      style={{
+                        width: "25px",
+                        height: "25px",
+                      }}
+                    />
+                    <img
+                      src={linkednIcon}
+                      alt="github icon"
+                      style={{
+                        width: "25px",
+                        height: "25px",
+                      }}
+                    /> */}
+            {developerState.map((developerStateUnit, index) => {
+              return (
+                <div id="developersDataContent" key={index}>
+                  <img 
+                    id="developersImage"
+                    key={index}
+                    src={developerStateUnit.imageUrl}
+                  />
+                  <h3>
+                    {developerStateUnit.name}
+                  </h3>
+                  <p>
+                    {developerStateUnit.description}
                   </p>
                   <div id="iconsBoxContent">
                     <img
