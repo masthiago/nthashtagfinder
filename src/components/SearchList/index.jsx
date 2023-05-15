@@ -21,13 +21,13 @@ import { Navigate } from 'react-router-dom';
 
 const SearchList = () => {
 
-  //verificando se usuario está logado caso não voltar pra tela de login
-  const { isLoggedIn } = useContext(AuthContext);
+//verificando login da caso não logado direcionar para tela de login
+  const { isLoggedIn } = useContext(AuthContext)
   useEffect(() => {
-    if (isLoggedIn === false) {
-      Navigate('/login');
+    if( isLoggedIn === false ) {
+      Navigate('/login')
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn])
 
 
   var listing = [

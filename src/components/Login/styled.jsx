@@ -60,7 +60,7 @@ export const Field = styled.input`
   border: none;
   background: none;
   border-bottom: 1px solid #e9e9f0;
-  margin-bottom: 44px;
+  margin-bottom: 20px;
   height: 31px;
   color: #ffffff;
   font-size: 17px;
@@ -73,7 +73,13 @@ export const Field = styled.input`
   ::placeholder {
     color: #ffffff;
   }
+
 `;
+
+export const ErrorText = styled.p`
+  color: red;
+  margin-bottom: 10px;
+`
 
 // access button style
 export const Access = styled.button`

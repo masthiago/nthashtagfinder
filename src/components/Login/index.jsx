@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import {
   Access,
+  ErrorText,
   Field,
   FormContainer,
   FormFields,
@@ -15,11 +16,38 @@ import { useNavigate } from 'react-router-dom';
 export default function Login() {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState({})
   const { login } = useContext(AuthContext);
   const navigate = useNavigate()
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setErrors((prevErrors) => ({ ...prevErrors, [name]: '' }))
+    if (name === 'userName') {
+      setUserName(value)
+    } else if (name === 'password') {
+      setPassword(value)
+    }
+  }
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const newErrors = {}
+
+    if (!userName) { 
+      newErrors.userName = 'O campo Usuário é obrigatório'
+    }
+
+    if (!password) { 
+      newErrors.password = 'O campo de senha é obrigatório'
+    }
+
+    if(Object.keys(newErrors).length > 0) {
+      setErrors(newErrors)
+      return
+    }
 
     let config = {
       method: 'get',
@@ -50,7 +78,7 @@ export default function Login() {
           navigate('/search');
         }
       } else {
-        console.log('Nenhum registro encontrado.');
+        setErrors({ general: 'Credenciais inválidas'})
       }
     })
     .catch((error) => {
@@ -68,16 +96,25 @@ export default function Login() {
             <Field
               type='text'
               placeholder='Usuário'
+              name='userName'
               value={userName}
-              onChange={(e) => setUserName(e.target.value)}
+              onChange={handleInputChange}
             />
+            {errors.userName && <ErrorText>{errors.userName}</ErrorText>}
             <Field
               type='password'
               placeholder='Senha'
+              name='password'
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={handleInputChange}
             />
-            <Access type='submit' onClick={handleSubmit}>
+            {errors.password && <ErrorText>{errors.password}</ErrorText>}
+            {errors.general && <ErrorText>{errors.general}</ErrorText>}
+
+            <Access 
+              type='submit' 
+              onClick={handleSubmit}
+            >
               ACESSAR
             </Access>
           </FormFields>
