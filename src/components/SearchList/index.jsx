@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import {
   Background,
   Wrapper,
@@ -19,14 +19,8 @@ import Header from '../Header';
 import { AuthContext } from '../Login/AuthContext';
 import { Navigate } from 'react-router-dom';
 
+
 const SearchList = () => {
-
-  // ** verificando se usuario está logado caso não voltar pra tela de login **
-  const { isLoggedIn } = useContext(AuthContext);
-  if (isLoggedIn === false) {
-    Navigate('/login');
-  }
-
   var listing = [
     {
       hashtag: '#hashtagname',
@@ -34,6 +28,17 @@ const SearchList = () => {
       hora: 'xx:xx',
     },
   ];
+
+  
+  //verificando se usuario está logado caso não voltar pra tela de login 
+  const { isLoggedIn } = useContext(AuthContext);
+  useEffect(() => {
+    if (isLoggedIn === false) {
+      Navigate('/login');
+    }
+  }, [isLoggedIn]);
+
+
 
   //substituir mais tarde
   var n = 0;

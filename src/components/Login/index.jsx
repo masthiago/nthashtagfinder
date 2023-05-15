@@ -17,14 +17,18 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const { login } = useContext(AuthContext);
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
     let config = {
       method: 'get',
       maxBodyLength: Infinity,
-      url: 'https://api.airtable.com/v0/app6wQWfM6eJngkD4/Login?view=Grid%20view&filterByFormula=AND({Squad} = \'05-23\', {Email} = \''+ userName +'\', {Senha} = \''+ password +'\')',
+      url:
+        "https://api.airtable.com/v0/app6wQWfM6eJngkD4/Login?view=Grid%20view&filterByFormula=AND({Squad} = '05-23', {Email} = '" +
+        userName +
+        "', {Senha} = '" +
+        password +
+        "')",
       headers: {
         Authorization: 'Bearer keykXHtsEPprqdSBF',
       },
