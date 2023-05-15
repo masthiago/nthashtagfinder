@@ -6,7 +6,7 @@ export function SearchBar(props) {
 
   function handleChange(event) {
     setSearchTerm(event.target.value);
-    props.onSearch(event.target.value);
+    // props.onSearch(event.target.value);
   }
 
   return (
