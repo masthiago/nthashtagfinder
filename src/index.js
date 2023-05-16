@@ -7,6 +7,7 @@ import Login from "./components/Login";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./index.css";
 import SearchList from "./components/SearchList";
+import { AuthProvider } from "./components/Login/AuthContext";
 // import { GlobalStyle } from './App/homeComponents/globalStyle';
 
 const router = createBrowserRouter([
@@ -31,7 +32,9 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
-    {/* <GlobalStyle /> */}
+    <AuthProvider>
+      <RouterProvider router={router} />
+      {/* <GlobalStyle /> */}
+    </AuthProvider>
   </React.StrictMode>
 );
