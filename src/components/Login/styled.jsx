@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import heroBg from "../../assets/img/heroBg.jpg";
-import mobileHeroBg from "../../assets/img/mobileHeroBg.jpg";
+import styled from 'styled-components';
+import heroBg from '../../assets/img/heroBg.jpg';
+import mobileHeroBg from '../../assets/img/mobileHeroBg.jpg';
 
 // style for main container
 export const Wrapper = styled.div`
@@ -12,10 +12,10 @@ export const Wrapper = styled.div`
   background-image: url(${heroBg});
   background-size: cover;
   background-position: center;
-  
+
   @media screen and (max-width: 414px) {
     background-image: url(${mobileHeroBg});
-    background-size: 140%; 
+    background-size: 140%;
     background-position: left bottom;
   }
 `;
@@ -27,7 +27,7 @@ export const FormContainer = styled.div`
   background-color: rgba(24, 50, 107, 0.5);
   backdrop-filter: blur(15px);
   border-radius: 14px;
-  
+
   @media screen and (max-width: 600px) {
     width: 320px;
     height: 460px;
@@ -73,14 +73,13 @@ export const Field = styled.input`
   ::placeholder {
     color: #ffffff;
   }
-
 `;
 
-//error 
+//error
 export const ErrorText = styled.p`
   color: red;
   margin-bottom: 10px;
-`
+`;
 
 // access button style
 export const Access = styled.button`
@@ -94,7 +93,7 @@ export const Access = styled.button`
   font-size: 19px;
   font-weight: medium;
   cursor: pointer;
-  
+
   &:hover {
     transition: all 0.1s ease;
     transform: translate(1.5%) scale(1.1);

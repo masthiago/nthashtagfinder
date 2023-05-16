@@ -37,7 +37,7 @@ export default function Login() {
     //checks if fields are empty and adds corresponding error message.
     const newErrors = {};
     if (!userName) {
-      newErrors.userName = 'O campo Usuário é obrigatório';
+      newErrors.userName = 'O campo usuário é obrigatório';
     }
 
     if (!password) {
