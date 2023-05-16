@@ -16,39 +16,41 @@ import { useNavigate } from 'react-router-dom';
 export default function Login() {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState({})
+  const [errors, setErrors] = useState({});
   const { login } = useContext(AuthContext);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
+  //updates `userName` and `password` states with input values and removes error message related to modified fields.
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setErrors((prevErrors) => ({ ...prevErrors, [name]: '' }))
+    setErrors((prevErrors) => ({ ...prevErrors, [name]: '' }));
     if (name === 'userName') {
-      setUserName(value)
+      setUserName(value);
     } else if (name === 'password') {
-      setPassword(value)
+      setPassword(value);
     }
-  }
-
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); //prevents default behavior
 
-    const newErrors = {}
-
-    if (!userName) { 
-      newErrors.userName = 'O campo Usuário é obrigatório'
+    //checks if fields are empty and adds corresponding error message.
+    const newErrors = {};
+    if (!userName) {
+      newErrors.userName = 'O campo Usuário é obrigatório';
     }
 
-    if (!password) { 
-      newErrors.password = 'O campo de senha é obrigatório'
+    if (!password) {
+      newErrors.password = 'O campo de senha é obrigatório';
     }
 
-    if(Object.keys(newErrors).length > 0) {
-      setErrors(newErrors)
-      return
+    //checks for errors in the fields and stops the code if so.
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
     }
 
+    //creation and configuration to make a GET request to the Airtable API.
     let config = {
       method: 'get',
       maxBodyLength: Infinity,
@@ -64,26 +66,28 @@ export default function Login() {
     };
 
     axios
-    .request(config)
-    .then((response) => {
-      console.log(JSON.stringify(response.data));
-      const records = response.data.records;
-  
-      if (records && records.length > 0) {
-        const record = records[0]; // Acessando o primeiro registro da matriz
-        const squadValue = record.fields.Squad; // Obtendo o valor da propriedade "Squad"
-  
-        if (squadValue === '05-23') {
-          login();
-          navigate('/search');
+      .request(config)
+      .then((response) => {
+        //API response handling and redirection on success.
+        console.log(JSON.stringify(response.data));
+        const records = response.data.records;
+
+        if (records && records.length > 0) {
+          const record = records[0]; //Accessing the first record of the array
+          const squadValue = record.fields.Squad; //getting the value of "Squad" property
+
+          if (squadValue === '05-23') {
+            login();
+            navigate('/search');
+          }
+        } else {
+          //Definition of error message in case of invalid credentials.
+          setErrors({ general: 'Credenciais inválidas' });
         }
-      } else {
-        setErrors({ general: 'Credenciais inválidas'})
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+      })
+      .catch((error) => {
+        console.log(error); //Print error in console
+      });
   };
 
   return (
@@ -111,10 +115,7 @@ export default function Login() {
             {errors.password && <ErrorText>{errors.password}</ErrorText>}
             {errors.general && <ErrorText>{errors.general}</ErrorText>}
 
-            <Access 
-              type='submit' 
-              onClick={handleSubmit}
-            >
+            <Access type='submit' onClick={handleSubmit}>
               ACESSAR
             </Access>
           </FormFields>
