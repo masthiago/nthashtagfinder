@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from 'react';
 import {
   Background,
   Wrapper,
@@ -13,17 +13,29 @@ import {
   TextList,
   TextHashtag,
   Texts,
-  Text
-} from "./style";
-import Header from "../Header";
+  Text,
+} from './style';
+import Header from '../Header';
+import { AuthContext } from '../Login/AuthContext';
+import { Navigate } from 'react-router-dom';
 
 const SearchList = () => {
+
+//verificando login da caso não logado direcionar para tela de login
+  const { isLoggedIn } = useContext(AuthContext)
+  useEffect(() => {
+    if( isLoggedIn === false ) {
+      Navigate('/login')
+    }
+  }, [isLoggedIn])
+
+
   var listing = [
     {
-      hashtag: "#hashtagname",
-      data: "xx/xx",
-      hora: "xx:xx"
-    }
+      hashtag: '#hashtagname',
+      data: 'xx/xx',
+      hora: 'xx:xx',
+    },
   ];
 
   //substituir mais tarde
@@ -32,9 +44,9 @@ const SearchList = () => {
   while (n < 6) {
     n++;
     listing.push({
-      hashtag: "#hashtagname",
-      data: "xx/xx",
-      hora: "xx:xx"
+      hashtag: '#hashtagname',
+      data: 'xx/xx',
+      hora: 'xx:xx',
     });
   }
   /* ------------------ */
