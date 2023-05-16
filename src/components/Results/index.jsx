@@ -2,7 +2,9 @@ import React from 'react';
 import { ImageItem, PostItem } from './components';
 import { ResultsContainer, ButtonGroup, Tab } from './styled';
 import { ThreeDots } from 'react-loader-spinner';
-import { doTheMagic } from './twitter';
+// import { doTheMagic } from './twitter';
+import { doTheMagic } from './twitter2';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 
 export default class Results extends React.Component {
@@ -13,43 +15,44 @@ export default class Results extends React.Component {
     this.state = {
       activeTab: this.tabTypes[0],
       data: null,
+      error: null,
       loding: false,
       windowWidth: window.innerWidth,
-      error: null,
     };
     this.handleResize = this.handleResize.bind(this);
     this.handleSearchForm = this.handleSearchForm.bind(this);
   }
 
   async componentDidMount() {
-    window.addEventListener('resize', this.handleResize);
-    document.querySelector('.searchBar').addEventListener('submit', this.handleSearchForm);
+    window.addEventListener('resize', this.handleResize); // add event listener for window resize
+    document.querySelector('.searchBar')
+      .addEventListener('submit', this.handleSearchForm); // add event listener for search form submit
   }
+
   componentWillUnmount() {
-    window.addEventListener('resize', null);
-    document.querySelector('form.searchBar').addEventListener('submit', null);
+    window.addEventListener('resize', null);  // remove event listener for window resize
+    document.querySelector('form.searchBar')
+      .addEventListener('submit', null);      // remove event listener for search form submit
   }
 
   handleResize = () => {
-    // Update the state with the new window size
-    this.setState({ windowWidth: window.innerWidth });
+    this.setState({ windowWidth: window.innerWidth }); // Update the state when window is resized
   };
 
   handleSearchForm = async (event) => {
     event.preventDefault();
     const hashtag = event.target.querySelector('.textSearch').value
     this.setState({ error: null, data: null, loding: true });
-    const data = await doTheMagic(hashtag);
+    
+    const data = await doTheMagic(hashtag, this.state.data?this.state.data.nextToken:null);
+    console.log(data);
     this.setState({ data: data, loding: false  });
     if (data.error) this.setState({ error: data.error });
   }
 
   twitterImages = () => {
-    // Random image generator
-    // This will be removed when API is implemented
     const ImgGen = () => {
       let images = [];
-
       if (this.state.data) {
         this.state.data.images.map((post) => {
           images.push(
@@ -72,7 +75,6 @@ export default class Results extends React.Component {
       }
       return images;
     };
-
     return (
       <ul className='listImages'>
         <ImgGen />
@@ -80,8 +82,8 @@ export default class Results extends React.Component {
     );
   };
 
+  // Formatter for tweets
   twitterPosts = () => {
-    // Formatter for tweets
     const PostGen = () => {
       let posts = [];
 
@@ -113,14 +115,6 @@ export default class Results extends React.Component {
         <PostGen />
       </ul>
     );
-  };
-
-  search = async (term) => {
-    this.setState({ error: null, data: null, loding: true });
-    const data = await doTheMagic(term);
-    this.setState({ data: data });
-    this.setState({ loding: false });
-    if (data.error) this.setState({ error: data.error });
   };
 
   displayWithoutTabs = () => {
@@ -193,9 +187,11 @@ export default class Results extends React.Component {
               ) : (
                 <>
                   <h2 className='listTitle'>
-                    Exibindo os <span className='tagCount'>
+                    Exibindo os{' '}
+                    <span className='tagCount'>
                       {this.state.data ? this.state.data.tweets.length : 0}
-                    </span> resultados mais recentes para #
+                    </span>{' '}
+                    resultados mais recentes para #
                     <span className='tagName'>
                       {this.state.data ? this.state.data.hashtag : ''}
                     </span>
@@ -212,6 +208,33 @@ export default class Results extends React.Component {
         ) : (
           <ResultsContainer />
         )}
+
+        {/* <InfiniteScroll
+          dataLength={this.state.data.tweets.length} //This is important field to render the next data
+          next={fetchData}
+          hasMore={true}
+          loader={<h4>Loading...</h4>}
+          endMessage={
+            <p style={{ textAlign: 'center' }}>
+              <b>Yay! You have seen it all</b>
+            </p>
+          }
+          // below props only if you need pull down functionality
+          refreshFunction={this.refresh}
+          pullDownToRefresh
+          pullDownToRefreshThreshold={50}
+          pullDownToRefreshContent={
+            <h3 style={{ textAlign: 'center' }}>
+              &#8595; Pull down to refresh
+            </h3>
+          }
+          releaseToRefreshContent={
+            <h3 style={{ textAlign: 'center' }}>&#8593; Release to refresh</h3>
+          }
+        >
+          {items}
+        </InfiniteScroll> */}
+
       </>
     );
   }

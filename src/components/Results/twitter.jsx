@@ -82,13 +82,15 @@ function containsHashtag(tweet) {
  *     error: error,        // Mensagem de erro vindo catch
  *   }
  */
-export async function doTheMagic(hashtag) {  
+export async function doTheMagic(hashtag, nextToken = null) {  
   const dataLimit = 10;   // limite para tweets e imagens
   const pagesLimit = 25;  // Limite de páginas. É interessante limitar o número de páginas devido restrições de requisições repetidas na API.
   let error = null;       // Para exbir ou tratar erros
   let images = [];        // Armazena objetos tweets que contênham mídia tipo photo { tweet: {}, user: {}, media: {} }
   let pages = 1;          // Contador de páginas.
   let tweets = [];        // Armazena objetos tweets que contênham mídia tipo photo ou não { tweet: {}, user: {}, media: {} }
+
+  if (nextToken) options.params.next_token = nextToken; // Se passado token de paginação, adiciona ao parâmetro
 
   try {
     do {
@@ -147,6 +149,7 @@ export async function doTheMagic(hashtag) {
     tweets: tweets,
     images: images,
     hashtag: hashtag,
+    nextToken: options.params.next_token || null,
     error: error,
   };
 }
