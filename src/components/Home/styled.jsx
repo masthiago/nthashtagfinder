@@ -8,7 +8,7 @@ export const StyledMain = styled.main`
   background-image: url(${heroBg});
   background-size: cover;
   width: 100%;
-  height: 1020px;
+  height: 1137px;
 
   @media screen and (max-width: 420px) {
     background-image: url(${mobileHeroBg});
@@ -17,29 +17,32 @@ export const StyledMain = styled.main`
     height: 680px;
   }
 
+  /*Texto de apresentação*/
   div.presentationText {
     display: flex;
     flex-flow: column;
 
+    /*Texto principal*/
     h1 {
-      margin-top: 115px;
+      margin-top: 232px;
       margin-left: 140px;
       font-size: 82px;
       font-weight: bold;
 
       @media screen and (max-width: 720px) {
-        margin-top: 75px;
+        margin-top: 192px;
         margin-left: 60px;
         font-size: 60px;
       }
 
       @media screen and (max-width: 420px) {
-        margin-top: 65px;
+        margin-top: 130px;
         margin-left: 40px;
         font-size: 35px;
       }
     }
 
+    /*Texto descritivo*/
     p {
       margin-left: 140px;
       margin-top: 28px;
@@ -57,7 +60,7 @@ export const StyledMain = styled.main`
       }
     }
   }
-  /*Form para barra e botão de pesquisa */
+  /*Form para barra, botão de pesquisa e limpar com os @media responsivos*/
   form {
     display: flex;
     margin-top: 360px;
@@ -71,6 +74,7 @@ export const StyledMain = styled.main`
     }
   }
 
+  /*Botão de pesquisa*/
   button.buttonSearch {
     background-color: #1e3e7b;
     background-image: url(${iconSearch});
@@ -89,12 +93,29 @@ export const StyledMain = styled.main`
     }
   }
 
+  /*Botão de limpeza da barra*/
+  button.buttonClear {
+    background-color: rgb(30, 62, 123);
+    color: rgb(114 239 219);
+    border: none;
+    border-radius: 0px 72px 72px 0px;
+    width: 125px;
+    font-size: 25px;
+    cursor: pointer;
+
+    @media screen and (max-width: 420px) {
+      width: 40px;
+      font-size: 17px;
+      background-size: 10px;
+    }
+  }
+
+  /*Area de Pesquisa*/
   input.textSearch {
     background-color: #1e3e7b;
     width: 875px;
     height: 109px;
     font-size: 50px;
-    border-radius: 0px 72px 72px 0px;
     border: none;
     outline: none;
 
