@@ -32,14 +32,12 @@ export default function AboutPageContent() {
             return;
           }
           let atualizedResults = aboutRecords.map((aboutRecordUnit) => {
-            /*  console.log('Retrieved', aboutRecordUnit.get('Sobre')); */
             return (aboutRecordUnit.get('Sobre'));
           });
           setSiteRecordState(atualizedResults);
         }
 
       );
-    /*  console.log(siteRecordState) */
   }, []);
 
 
@@ -67,8 +65,6 @@ export default function AboutPageContent() {
             return;
           }
           let developersRecordsMapStorage = developersRecords.map((developersRecordsUnit) => {
-            /*  console.log('Retorno dos dados developers',developersRecordsUnit.get('Nome', 'Descrição', 'Github', 'Email', 'Linkedin', 'Imagem')) */
-            /*  console.log('Retrieved', aboutRecordUnit.get('Sobre')); */
             return {
               name: developersRecordsUnit.get('Nome'),
               description: developersRecordsUnit.get('Descrição'),
@@ -79,42 +75,11 @@ export default function AboutPageContent() {
             };
           });
           setDeveloperState(developersRecordsMapStorage);
-          /*  console.log(developerState, 'estado dev nova função') */
         }
 
       );
-    /*  console.log(siteRecordState) */
   }, []);
 
-  useEffect(() => { console.log(developerState, 'estado atualizado dev') }, [developerState])
-
-
-  /*
-  
-        var Airtable = require('airtable');
-        var base = new Airtable({apiKey: 'keykXHtsEPprqdSBF'}).base('app6wQWfM6eJngkD4');
-        
-        base('Projeto').select({
-            // Selecting the first 3 records in Grid view:
-            
-            view: "Grid view"
-        }).eachPage(function page(records, fetchNextPage) {
-            // This function (`page`) will get called for each page of records.
-        
-            records.forEach(function(record) {
-                console.log('Retrieved', record.get('Squad'));
-            });
-        
-            // To fetch the next page of records, call `fetchNextPage`.
-            // If there are more records, `page` will get called again.
-            // If there are no more records, `done` will get called.
-            fetchNextPage();
-        
-        }, function done(err) {
-            if (err) { console.error(err); return; }
-        });
-        
-   */
   return (
     <>
 
@@ -137,45 +102,6 @@ export default function AboutPageContent() {
         <AboutUsStyle>
           <h2>Quem somos</h2>
           <div id="itensPositions">
-            {/* {userData.map((developersInfoUnit, index) => {
-              return (
-                <div id="developersDataContent" key={index}>
-                  <img
-                    id="developersImage"
-                    key={index}
-                    src={developersInfoUnit.userImage}
-                  />
-                  <h3>
-                    {developersInfoUnit.UserTitle}
-                  </h3>
-                  <p>
-                    {developersInfoUnit.userText}
-                  </p>
-                  <div id="iconsBoxContent">
-                    <img
-                      src={gitHubIcon}
-                      alt="github icon"
-                      style={{
-                        width: "25px",
-                        height: "25px",
-                      }}
-                    />
-                    <img
-                      src={emailBoxIcon}
-                      alt="github icon"
-                      style={{
-                        width: "25px",
-                        height: "25px",
-                      }}
-                    />
-                    <img
-                      src={linkednIcon}
-                      alt="github icon"
-                      style={{
-                        width: "25px",
-                        height: "25px",
-                      }}
-                    /> */}
             {developerState.map((developerStateUnit, index) => {
               return (
                 <div id="developersDataContent" key={index}>
@@ -201,7 +127,7 @@ export default function AboutPageContent() {
                         }}
                       />
                     </a>
-                    <a href={`mailto:${developerStateUnit.email}`} /* style={{}} */>
+                    <a href={`mailto:${developerStateUnit.email}`}>
                       <img
                         src={emailBoxIcon}
                         alt="github icon"

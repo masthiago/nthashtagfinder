@@ -97,7 +97,7 @@ export const AboutTextAndImageStyle = styled.div`
 			}
 		};
 	
-};
+	};
 	@media screen and (max-width: 1170px) {
 
 		width: 100%;
@@ -141,11 +141,11 @@ export const AboutTextAndImageStyle = styled.div`
 		};
 	@media screen and (max-width: 800px) {
 		
-			#titleAndTextContent{
+		#titleAndTextContent{
 
-				width:90%;
-				justify-content:space-between;
-				margin:0px;
+			width:90%;
+			justify-content:space-between;
+			margin:0px;
 				h1{
 				
 					font: normal normal bold 45px/50px Rubik;
@@ -161,7 +161,8 @@ export const AboutTextAndImageStyle = styled.div`
 			};
 	};
 	@media screen and (max-width: 414px) {
-			height:1050px;
+			
+		height:1050px;
 			#titleAndTextContent{        
 				
 				h1{
@@ -328,8 +329,6 @@ export const AboutUsStyle = styled.div`
 						border-radius:100%;
 				
 					} 
-				};
-			   
-			  
+				};  
 		};
 `
