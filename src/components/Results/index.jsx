@@ -2,37 +2,39 @@ import React from 'react';
 import { ImageItem, PostItem } from './components';
 import { ResultsContainer, ButtonGroup, Tab } from './styled';
 import { ThreeDots } from 'react-loader-spinner';
-// import { doTheMagic } from './twitter';
-import { doTheMagic } from './twitter2';
+import { doTheMagic, normalizeString } from './twitter';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-
 export default class Results extends React.Component {
+  nextToken = null;
   tabTypes = ['Tweets', 'Imagens'];
-  
+  tweets = [];
+  hashtag = '';
+
+  state = {
+    activeTab: this.tabTypes[0],
+    hasNext: false,
+    hasTweets: false,
+    loading: false,
+    windowWidth: window.innerWidth,
+  };
+
   constructor(props) {
     super(props);
-    this.state = {
-      activeTab: this.tabTypes[0],
-      data: null,
-      error: null,
-      loding: false,
-      windowWidth: window.innerWidth,
-    };
-    this.handleResize = this.handleResize.bind(this);
-    this.handleSearchForm = this.handleSearchForm.bind(this);
+    this.handleResize = this.handleResize.bind(this); // Monitora tamanho do viewport
+    this.handleSearchForm = this.handleSearchForm.bind(this); // Monitora formulário de busca
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     window.addEventListener('resize', this.handleResize); // add event listener for window resize
-    document.querySelector('.searchBar')
+    document
+      .querySelector('.searchBar')
       .addEventListener('submit', this.handleSearchForm); // add event listener for search form submit
   }
 
   componentWillUnmount() {
-    window.addEventListener('resize', null);  // remove event listener for window resize
-    document.querySelector('form.searchBar')
-      .addEventListener('submit', null);      // remove event listener for search form submit
+    window.addEventListener('resize', null); // remove event listener for window resize
+    document.querySelector('.searchBar').addEventListener('submit', null); // remove event listener for search form submit
   }
 
   handleResize = () => {
@@ -41,67 +43,48 @@ export default class Results extends React.Component {
 
   handleSearchForm = async (event) => {
     event.preventDefault();
-    const hashtag = event.target.querySelector('.textSearch').value
-    this.setState({ error: null, data: null, loding: true });
-    
-    const data = await doTheMagic(hashtag, this.state.data?this.state.data.nextToken:null);
-    console.log(data);
-    this.setState({ data: data, loding: false  });
-    if (data.error) this.setState({ error: data.error });
-  }
-
-  twitterImages = () => {
-    const ImgGen = () => {
-      let images = [];
-      if (this.state.data) {
-        this.state.data.images.map((post) => {
-          images.push(
-            <ImageItem
-              key={'image' + post.tweet.id}
-              id={post.tweet.id}
-              mediaKey={post.media.media_key}
-              mediaUrl={post.media.url}
-              name={post.user.name}
-              url={
-                'https://twitter.com/' +
-                post.user.username +
-                '/status/' +
-                post.tweet.id
-              }
-              username={post.user.username}
-            />
-          );
-        });
-      }
-      return images;
-    };
-    return (
-      <ul className='listImages'>
-        <ImgGen />
-      </ul>
-    );
+    this.tweets = [];
+    this.hashtag = event.target.querySelector('.textSearch').value;
+    this.setState({ loading: true });
+    const data = await doTheMagic(this.hashtag, this.nextToken);
+    await this.updateState(data);
+    this.setState({ loading: false });
   };
 
-  // Formatter for tweets
-  twitterPosts = () => {
+  infiniteLoad = async () => {
+    // Colegar dados da API usando dados na state
+    const data = await doTheMagic(this.hashtag, this.nextToken);
+    await this.updateState(data);
+  };
+
+  updateState = async (data) => {
+    // Escruturar no state separadamente a partir do retorno de doTheMagic
+    this.tweets = this.tweets ? [...this.tweets, ...data.tweets] : data.tweets;
+    this.nextToken = data.nextToken;
+    this.setState({ hasNext: data.nextToken ? true : false });
+    this.tweets.length > 0
+      ? this.setState({ hasTweets: true })
+      : this.setState({ hasTweets: false });
+  };
+
+  showTweets = () => {
     const PostGen = () => {
       let posts = [];
-
-      if (this.state.data) {
-        this.state.data.tweets.map((post) => {
+      if (this.tweets) {
+        this.tweets.map((post, index) => {
           posts.push(
             <PostItem
-              key={'tweet' + post.tweet.id}
+              key={'tweet' + post.id + '_' + index}
               avatar={post.user.profile_image_url}
-              id={post.tweet.id}
-              text={post.tweet.text}
+              id={post.id}
+              text={post.text}
               name={post.user.name}
               username={post.user.username}
               url={
                 'https://twitter.com/' +
                 post.user.username +
                 '/status/' +
-                post.tweet.id
+                post.id
               }
             />
           );
@@ -117,13 +100,47 @@ export default class Results extends React.Component {
     );
   };
 
+  showImages = () => {
+    const ImgGen = () => {
+      let images = [];
+      if (this.tweets) {
+        this.tweets.map((post, index) => {
+          if (post.media && post.media.url) {
+            images.push(
+              <ImageItem
+                key={'image' + post.id + '_' + index}
+                id={post.id}
+                mediaKey={post.media.media_key}
+                mediaUrl={post.media.url}
+                name={post.user.name}
+                url={
+                  'https://twitter.com/' +
+                  post.user.username +
+                  '/status/' +
+                  post.id
+                }
+                username={post.user.username}
+              />
+            );
+          }
+        });
+      }
+      return images;
+    };
+    return (
+      <ul className='listImages'>
+        <ImgGen />
+      </ul>
+    );
+  };
+
   displayWithoutTabs = () => {
-    const TwitterImages = this.twitterImages;
-    const TwitterPosts = this.twitterPosts;
+    const ShowImages = this.showImages;
+    const ShowTweets = this.showTweets;
     return (
       <div className='listContainer'>
-        <TwitterImages />
-        <TwitterPosts />
+        <ShowImages />
+        <ShowTweets />
       </div>
     );
   };
@@ -146,96 +163,58 @@ export default class Results extends React.Component {
         </ButtonGroup>
 
         {this.state.activeTab === 'Tweets'
-          ? this.twitterPosts()
-          : this.twitterImages()}
+          ? this.showTweets()
+          : this.showImages()}
       </>
     );
   };
 
-  render() {
+  render = () => {
     const DisplayWithoutTabs = this.displayWithoutTabs;
     const DisplayWithTabs = this.displayWithTabs;
     return (
-      <>
-        {/* <ResultsContainer>
-          <form onSubmit={this.search}>
-            <input
-              type='text'
-              name='hashtag'
-              id='hashtag'
-              style={{ color: '#000' }}
-            />
-            <button type='submit' style={{ color: '#000' }}>
-              Search
-            </button>
-          </form>
-        </ResultsContainer> */}
-        {this.state.data || this.state.loding ? (
+      <ResultsContainer>
+        {this.state.hasTweets ? (
           <>
-            <ResultsContainer>
-              {this.state.loding ? (
-                <ThreeDots
-                  height='80'
-                  width='80'
-                  radius='1'
-                  color='#797abb'
-                  ariaLabel='three-dots-loading'
-                  wrapperStyle={{}}
-                  wrapperClassName=''
-                  visible={true}
-                />
+            <h2 className='listTitle'>
+              Exibindo os {this.tweets.length} resultados mais recentes para {normalizeString(this.hashtag)}
+            </h2>
+            <InfiniteScroll
+              dataLength={this.tweets.length} //This is important field to render the next data
+              next={this.infiniteLoad}
+              hasMore={this.state.hasNext ? true : false}
+              loader={<></>}
+              endMessage={<></>}
+            >
+              {this.state.windowWidth > 768 ? (
+                <DisplayWithoutTabs />
               ) : (
-                <>
-                  <h2 className='listTitle'>
-                    Exibindo os{' '}
-                    <span className='tagCount'>
-                      {this.state.data ? this.state.data.tweets.length : 0}
-                    </span>{' '}
-                    resultados mais recentes para #
-                    <span className='tagName'>
-                      {this.state.data ? this.state.data.hashtag : ''}
-                    </span>
-                  </h2>
-                  {this.state.windowWidth > 1024 ? (
-                    <DisplayWithoutTabs />
-                  ) : (
-                    <DisplayWithTabs />
-                  )}
-                </>
+                <DisplayWithTabs />
               )}
-            </ResultsContainer>
+            </InfiniteScroll>
           </>
         ) : (
-          <ResultsContainer />
+          <></>
         )}
-
-        {/* <InfiniteScroll
-          dataLength={this.state.data.tweets.length} //This is important field to render the next data
-          next={fetchData}
-          hasMore={true}
-          loader={<h4>Loading...</h4>}
-          endMessage={
-            <p style={{ textAlign: 'center' }}>
-              <b>Yay! You have seen it all</b>
-            </p>
-          }
-          // below props only if you need pull down functionality
-          refreshFunction={this.refresh}
-          pullDownToRefresh
-          pullDownToRefreshThreshold={50}
-          pullDownToRefreshContent={
-            <h3 style={{ textAlign: 'center' }}>
-              &#8595; Pull down to refresh
-            </h3>
-          }
-          releaseToRefreshContent={
-            <h3 style={{ textAlign: 'center' }}>&#8593; Release to refresh</h3>
-          }
-        >
-          {items}
-        </InfiniteScroll> */}
-
-      </>
+        {this.state.loading ? (
+          <ThreeDots
+            height='80'
+            width='80'
+            radius='9'
+            color='#1e3e7b'
+            ariaLabel='three-dots-loading'
+            visible={this.loading}
+          />
+        ) : (
+          <>
+            {this.hashtag && !this.state.hasNext ? (
+              <h2 className='listTitle'>Nenhum resultado encontrado.</h2>
+            ) : (
+              <></>
+            )}
+          </>
+        )}
+      </ResultsContainer>
     );
-  }
+  };
 }

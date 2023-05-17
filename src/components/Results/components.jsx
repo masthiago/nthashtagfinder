@@ -14,7 +14,8 @@ export class ImageItem extends React.Component {
     };
   }
   render() {
-    const mediaUrl = String("https://cors.eu.org/" + this.state.mediaUrl);
+    // const mediaUrl = String("https://cors.eu.org/" + this.state.mediaUrl);
+    const mediaUrl = String(this.state.mediaUrl);
     return (
       <li style={{ backgroundImage: `url(${mediaUrl})` }}>
         Postado por <br />
@@ -37,7 +38,8 @@ export class PostItem extends React.Component {
     };
   }
   render() {
-    const avatar = String("https://cors.eu.org/" + this.state.avatar).replace("_normal", "");
+    // const avatar = String("https://cors.eu.org/" + this.state.avatar).replace("_normal", "");
+    const avatar = String(this.state.avatar).replace("_normal", "");
     return (
       <li>
         <img className="userAvatar" src={avatar} alt={this.state.username} />
