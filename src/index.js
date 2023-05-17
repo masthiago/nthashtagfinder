@@ -7,7 +7,8 @@ import Login from "./components/Login";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./index.css";
 import SearchList from "./components/SearchList";
-import { AuthProvider } from "./components/Login/AuthContext";
+import { AuthProvider } from "./Hook";
+
 // import { GlobalStyle } from './App/homeComponents/globalStyle';
 
 const router = createBrowserRouter([
