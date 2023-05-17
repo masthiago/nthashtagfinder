@@ -6,12 +6,10 @@ import aboutContentImage from "../../assets/img/aboutImage.svg";
 import emailBoxIcon from "../../assets/img/envelope_font_awesome.svg";
 import gitHubIcon from "../../assets/img/github.svg";
 import linkednIcon from "../../assets/img/linkedin.svg";
-import developerInfos from "./developers.json";
 import Airtable from "airtable";
 
 export default function AboutPageContent() {
-  const userData = [...developerInfos];
-
+  
   const [siteRecordState, setSiteRecordState] = useState([]);
   useEffect(() => {
     let aboutRecords = [];
@@ -181,7 +179,7 @@ export default function AboutPageContent() {
             {developerState.map((developerStateUnit, index) => {
               return (
                 <div id="developersDataContent" key={index}>
-                  <img 
+                  <img
                     id="developersImage"
                     key={index}
                     src={developerStateUnit.imageUrl}
@@ -193,30 +191,36 @@ export default function AboutPageContent() {
                     {developerStateUnit.description}
                   </p>
                   <div id="iconsBoxContent">
-                    <img
-                      src={gitHubIcon}
-                      alt="github icon"
-                      style={{
-                        width: "25px",
-                        height: "25px",
-                      }}
-                    />
-                    <img
-                      src={emailBoxIcon}
-                      alt="github icon"
-                      style={{
-                        width: "25px",
-                        height: "25px",
-                      }}
-                    />
-                    <img
-                      src={linkednIcon}
-                      alt="github icon"
-                      style={{
-                        width: "25px",
-                        height: "25px",
-                      }}
-                    />
+                    <a href={developerStateUnit.github}>
+                      <img
+                        src={gitHubIcon}
+                        alt="github icon"
+                        style={{
+                          width: "25px",
+                          height: "25px",
+                        }}
+                      />
+                    </a>
+                    <a href={`mailto:${developerStateUnit.email}`} /* style={{}} */>
+                      <img
+                        src={emailBoxIcon}
+                        alt="github icon"
+                        style={{
+                          width: "25px",
+                          height: "25px",
+                        }}
+                      />
+                    </a>
+                    <a href={developerStateUnit.linkedin}>
+                      <img
+                        src={linkednIcon}
+                        alt="github icon"
+                        style={{
+                          width: "25px",
+                          height: "25px",
+                        }}
+                      />
+                    </a>
                   </div>
                 </div>
               );
