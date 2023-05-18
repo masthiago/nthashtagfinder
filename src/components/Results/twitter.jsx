@@ -33,7 +33,7 @@ export function normalizeString(str) {
     .toLowerCase() // Converte para minúsculas
     .replace(/\W/g, '') // Remove caracteres especiais (não número e não letras)
     .replace(/^[0-9]+/g, ''); // Remove números no início
-  return '#' + _str;
+  return _str;
 }
 
 /**
@@ -41,13 +41,12 @@ export function normalizeString(str) {
  * @returns {Array} data
  */
 async function getData(tag) {
-  //
   try {
     options.params.query = normalizeString(tag);
     const response = await axios.request(options);
     return response.data;
   } catch (error) {
-    console.log(error);
+    console.log('getData.catch', error);
     return [];
   }
 }
@@ -60,14 +59,14 @@ async function getData(tag) {
 function containsHashtag(tweet) {
   try {
     let contains = false;
-    if (tweet.entities.hashtags) {
+    if (tweet.entities && tweet.entities.hashtags) {
       tweet.entities.hashtags.filter((tag) => {
         if (normalizeString(tag.tag) === options.params.query) contains = true;
       });
     }
     return contains;
   } catch (error) {
-    console.log('containsHashtag', error);
+    console.log('containsHashtag.catch', error);
     return false;
   }
 }
@@ -87,7 +86,7 @@ export async function doTheMagic(hashtag, nextToken = null) {
     .then((data) => {
       data.data.map((tweet) => {
         if (
-          containsHashtag(tweet) &&     // O tweet contém a hashtag
+          containsHashtag(tweet) &&     // O tweet contém a hashtag  // Sob o CORS, não é possível enviar o # dentro do parâmetro query
           !tweet.possibly_sensitive &&  // O tweet não é sensível
           !tweet.referenced_tweets      // O tweet não é um retweet
         ) {
@@ -123,7 +122,7 @@ export async function doTheMagic(hashtag, nextToken = null) {
       });
     })
     .catch((err) => {
-      console.log('doTheMagic.getData', err);
+      console.log('doTheMagic.catch', err);
       return {
         tweets: tweets,
         hashtag: hashtag,

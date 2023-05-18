@@ -59,6 +59,7 @@ export default class Results extends React.Component {
   };
 
   updateState = async (data) => {
+    console.log('updateState', data);
     // Escruturar no state separadamente a partir do retorno de doTheMagic
     this.tweets = this.tweets ? [...this.tweets, ...data.tweets] : data.tweets;
     this.nextToken = data.nextToken;
@@ -121,6 +122,7 @@ export default class Results extends React.Component {
                   post.id
                 }
                 username={post.user.username}
+                text={post.text}
               />
             );
           }
@@ -178,7 +180,7 @@ export default class Results extends React.Component {
         {this.state.hasTweets ? (
           <>
             <h2 className='listTitle'>
-              Exibindo os {this.tweets.length} resultados mais recentes para {normalizeString(this.hashtag)}
+              Exibindo os {this.tweets.length} resultados mais recentes para { '#' + normalizeString(this.hashtag)}
             </h2>
             <InfiniteScroll
               dataLength={this.tweets.length} //This is important field to render the next data
