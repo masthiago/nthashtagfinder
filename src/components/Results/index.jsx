@@ -1,6 +1,6 @@
 import React from 'react';
 import { ImageItem, PostItem } from './components';
-import { ResultsContainer, ButtonGroup, Tab } from './styled';
+import { ResultsContainer, ButtonGroup, Tab, Loading } from './styled';
 import { ThreeDots } from 'react-loader-spinner';
 import { doTheMagic, normalizeString } from './twitter';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -15,6 +15,7 @@ export default class Results extends React.Component {
     activeTab: this.tabTypes[0],
     hasNext: false,
     hasTweets: false,
+    hashtagIsEmpty: true,
     loading: false,
     windowWidth: window.innerWidth,
   };
@@ -46,7 +47,7 @@ export default class Results extends React.Component {
     event.preventDefault();
     this.tweets = [];
     this.hashtag = event.target.querySelector('.textSearch').value;
-    this.setState({ loading: true });
+    this.setState({ loading: true, hashtagIsEmpty: false });
     const data = await doTheMagic(this.hashtag, this.nextToken);
     await this.updateState(data);
     this.setState({ loading: false });
@@ -59,7 +60,6 @@ export default class Results extends React.Component {
   };
 
   updateState = async (data) => {
-    console.log('updateState', data);
     // Escruturar no state separadamente a partir do retorno de doTheMagic
     this.tweets = this.tweets ? [...this.tweets, ...data.tweets] : data.tweets;
     this.nextToken = data.nextToken;
@@ -177,10 +177,23 @@ export default class Results extends React.Component {
     const DisplayWithTabs = this.displayWithTabs;
     return (
       <ResultsContainer>
+        {this.state.loading ? (
+          <ThreeDots
+            height='80'
+            width='80'
+            radius='9'
+            color='#1e3e7b'
+            ariaLabel='three-dots-loading'
+            visible={this.loading}
+          />
+        ) : (
+          <></>
+        )}
         {this.state.hasTweets ? (
           <>
             <h2 className='listTitle'>
-              Exibindo os {this.tweets.length} resultados mais recentes para { '#' + normalizeString(this.hashtag)}
+              Exibindo os {this.tweets.length} resultados mais recentes para{' '}
+              {'#' + normalizeString(this.hashtag)}
             </h2>
             <InfiniteScroll
               dataLength={this.tweets.length} //This is important field to render the next data
@@ -198,24 +211,6 @@ export default class Results extends React.Component {
           </>
         ) : (
           <></>
-        )}
-        {this.state.loading ? (
-          <ThreeDots
-            height='80'
-            width='80'
-            radius='9'
-            color='#1e3e7b'
-            ariaLabel='three-dots-loading'
-            visible={this.loading}
-          />
-        ) : (
-          <>
-            {this.hashtag && !this.state.hasNext ? (
-              <h2 className='listTitle'>Nenhum resultado encontrado.</h2>
-            ) : (
-              <></>
-            )}
-          </>
         )}
       </ResultsContainer>
     );

@@ -12,7 +12,7 @@ const options = {
     expansions: 'attachments.media_keys,author_id',
     'tweet.fields':
       'attachments,author_id,created_at,entities,id,possibly_sensitive,referenced_tweets,text',
-    'media.fields': 'alt_text,media_key,type,url',
+    'media.fields': 'alt_text,media_key,type,url,height,width',
     'user.fields': 'id,name,profile_image_url,username',
   },
   headers: {
@@ -86,9 +86,9 @@ export async function doTheMagic(hashtag, nextToken = null) {
     .then((data) => {
       data.data.map((tweet) => {
         if (
-          containsHashtag(tweet) &&     // O tweet contém a hashtag  // Sob o CORS, não é possível enviar o # dentro do parâmetro query
-          !tweet.possibly_sensitive &&  // O tweet não é sensível
-          !tweet.referenced_tweets      // O tweet não é um retweet
+          containsHashtag(tweet) // O tweet contém a hashtag  // Sob o CORS, não é possível enviar o # dentro do parâmetro query
+          && !tweet.possibly_sensitive // O tweet não é sensível
+          // && !tweet.referenced_tweets      // O tweet não é um retweet
         ) {
           let tweetObj = tweet;
 

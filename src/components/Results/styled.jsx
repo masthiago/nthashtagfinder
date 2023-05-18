@@ -188,3 +188,49 @@ export const ButtonGroup = styled.div`
   width: 100%;
   box-sizing: border-box;
 `;
+
+export const ModalContainer = styled.div`
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  bottom: 5px;
+  box-sizing: border-box;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  left: 5px;
+  right: 5px;
+  top: 5px;
+  width: 100%;
+  .modalHeader {
+    color: inherit;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px;
+    padding: 10px;
+  }
+  .modalFooter{
+    background-color: #0000009e;
+    border-radius: 20px;
+    margin: 20px auto;
+    max-width: 80%;
+    text-align: center;
+    padding: 10px;
+    font-size: small;
+  }
+  .modalUser {
+    background-color: #0000009e;
+    border-radius: 20px;
+    padding: 10px 40px;
+    font-weight: bold;
+  }
+
+`;
+
+export const Loading = styled.div`
+position: absolute;
+bottom: 0;
+`

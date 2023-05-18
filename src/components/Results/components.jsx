@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactMomdal from 'react-modal';
+import { ModalContainer } from './styled';
 
 ReactMomdal.setAppElement('#root');
 
@@ -11,6 +12,7 @@ const modalStyle = {
     right: 0,
     bottom: 0,
     backgroundColor: '#000000ca',
+    overflow: 'none',
   },
   content: {
     position: 'absolute',
@@ -20,11 +22,12 @@ const modalStyle = {
     bottom: '25px',
     border: '0',
     background: '#000000ca',
-    overflow: 'auto',
+    overflow: 'none',
     WebkitOverflowScrolling: 'touch',
     borderRadius: '10px',
     outline: 'none',
     padding: '0',
+
   },
 };
 
@@ -70,7 +73,7 @@ export class ImageItem extends React.Component {
       >
         Postado por <br />
         <a className='imageUser'> @{this.state.username}</a>
-        {this.state.modalIsOpen ? (
+        
           <ReactMomdal
             key={'modal' + this.state.id + '_' + this.state.mediaKey}
             isOpen={this.state.modalIsOpen}
@@ -80,36 +83,17 @@ export class ImageItem extends React.Component {
             contentLabel={this.state.text}
             shouldCloseOnOverlayClick={true}
           >
-            <div
-              style={{
-                // backgroundColor: '#f0f',
-                backgroundImage: `url(${mediaUrl})`,
-                backgroundPosition: 'center center',
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'contain',
-                top: '5px',
-                left: '5px',
-                bottom: '5px',
-                right: '5px',
-                height: '100%',
-                width: '100%',
-                boxSizing: 'border-box',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-              }}
-            >
-              <div>
+            <ModalContainer style={{backgroundImage: `url(${mediaUrl}`}}>
+              <div className='modalHeader'>
+                <p className='modalUser'>@{this.state.username}</p>
                 <button onClick={this.closeModal} style={{ color: "#fff", border: 0, backgroundColor: 'transparent', fontWeight: 'bolder', fontSize: '18px'}}>
                   X
                 </button>
               </div>
-              <div>{this.state.text}</div>
-            </div>
+              <div className='modalFooter'>{this.state.text}</div>
+            </ModalContainer>
           </ReactMomdal>
-        ) : (
-          <></>
-        )}
+
       </li>
     );
   }
