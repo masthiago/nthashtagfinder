@@ -184,7 +184,7 @@ export default class Results extends React.Component {
             radius='9'
             color='#1e3e7b'
             ariaLabel='three-dots-loading'
-            visible={this.loading}
+            visible={this.state.loading}
           />
         ) : (
           <></>
@@ -208,9 +208,16 @@ export default class Results extends React.Component {
                 <DisplayWithTabs />
               )}
             </InfiniteScroll>
+            {this.state.hasNext === false ? (<>Fim da busca</>):(<></>)}
           </>
         ) : (
-          <></>
+          <>
+            {this.state.hashtagIsEmpty ? (
+              <>Faça uma busca</>
+            ) : (
+              <>Nada encontrado</>
+            )}
+          </>
         )}
       </ResultsContainer>
     );
