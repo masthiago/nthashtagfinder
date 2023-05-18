@@ -212,7 +212,7 @@ export const ModalContainer = styled.div`
     margin: 20px;
     padding: 10px;
   }
-  .modalFooter{
+  .modalFooter {
     background-color: #0000009e;
     border-radius: 20px;
     margin: 20px auto;
@@ -228,9 +228,19 @@ export const ModalContainer = styled.div`
     font-weight: bold;
   }
 
+  .modalClose {
+    color: #fff;
+    border: 0;
+    background-color: #0000009e;
+    font-weight: bolder;
+    font-size: 18px;
+    border-radius: 20px;
+    padding: 10px 40px;
+    
+  }
 `;
 
 export const Loading = styled.div`
-position: absolute;
-bottom: 0;
-`
+  position: absolute;
+  bottom: 0;
+`;

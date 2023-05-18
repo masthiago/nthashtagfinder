@@ -43,12 +43,11 @@ export function normalizeString(str) {
 async function getData(tag) {
   try {
     options.params.query = normalizeString(tag);
-    const response = await axios.request(options);
-    console.log(response);
+    const response = await axios.request(options)
     return response.data;
   } catch (error) {
     console.log('getData.catch', error);
-    return [];
+    return null;
   }
 }
 
@@ -79,58 +78,58 @@ function containsHashtag(tweet) {
  */
 export async function doTheMagic(hashtag, nextToken = null) {
   const dataLimit = 10; // limite para tweets
+  const pagesLimit = 100;
   let tweets = []; // Armazena objetos tweets
+  let pages = 1;
 
   if (nextToken) options.params.next_token = nextToken; // Se passado token de paginação, adiciona ao parâmetro
 
-  await getData(hashtag, nextToken)
-    .then((data) => {
-      console.log(data);
-      data.data.map((tweet) => {
-        if (
-          containsHashtag(tweet) && // O tweet contém a hashtag  // Sob o CORS, não é possível enviar o # dentro do parâmetro query
-          !tweet.possibly_sensitive // O tweet não é sensível
-          // && !tweet.referenced_tweets      // O tweet não é um retweet
-        ) {
-          let tweetObj = tweet;
+  do {
+    await getData(hashtag, options.params.next_token)
+      .then((data) => {
+        data.data.map((tweet) => {
+          if (
+            containsHashtag(tweet) && // O tweet contém a hashtag  // Sob o CORS, não é possível enviar o # dentro do parâmetro query
+            !tweet.possibly_sensitive // O tweet não é sensível
+            && !tweet.referenced_tweets      // O tweet não é um retweet
+          ) {
+            let tweetObj = tweet;
 
-          // Para cada tweet, procura o usuário
-          data.includes.users.filter((user) => {
-            if (user.id === tweet.author_id) {
-              tweetObj.user = user;
-            }
-          });
-
-          // Para cada tweet, procura a mídia e adiciona ao array de imagens, se o tweet tiver mídia
-
-          if (data.includes && data.includes.media) {
-            data.includes.media.filter((media) => {
-              if (tweet.attachments && tweet.attachments.media_keys[0]) {
-                if (
-                  media.media_key === tweet.attachments.media_keys[0] &&
-                  media.type === 'photo'
-                ) {
-                  tweetObj.media = media;
-                }
+            // Para cada tweet, procura o usuário
+            data.includes.users.filter((user) => {
+              if (user.id === tweet.author_id) {
+                tweetObj.user = user;
               }
             });
+
+            // Para cada tweet, procura a mídia e adiciona ao array de imagens, se o tweet tiver mídia
+
+            if (data.includes && data.includes.media) {
+              data.includes.media.filter((media) => {
+                if (tweet.attachments && tweet.attachments.media_keys[0]) {
+                  if (
+                    media.media_key === tweet.attachments.media_keys[0] &&
+                    media.type === 'photo'
+                  ) {
+                    tweetObj.media = media;
+                  }
+                }
+              });
+            }
+
+            if (data.meta.next_token)
+              options.params.next_token =  data.meta.next_token;
+
+            tweets.push(tweetObj);
           }
-
-          if (data.meta.next_token)
-            options.params.next_token = data.meta.next_token;
-
-          tweets.push(tweetObj);
-        }
+        });
+      })
+      .catch((err) => {
+        console.log('doTheMagic.catch', err);
+        options.params.next_token = null;
       });
-    })
-    .catch((err) => {
-      console.log('doTheMagic.catch', err);
-      return {
-        tweets: tweets,
-        hashtag: hashtag,
-        nextToken: null,
-      };
-    });
+      pages++;
+  } while (tweets.length < dataLimit && options.params.next_token && pages < pagesLimit);
 
   return {
     tweets: tweets,

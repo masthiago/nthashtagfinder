@@ -86,7 +86,7 @@ export class ImageItem extends React.Component {
             <ModalContainer style={{backgroundImage: `url(${mediaUrl}`}}>
               <div className='modalHeader'>
                 <p className='modalUser'>@{this.state.username}</p>
-                <button onClick={this.closeModal} style={{ color: "#fff", border: 0, backgroundColor: 'transparent', fontWeight: 'bolder', fontSize: '18px'}}>
+                <button className='modalClose' onClick={this.closeModal} >
                   X
                 </button>
               </div>
