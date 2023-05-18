@@ -8,9 +8,10 @@ export const ResultsContainer = styled.div`
   flex-direction: column;
   justify-content: start;
   margin: 0;
-  min-height: 100vh;
+  min-height: 20vh;
   padding: 100px 20px;
   h2.listTitle {
+    text-align: center;
     font-weight: 400;
     font-size: 32px;
     display: none;
@@ -18,6 +19,11 @@ export const ResultsContainer = styled.div`
     @media screen and (min-width: 1024px) {
       display: block;
     }
+  }
+  span.errorMsg {
+    color: #ffcece;
+    font-size: 50%;
+    font-weight: 300;
   }
   span.tagName {
     font-weight: 400;
@@ -66,7 +72,7 @@ export const ResultsContainer = styled.div`
       font-size: 14px;
     }
   }
-  span.imageUser {
+  a.imageUser {
     font-size: 12px;
     font-weight: 500;
     display: inline-block;
@@ -181,4 +187,60 @@ export const ButtonGroup = styled.div`
   margin-bottom: 64px;
   width: 100%;
   box-sizing: border-box;
+`;
+
+export const ModalContainer = styled.div`
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  bottom: 5px;
+  box-sizing: border-box;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  left: 5px;
+  right: 5px;
+  top: 5px;
+  width: 100%;
+  .modalHeader {
+    color: inherit;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px;
+    padding: 10px;
+  }
+  .modalFooter {
+    background-color: #0000009e;
+    border-radius: 20px;
+    margin: 20px auto;
+    max-width: 80%;
+    text-align: center;
+    padding: 10px;
+    font-size: small;
+  }
+  .modalUser {
+    background-color: #0000009e;
+    border-radius: 20px;
+    padding: 10px 40px;
+    font-weight: bold;
+  }
+
+  .modalClose {
+    color: #fff;
+    border: 0;
+    background-color: #0000009e;
+    font-weight: bolder;
+    font-size: 18px;
+    border-radius: 20px;
+    padding: 10px 40px;
+    
+  }
+`;
+
+export const Loading = styled.div`
+  position: absolute;
+  bottom: 0;
 `;

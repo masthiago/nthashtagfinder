@@ -26,3 +26,4 @@ dist-ssr
 tmp/
 carbon/
 config.editorconfig
+.env
