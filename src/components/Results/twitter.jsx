@@ -44,6 +44,7 @@ async function getData(tag) {
   try {
     options.params.query = normalizeString(tag);
     const response = await axios.request(options);
+    console.log(response);
     return response.data;
   } catch (error) {
     console.log('getData.catch', error);
@@ -84,10 +85,11 @@ export async function doTheMagic(hashtag, nextToken = null) {
 
   await getData(hashtag, nextToken)
     .then((data) => {
+      console.log(data);
       data.data.map((tweet) => {
         if (
-          containsHashtag(tweet) // O tweet contém a hashtag  // Sob o CORS, não é possível enviar o # dentro do parâmetro query
-          && !tweet.possibly_sensitive // O tweet não é sensível
+          containsHashtag(tweet) && // O tweet contém a hashtag  // Sob o CORS, não é possível enviar o # dentro do parâmetro query
+          !tweet.possibly_sensitive // O tweet não é sensível
           // && !tweet.referenced_tweets      // O tweet não é um retweet
         ) {
           let tweetObj = tweet;
