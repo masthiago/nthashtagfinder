@@ -16,7 +16,7 @@ import {
   Text,
 } from './style';
 import Header from '../Header';
-import { AuthContext } from '../../Hook';
+import { AuthContext } from '../../Hook/';
 import { useNavigate } from 'react-router-dom';
 
 const SearchList = () => {
