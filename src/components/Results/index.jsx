@@ -33,8 +33,9 @@ export default class Results extends React.Component {
   }
 
   componentWillUnmount() {
-    window.addEventListener('resize', null); // remove event listener for window resize
-    document.querySelector('.searchBar').addEventListener('submit', null); // remove event listener for search form submit
+    window.removeEventListener('resize', this.handleResize); // remove event listener for window resize
+    // TODO: Investigar porque o eventListener abaixo gera erro ao clicar em Login
+    // document.querySelector('.searchBar').removeEventListener('submit', this.handleSearchForm); // remove event listener for search form submit
   }
 
   handleResize = () => {

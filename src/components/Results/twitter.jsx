@@ -5,8 +5,7 @@ import axios from 'axios';
  */
 const options = {
   method: 'GET',
-  // url: 'https://cors.eu.org/https://api.twitter.com/2/tweets/search/recent',   // Padrão
-  url: 'https://api.twitter.com/2/tweets/search/recent', // Usar quando houver problemas com CORS
+  url: `${process.env.REACT_APP_TWITTER_API_URL}`,
   params: {
     max_results: '10',
     next_token: null,
@@ -88,9 +87,9 @@ export async function doTheMagic(hashtag, nextToken = null) {
     .then((data) => {
       data.data.map((tweet) => {
         if (
-          containsHashtag(tweet) &&
-          !tweet.possibly_sensitive &&
-          !tweet.referenced_tweets
+          containsHashtag(tweet) &&     // O tweet contém a hashtag
+          !tweet.possibly_sensitive &&  // O tweet não é sensível
+          !tweet.referenced_tweets      // O tweet não é um retweet
         ) {
           let tweetObj = tweet;
 
