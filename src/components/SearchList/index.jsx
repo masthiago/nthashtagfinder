@@ -16,18 +16,19 @@ import {
   Text,
 } from './style';
 import Header from '../Header';
-import { AuthContext } from '../Login/AuthContext';
-import { Navigate } from 'react-router-dom';
+import { AuthContext } from '../../Hook/';
+import { useNavigate } from 'react-router-dom';
 
 const SearchList = () => {
 
 //verificando login da caso não logado direcionar para tela de login
   const { isLoggedIn } = useContext(AuthContext)
+  const navigate = useNavigate()
   useEffect(() => {
-    if( isLoggedIn === false ) {
-      Navigate('/login')
+    if( isLoggedIn === false ) {  
+      navigate('/login')
     }
-  }, [isLoggedIn])
+  }, [isLoggedIn, navigate])
 
 
   var listing = [

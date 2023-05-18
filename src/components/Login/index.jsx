@@ -9,9 +9,9 @@ import {
   Wrapper,
 } from './styled';
 import Header from '../Header';
-import { AuthContext } from './AuthContext';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../Hook/';
 
 export default function Login() {
   const [userName, setUserName] = useState('');
@@ -55,11 +55,7 @@ export default function Login() {
       method: 'get',
       maxBodyLength: Infinity,
       url:
-        "https://api.airtable.com/v0/app6wQWfM6eJngkD4/Login?view=Grid%20view&filterByFormula=AND({Squad} = '05-23', {Email} = '" +
-        userName +
-        "', {Senha} = '" +
-        password +
-        "')",
+        "https://api.airtable.com/v0/app6wQWfM6eJngkD4/Login?view=Grid%20view&filterByFormula=AND({Squad} = '05-23', {Email} = '" + userName + "', {Senha} = '" + password + "')",
       headers: {
         Authorization: 'Bearer keykXHtsEPprqdSBF',
       },
@@ -88,7 +84,6 @@ export default function Login() {
       .catch((error) => {
         console.log(error); //Print error in console
       });
-
   };
 
   return (
