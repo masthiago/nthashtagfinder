@@ -54,19 +54,19 @@ const SearchList = () => {
   const next = async () => {
     console.log('next', options.params.offset);
     setLoading(true);
-    await doTheMagic();
+    await getData();
     setLoading(false);
   };
 
   // Faz efetivamente a coleta de dados e adiciona um array de React Components
-  const doTheMagic = async () => {
+  const getData = async () => {
     let tmpHashtags = [];
-    console.log('doTheMagic.azios - inicio', options.params.offset);
+    console.log('getData.azios - inicio', options.params.offset);
 
     axios
       .request(options)
       .then((response) => {
-        console.log('doTheMagic.azios', options.params.offset);
+        console.log('getData.azios', options.params.offset);
         // Se for retornando um chave offset
         // if (response.data.offset) {
           options.params.offset = response.data.offset || null; // Atualiza o parâmetro offset para a próxima requisição
@@ -96,7 +96,7 @@ const SearchList = () => {
 
         // console.log('axios', tmpHashtags, response.data.offset, hashtags);
 
-        console.log('doTheMagic.azios - fim', options.params.offset);
+        console.log('getData.azios - fim', options.params.offset);
       })
       .catch((error) => {
         console.log(error);
