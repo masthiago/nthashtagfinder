@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import tableBg from '../../assets/img/tableBg.jpg';
+import styled from "styled-components";
+import tableBg from "../../assets/img/tableBg.jpg";
 
 export const Background = styled.div`
   position: fixed;
@@ -22,7 +22,6 @@ export const Container = styled.div`
 
   @media screen and (max-width: 850px) {
     width: 90%;
-
   }
 `;
 
@@ -40,6 +39,7 @@ export const Title = styled.h1`
 `;
 
 export const List = styled.div`
+  z-index: -1;
   margin-top: 40px;
   width: 100%;
   border-radius: 14px;
