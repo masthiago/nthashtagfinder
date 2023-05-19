@@ -12,8 +12,12 @@ export const Background = styled.div`
 `;
 
 export const Wrapper = styled.div`
+  padding-top: 120px;
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: 420px) {
+    padding-top: 85px;
+  }
 `;
 
 export const Container = styled.div`
