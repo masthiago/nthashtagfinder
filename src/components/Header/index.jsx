@@ -1,13 +1,17 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { StyledButton, StyledHeader } from './styled';
 import iconAbout from '../../assets/img/iconAbout.svg';
 import iconUser from '../../assets/img/iconUser.svg';
 import iconHome from '../../assets/img/iconHome.svg';
 import iconOff from '../../assets/img/iconOff.svg';
+import { AuthContext } from '../../Hook/AuthContext';
 
 export default function Header() {
-  const currentPath = window.location.pathname;
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+  const { logout } = useContext(AuthContext); //exit search page
 
   return (
     <>
@@ -46,7 +50,7 @@ export default function Header() {
             {currentPath === '/' ||
             currentPath === '/about' ||
             currentPath === '/login' ? null : (
-              <StyledButton>
+              <StyledButton onClick={logout}>
                 <img className='iconHeader' src={iconOff} alt='ícone Home' />
                 SAIR
               </StyledButton>

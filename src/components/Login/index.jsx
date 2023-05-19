@@ -11,21 +11,23 @@ import {
 import Header from '../Header';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../Hook/';
+import { AuthContext } from '../../Hook/AuthContext';
+import Loading from '../Loading';
 
 export default function Login() {
-  const [userName, setUserName] = useState('');
-  const [password, setPassword] = useState('');
+  const { login, userName, password } = useContext(AuthContext);
   const [errors, setErrors] = useState({});
-  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
+  const setUserName = useContext(AuthContext).setUserName;
+  const setPassword = useContext(AuthContext).setPassword;
+  const [isLoading, setIsLoading] = useState(false);
 
   //updates `userName` and `password` states with input values and removes error message related to modified fields.
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setErrors((prevErrors) => ({ ...prevErrors, [name]: '' }));
     if (name === 'userName') {
-      setUserName(value);
+      console.log(setUserName(value));
     } else if (name === 'password') {
       setPassword(value);
     }
@@ -33,6 +35,12 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault(); //prevents default behavior
+    setIsLoading(true);
+
+    setTimeout(() => {
+      login();
+      setIsLoading(false);
+    }, 2000);
 
     //checks if fields are empty and adds corresponding error message.
     const newErrors = {};
@@ -55,7 +63,11 @@ export default function Login() {
       method: 'get',
       maxBodyLength: Infinity,
       url:
-        "https://api.airtable.com/v0/app6wQWfM6eJngkD4/Login?view=Grid%20view&filterByFormula=AND({Squad} = '05-23', {Email} = '" + userName + "', {Senha} = '" + password + "')",
+        "https://api.airtable.com/v0/app6wQWfM6eJngkD4/Login?view=Grid%20view&filterByFormula=AND({Squad} = '05-23', {Email} = '" +
+        userName +
+        "', {Senha} = '" +
+        password +
+        "')",
       headers: {
         Authorization: 'Bearer keykXHtsEPprqdSBF',
       },
@@ -77,14 +89,17 @@ export default function Login() {
             navigate('/search');
           }
         } else {
-          //Definition of error message in case of invalid credentials.
-          setErrors({ general: 'Credenciais inválidas' });
+          setErrors({ general: 'Credenciais inválidas' }); //Definition of error message in case of invalid credentials.
         }
       })
       .catch((error) => {
         console.log(error); //Print error in console
       });
   };
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <>
@@ -107,6 +122,7 @@ export default function Login() {
               name='password'
               value={password}
               onChange={handleInputChange}
+              maxLength={6}
             />
             {errors.password && <ErrorText>{errors.password}</ErrorText>}
             {errors.general && <ErrorText>{errors.general}</ErrorText>}

@@ -16,7 +16,7 @@ import {
   Text,
 } from './style';
 import Header from '../Header';
-import { AuthContext } from '../../Hook/';
+import { AuthContext } from '../../Hook/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import axios from 'axios';
@@ -69,8 +69,8 @@ const SearchList = () => {
         console.log('getData.azios', options.params.offset);
         // Se for retornando um chave offset
         // if (response.data.offset) {
-          options.params.offset = response.data.offset || null; // Atualiza o parâmetro offset para a próxima requisição
-          setOffset(response.data.offset || null); // Atualiza o estado offset, mas não vi uso ainda
+        options.params.offset = response.data.offset || null; // Atualiza o parâmetro offset para a próxima requisição
+        setOffset(response.data.offset || null); // Atualiza o estado offset, mas não vi uso ainda
         // } // Se eles vierem na requisição como null, serão armazenados também, signicando o fim da lista (não precisa do else)
 
         response.data.records.map((record) => {
@@ -78,7 +78,7 @@ const SearchList = () => {
 
           tmpHashtags.push(
             // Array de React Components precisa que seus elemntos tenham uma chave única (key)
-            <TextList key={record.id + (new Date().toISOString())}>
+            <TextList key={record.id + new Date().toISOString()}>
               <TextHashtag>{record.fields.Hashtag}</TextHashtag>
 
               <Texts>
@@ -116,9 +116,9 @@ const SearchList = () => {
     next();
 
     return () => {
-    options.params.offset = null;
-    setOffset(null);
-  }
+      options.params.offset = null;
+      setOffset(null);
+    };
   }, []);
 
   return (
@@ -151,7 +151,7 @@ const SearchList = () => {
               loader={<>Carregando</>}
               endMessage={<>Fim</>}
             >
-            {hashtags}
+              {hashtags}
             </InfiniteScroll>
           </List>
         </Container>

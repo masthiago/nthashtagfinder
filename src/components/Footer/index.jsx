@@ -1,5 +1,5 @@
-import React from "react";
-import { StyledFooter } from "../Footer/styled";
+import React from 'react';
+import { StyledFooter } from '../Footer/styled';
 
 export default function Footer() {
   return (
