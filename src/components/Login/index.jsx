@@ -27,7 +27,7 @@ export default function Login() {
     const { name, value } = e.target;
     setErrors((prevErrors) => ({ ...prevErrors, [name]: '' }));
     if (name === 'userName') {
-      console.log(setUserName(value));
+      setUserName(value);
     } else if (name === 'password') {
       setPassword(value);
     }
@@ -77,7 +77,7 @@ export default function Login() {
       .request(config)
       .then((response) => {
         //API response handling and redirection on success.
-        console.log(JSON.stringify(response.data));
+        JSON.stringify(response.data);
         const records = response.data.records;
 
         if (records && records.length > 0) {
