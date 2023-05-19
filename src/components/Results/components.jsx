@@ -27,7 +27,6 @@ const modalStyle = {
     borderRadius: '10px',
     outline: 'none',
     padding: '0',
-
   },
 };
 
@@ -72,28 +71,34 @@ export class ImageItem extends React.Component {
         onClick={this.openModal}
       >
         Postado por <br />
-        <a className='imageUser'> @{this.state.username}</a>
-        
-          <ReactMomdal
-            key={'modal' + this.state.id + '_' + this.state.mediaKey}
-            isOpen={this.state.modalIsOpen}
-            onAfterOpen={this.afterOpenModal}
-            onRequestClose={this.closeModal}
-            style={modalStyle}
-            contentLabel={this.state.text}
-            shouldCloseOnOverlayClick={true}
-          >
-            <ModalContainer style={{backgroundImage: `url(${mediaUrl}`}}>
-              <div className='modalHeader'>
-                <p className='modalUser'>@{this.state.username}</p>
-                <button className='modalClose' onClick={this.closeModal} >
-                  X
-                </button>
-              </div>
-              <div className='modalFooter'>{this.state.text}</div>
-            </ModalContainer>
-          </ReactMomdal>
-
+        <a
+          rel='noreferrer'
+          href={this.state.url}
+          target='_blank'
+          className='imageUser'
+        >
+          {' '}
+          @{this.state.username}
+        </a>
+        <ReactMomdal
+          key={'modal' + this.state.id + '_' + this.state.mediaKey}
+          isOpen={this.state.modalIsOpen}
+          onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeModal}
+          style={modalStyle}
+          contentLabel={this.state.text}
+          shouldCloseOnOverlayClick={true}
+        >
+          <ModalContainer style={{ backgroundImage: `url(${mediaUrl}` }}>
+            <div className='modalHeader'>
+              <p className='modalUser'>@{this.state.username}</p>
+              <button className='modalClose' onClick={this.closeModal}>
+                X
+              </button>
+            </div>
+            <div className='modalFooter'>{this.state.text}</div>
+          </ModalContainer>
+        </ReactMomdal>
       </li>
     );
   }

@@ -69,16 +69,16 @@ const SearchList = () => {
         console.log('getData.azios', options.params.offset);
         // Se for retornando um chave offset
         // if (response.data.offset) {
-          options.params.offset = response.data.offset || null; // Atualiza o parâmetro offset para a próxima requisição
-          setOffset(response.data.offset || null); // Atualiza o estado offset, mas não vi uso ainda
+        options.params.offset = response.data.offset || null; // Atualiza o parâmetro offset para a próxima requisição
+        setOffset(response.data.offset || null); // Atualiza o estado offset, mas não vi uso ainda
         // } // Se eles vierem na requisição como null, serão armazenados também, signicando o fim da lista (não precisa do else)
 
-        response.data.records.map((record) => {
+        response.data.records.forEach((record) => {
           const date = new Date(record.fields.Data);
 
           tmpHashtags.push(
             // Array de React Components precisa que seus elemntos tenham uma chave única (key)
-            <TextList key={record.id + (new Date().toISOString())}>
+            <TextList key={record.id + new Date().toISOString()}>
               <TextHashtag>{record.fields.Hashtag}</TextHashtag>
 
               <Texts>
@@ -110,15 +110,15 @@ const SearchList = () => {
 
   const [loading, setLoading] = useState(false); // Estado para armazenar o status do loading
 
-  // // UseEffects
+  // UseEffects
   useEffect(() => {
     // Fazer a primeira carga de dados
     next();
 
     return () => {
-    options.params.offset = null;
-    setOffset(null);
-  }
+      options.params.offset = null;
+      setOffset(null);
+    };
   }, []);
 
   return (
@@ -151,7 +151,7 @@ const SearchList = () => {
               loader={<>Carregando</>}
               endMessage={<>Fim</>}
             >
-            {hashtags}
+              {hashtags}
             </InfiniteScroll>
           </List>
         </Container>

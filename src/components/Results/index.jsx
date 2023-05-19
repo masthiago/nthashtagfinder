@@ -1,6 +1,6 @@
 import React from 'react';
 import { ImageItem, PostItem } from './components';
-import { ResultsContainer, ButtonGroup, Tab, Loading } from './styled';
+import { ResultsContainer, ButtonGroup, Tab } from './styled';
 import { ThreeDots } from 'react-loader-spinner';
 import { doTheMagic, normalizeString } from './twitter';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -22,8 +22,8 @@ export default class Results extends React.Component {
 
   constructor(props) {
     super(props);
-    this.handleResize = this.handleResize.bind(this); // Monitora tamanho do viewport
-    this.handleSearchForm = this.handleSearchForm.bind(this); // Monitora formulário de busca
+    this.handleResize = this.handleResize.bind(this); // Bind Viewport Size
+    this.handleSearchForm = this.handleSearchForm.bind(this); // Bind Search Form
   }
 
   componentDidMount() {
@@ -35,8 +35,6 @@ export default class Results extends React.Component {
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleResize); // remove event listener for window resize
-    // TODO: Investigar porque o eventListener abaixo gera erro ao clicar em Login
-    // document.querySelector('.searchBar').removeEventListener('submit', this.handleSearchForm); // remove event listener for search form submit
   }
 
   handleResize = () => {
@@ -54,13 +52,13 @@ export default class Results extends React.Component {
   };
 
   infiniteLoad = async () => {
-    // Colegar dados da API usando dados na state
+    // Coordinate API data using data at State
     const data = await doTheMagic(this.hashtag, this.nextToken);
     await this.updateState(data);
   };
 
   updateState = async (data) => {
-    // Escruturar no state separadamente a partir do retorno de doTheMagic
+    // Put data comming from doTheMagic on state
     this.tweets = this.tweets ? [...this.tweets, ...data.tweets] : data.tweets;
     this.nextToken = data.nextToken;
     this.setState({ hasNext: data.nextToken ? true : false });
@@ -73,7 +71,7 @@ export default class Results extends React.Component {
     const PostGen = () => {
       let posts = [];
       if (this.tweets) {
-        this.tweets.map((post, index) => {
+        this.tweets.forEach((post, index) => {
           posts.push(
             <PostItem
               key={'tweet' + post.id + '_' + index}
@@ -106,7 +104,7 @@ export default class Results extends React.Component {
     const ImgGen = () => {
       let images = [];
       if (this.tweets) {
-        this.tweets.map((post, index) => {
+        this.tweets.forEach((post, index) => {
           if (post.media && post.media.url) {
             images.push(
               <ImageItem
@@ -199,10 +197,17 @@ export default class Results extends React.Component {
               dataLength={this.tweets.length} //This is important field to render the next data
               next={this.infiniteLoad}
               hasMore={this.state.hasNext ? true : false}
-              loader={<></>}
-              endMessage={<></>}
+              loader={<ThreeDots
+                height='80'
+                width='80'
+                radius='9'
+                color='#1e3e7b'
+                ariaLabel='three-dots-loading'
+                visible={this.state.loading}
+              />}
+              endMessage={<>Nada mais a exibir</>}
             >
-              {this.state.windowWidth > 768 ? (
+              {this.state.windowWidth > 1024 ? (
                 <DisplayWithoutTabs />
               ) : (
                 <DisplayWithTabs />
@@ -213,7 +218,7 @@ export default class Results extends React.Component {
         ) : (
           <>
             {this.state.hashtagIsEmpty ? (
-              <>Faça uma busca</>
+              <></>
             ) : (
               <>Nada encontrado</>
             )}
