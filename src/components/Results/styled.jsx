@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const ResultsContainer = styled.div`
   align-items: center;
-  background-color: #0a1744;
+  background-color: #09194d;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -236,11 +236,6 @@ export const ModalContainer = styled.div`
     font-size: 18px;
     border-radius: 20px;
     padding: 10px 40px;
-    
+    cursor: pointer;
   }
-`;
-
-export const Loading = styled.div`
-  position: absolute;
-  bottom: 0;
 `;

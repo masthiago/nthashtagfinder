@@ -56,20 +56,21 @@ async function getData(tag) {
  * @param {Object} tweet
  * @returns {boolean}
  */
-function containsHashtag(tweet) {
-  try {
-    let contains = false;
-    if (tweet.entities && tweet.entities.hashtags) {
-      tweet.entities.hashtags.filter((tag) => {
-        if (normalizeString(tag.tag) === options.params.query) contains = true;
-      });
-    }
-    return contains;
-  } catch (error) {
-    console.log('containsHashtag.catch', error);
-    return false;
-  }
-}
+// function containsHashtag(tweet) {
+//   try {
+//     let contains = false;
+//     if (tweet.entities && tweet.entities.hashtags) {
+//       tweet.entities.hashtags.filter((tag) => {
+//         if (normalizeString(tag.tag) === options.params.query) contains = true;
+//         return tag;
+//       });
+//     }
+//     return contains;
+//   } catch (error) {
+//     console.log('containsHashtag.catch', error);
+//     return false;
+//   }
+// }
 
 /**
  * Busca os dados da API do Twitter e retorna um objeto com os
@@ -77,19 +78,19 @@ function containsHashtag(tweet) {
  * @returns {Object}
  */
 export async function doTheMagic(hashtag, nextToken = null) {
-  const dataLimit = 10; // limite para tweets
-  const pagesLimit = 100;
+  // const dataLimit = 10; // limite para tweets
+  // const pagesLimit = 10;
   let tweets = []; // Armazena objetos tweets
-  let pages = 1;
+  // let pages = 1;
 
   if (nextToken) options.params.next_token = nextToken; // Se passado token de paginação, adiciona ao parâmetro
 
-  do {
+  // do {
     await getData(hashtag, options.params.next_token)
       .then((data) => {
-        data.data.map((tweet) => {
+        data.data.forEach((tweet) => {
           if (
-            containsHashtag(tweet) && // O tweet contém a hashtag  // Sob o CORS, não é possível enviar o # dentro do parâmetro query
+            // containsHashtag(tweet) && // O tweet contém a hashtag  // Sob o CORS, não é possível enviar o # dentro do parâmetro query
             !tweet.possibly_sensitive // O tweet não é sensível
             && !tweet.referenced_tweets      // O tweet não é um retweet
           ) {
@@ -100,6 +101,7 @@ export async function doTheMagic(hashtag, nextToken = null) {
               if (user.id === tweet.author_id) {
                 tweetObj.user = user;
               }
+              return user;
             });
 
             // Para cada tweet, procura a mídia e adiciona ao array de imagens, se o tweet tiver mídia
@@ -114,6 +116,7 @@ export async function doTheMagic(hashtag, nextToken = null) {
                     tweetObj.media = media;
                   }
                 }
+                return media;
               });
             }
 
@@ -128,8 +131,8 @@ export async function doTheMagic(hashtag, nextToken = null) {
         console.log('doTheMagic.catch', err);
         options.params.next_token = null;
       });
-      pages++;
-  } while (tweets.length < dataLimit && options.params.next_token && pages < pagesLimit);
+      // pages++;
+  // } while (tweets.length < dataLimit && options.params.next_token && pages < pagesLimit);
 
   return {
     tweets: tweets,
