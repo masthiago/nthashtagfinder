@@ -332,3 +332,13 @@ export const AboutUsStyle = styled.div`
 				};  
 		};
 `
+
+export const LoadScreenStyle = styled.div`
+	width:100vw;
+	height:100vh;
+	background:  linear-gradient(#003390, #0A1744);
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+`
