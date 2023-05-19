@@ -5,7 +5,7 @@ import axios from 'axios';
  */
 const options = {
   method: 'GET',
-  url: `${process.env.REACT_APP_TWITTER_API_URL}`,
+  url: `${process.env.REACT_APP_CORS_URL}${process.env.REACT_APP_TWITTER_API_URL}`,
   params: {
     max_results: '10',
     next_token: null,
