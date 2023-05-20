@@ -16,7 +16,7 @@ import {
   Text,
 } from './style';
 import Header from '../Header';
-import { AuthContext } from '../../Hook/';
+import { AuthContext } from '../../Hook/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import axios from 'axios';
