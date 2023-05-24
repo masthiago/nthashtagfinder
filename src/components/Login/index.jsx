@@ -12,7 +12,6 @@ import Header from '../Header';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Hook/AuthContext';
-import Loading from '../Loading';
 
 export default function Login() {
   const { login, userName, password } = useContext(AuthContext);
@@ -20,7 +19,6 @@ export default function Login() {
   const navigate = useNavigate();
   const setUserName = useContext(AuthContext).setUserName;
   const setPassword = useContext(AuthContext).setPassword;
-  const [isLoading, setIsLoading] = useState(false);
 
   //updates `userName` and `password` states with input values and removes error message related to modified fields.
   const handleInputChange = (e) => {
@@ -35,12 +33,8 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault(); //prevents default behavior
-    setIsLoading(true);
 
-    setTimeout(() => {
-      login();
-      setIsLoading(false);
-    }, 2000);
+
 
     //checks if fields are empty and adds corresponding error message.
     const newErrors = {};
@@ -97,9 +91,6 @@ export default function Login() {
       });
   };
 
-  if (isLoading) {
-    return <Loading />;
-  }
 
   return (
     <>
