@@ -9,9 +9,9 @@ import {
   Wrapper,
 } from './styled';
 import Header from '../Header';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Hook/AuthContext';
+import { instanceAxios } from '../../services/Api';
 
 export default function Login() {
   const { login, userName, password } = useContext(AuthContext);
@@ -34,8 +34,6 @@ export default function Login() {
   const handleSubmit = (e) => {
     e.preventDefault(); //prevents default behavior
 
-
-
     //checks if fields are empty and adds corresponding error message.
     const newErrors = {};
     if (!userName) {
@@ -53,44 +51,44 @@ export default function Login() {
     }
 
     //creation and configuration to make a GET request to the Airtable API.
-    let config = {
-      method: 'get',
-      maxBodyLength: Infinity,
-      url:
-        "https://api.airtable.com/v0/app6wQWfM6eJngkD4/Login?view=Grid%20view&filterByFormula=AND({Squad} = '05-23', {Email} = '" +
-        userName +
-        "', {Senha} = '" +
-        password +
-        "')",
-      headers: {
-        Authorization: 'Bearer keykXHtsEPprqdSBF',
+    // let config = {
+    //   method: 'get',
+    //   maxBodyLength: Infinity,
+    //   url:
+    //     "https://api.airtable.com/v0/app6wQWfM6eJngkD4/Login?view=Grid%20view&filterByFormula=AND({Squad} = '05-23', {Email} = '" + userName +"', {Senha} = '" +password +"')",
+    //   headers: {
+    //     Authorization: 'Bearer keykXHtsEPprqdSBF',
+    //   },
+    // };
+    
+    instanceAxios
+    .get('Login', {
+      params: {
+        view: 'Grid view',
+        filterByFormula: `AND({Squad} = '05-23', {Email} = '${userName}', {Senha} = '${password}')`,
       },
-    };
-
-    axios
-      .request(config)
-      .then((response) => {
-        //API response handling and redirection on success.
-        JSON.stringify(response.data);
-        const records = response.data.records;
-
-        if (records && records.length > 0) {
-          const record = records[0]; //Accessing the first record of the array
-          const squadValue = record.fields.Squad; //getting the value of "Squad" property
-
-          if (squadValue === '05-23') {
-            login();
-            navigate('/search');
-          }
+    })
+    .then((response) => {
+      const records = response.data.records;
+  
+      if (records && records.length > 0) {
+        const record = records[0];
+        const squadValue = record.fields.Squad;
+  
+        if (squadValue === '05-23') {
+          login();
+          navigate('/search');
         } else {
-          setErrors({ general: 'Credenciais inválidas' }); //Definition of error message in case of invalid credentials.
+          setErrors({ general: 'Credenciais inválidas' });
         }
-      })
-      .catch((error) => {
-        console.log(error); //Print error in console
-      });
+      } else {
+        setErrors({ general: 'Credenciais inválidas' });
+      }
+    })
+    .catch((error) => {
+      console.log(error)
+    })
   };
-
 
   return (
     <>
