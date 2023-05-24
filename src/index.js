@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ReactDOM from 'react-dom/client';
-// import AboutPageContent from './about/Aboutpage';
-import AboutPageContent from './components/About';
+import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { AuthContext, AuthProvider } from './Hook/AuthContext';
+import './index.css';
 import App from './App';
 import Login from './components/Login';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import './index.css';
 import SearchList from './components/SearchList';
-import { AuthProvider } from './Hook/AuthContext';
+import AboutPageContent from './components/About';
 
-// import { GlobalStyle } from './App/homeComponents/globalStyle';
+//rota privada para /search
+function PrivateRoute({ children }) { 
+  const { isLoggedIn } = useContext(AuthContext)
+  return isLoggedIn ? children : <Navigate to='/login' replace /> //se logado vai para pagina de search se não volta pra /login 
+}
 
 const router = createBrowserRouter([
   {
@@ -24,9 +27,13 @@ const router = createBrowserRouter([
     path: '/login',
     element: <Login />,
   },
-  {
+  { //informar a rota privada 
     path: '/search',
-    element: <SearchList />,
+    element: (
+      <PrivateRoute> 
+        <SearchList />,
+      </PrivateRoute>
+    )
   },
 ]);
 
@@ -35,7 +42,6 @@ root.render(
   <React.StrictMode>
     <AuthProvider>
       <RouterProvider router={router} />
-      {/* <GlobalStyle /> */}
     </AuthProvider>
   </React.StrictMode>
 );
