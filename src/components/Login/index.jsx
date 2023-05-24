@@ -14,11 +14,10 @@ import { AuthContext } from '../../Hook/AuthContext';
 import { instanceAxios } from '../../services/Api';
 
 export default function Login() {
-  const { login, userName, password } = useContext(AuthContext);
+  const { login, userName, password, setUserName, setPassword } = useContext(AuthContext);
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
-  const setUserName = useContext(AuthContext).setUserName;
-  const setPassword = useContext(AuthContext).setPassword;
+
 
   //updates `userName` and `password` states with input values and removes error message related to modified fields.
   const handleInputChange = (e) => {
@@ -36,8 +35,8 @@ export default function Login() {
 
     //checks if fields are empty and adds corresponding error message.
     const newErrors = {};
-    if (!userName) {
-      newErrors.userName = 'O campo usuário é obrigatório';
+    if (!userName || !/^.*@.*$/.test(userName)) {
+      newErrors.userName = 'Insira um endereço de email válido';
     }
 
     if (!password) {
@@ -49,17 +48,6 @@ export default function Login() {
       setErrors(newErrors);
       return;
     }
-
-    //creation and configuration to make a GET request to the Airtable API.
-    // let config = {
-    //   method: 'get',
-    //   maxBodyLength: Infinity,
-    //   url:
-    //     "https://api.airtable.com/v0/app6wQWfM6eJngkD4/Login?view=Grid%20view&filterByFormula=AND({Squad} = '05-23', {Email} = '" + userName +"', {Senha} = '" +password +"')",
-    //   headers: {
-    //     Authorization: 'Bearer keykXHtsEPprqdSBF',
-    //   },
-    // };
     
     instanceAxios
     .get('Login', {
