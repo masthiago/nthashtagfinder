@@ -73,6 +73,12 @@ export const Field = styled.input`
   ::placeholder {
     color: #ffffff;
   }
+  ::-ms-reveal { 
+    background-color: #ffffff; /* Defina a cor de fundo desejada (branco neste exemplo) */
+    border: 1px solid transparent;
+    border-radius: 50%;
+    box-shadow: 0 0 3px currentColor;
+  }
 `;
 
 //error
@@ -93,6 +99,9 @@ export const Access = styled.button`
   font-size: 19px;
   font-weight: medium;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
     transition: all 0.1s ease;

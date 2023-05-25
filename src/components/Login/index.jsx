@@ -9,18 +9,17 @@ import {
   Wrapper,
 } from './styled';
 import Header from '../Header';
-import axios from 'axios';
+import { ThreeDots } from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Hook/AuthContext';
-import Loading from '../Loading';
+import { instanceAxios } from '../../services/Api';
 
 export default function Login() {
-  const { login, userName, password } = useContext(AuthContext);
+  const { login, userName, password, setUserName, setPassword } = useContext(AuthContext);
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
-  const setUserName = useContext(AuthContext).setUserName;
-  const setPassword = useContext(AuthContext).setPassword;
-  const [isLoading, setIsLoading] = useState(false);
+
 
   //updates `userName` and `password` states with input values and removes error message related to modified fields.
   const handleInputChange = (e) => {
@@ -35,17 +34,10 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault(); //prevents default behavior
-    setIsLoading(true);
-
-    setTimeout(() => {
-      login();
-      setIsLoading(false);
-    }, 2000);
-
     //checks if fields are empty and adds corresponding error message.
     const newErrors = {};
-    if (!userName) {
-      newErrors.userName = 'O campo usuário é obrigatório';
+    if (!userName || !/^.*@.*$/.test(userName)) {
+      newErrors.userName = 'Insira um endereço de email válido';
     }
 
     if (!password) {
@@ -58,48 +50,37 @@ export default function Login() {
       return;
     }
 
-    //creation and configuration to make a GET request to the Airtable API.
-    let config = {
-      method: 'get',
-      maxBodyLength: Infinity,
-      url:
-        "https://api.airtable.com/v0/app6wQWfM6eJngkD4/Login?view=Grid%20view&filterByFormula=AND({Squad} = '05-23', {Email} = '" +
-        userName +
-        "', {Senha} = '" +
-        password +
-        "')",
-      headers: {
-        Authorization: 'Bearer keykXHtsEPprqdSBF',
-      },
-    };
+    setLoading(true) //aparece loading
 
-    axios
-      .request(config)
+    instanceAxios //call to api file
+      .get('Login', {
+        params: {
+          view: 'Grid view',
+          filterByFormula: `AND({Squad} = '05-23', {Email} = '${userName}', {Senha} = '${password}')`,
+        },
+      })
       .then((response) => {
-        //API response handling and redirection on success.
-        JSON.stringify(response.data);
-        const records = response.data.records;
+        const records = response.data.records; //save data in variable
+        const record = records && records.length > 0 ? records[0] : null; //check if the value exists
+        const squadValue = record?.fields.Squad; //check if the variable exists and access it
 
-        if (records && records.length > 0) {
-          const record = records[0]; //Accessing the first record of the array
-          const squadValue = record.fields.Squad; //getting the value of "Squad" property
-
-          if (squadValue === '05-23') {
-            login();
-            navigate('/search');
-          }
+        if (squadValue === '05-23') { //compare squad call login and open the page
+          login();
+          navigate('/search');
         } else {
-          setErrors({ general: 'Credenciais inválidas' }); //Definition of error message in case of invalid credentials.
+          setErrors({ general: 'Credenciais inválidas' }); //informs if different data
         }
       })
       .catch((error) => {
-        console.log(error); //Print error in console
+        console.log(error);
+        setErrors({ general: 'Ocorreu um erro durante a autenticação' }); //access not allowed
+      })
+      .finally(() => {
+        setLoading(false) //desaparecer loading 
+        setUserName('');
+        setPassword('');
       });
   };
-
-  if (isLoading) {
-    return <Loading />;
-  }
 
   return (
     <>
@@ -115,7 +96,7 @@ export default function Login() {
               value={userName}
               onChange={handleInputChange}
             />
-            {errors.userName && <ErrorText>{errors.userName}</ErrorText>}
+            {errors.userName && <ErrorText>{errors.userName}</ErrorText>} {/* erro de email  */}
             <Field
               type='password'
               placeholder='Senha'
@@ -124,11 +105,14 @@ export default function Login() {
               onChange={handleInputChange}
               maxLength={6}
             />
-            {errors.password && <ErrorText>{errors.password}</ErrorText>}
-            {errors.general && <ErrorText>{errors.general}</ErrorText>}
-
-            <Access type='submit' onClick={handleSubmit}>
-              ACESSAR
+            {errors.password && <ErrorText>{errors.password}</ErrorText>} {/* erro de senha  */}
+            {errors.general && <ErrorText>{errors.general}</ErrorText>} {/* erro de acesso a api  */}
+            <Access type='submit' onClick={handleSubmit} disabled={loading}> 
+              {loading ? ( //se loading aparece imagem se não ACESSAR 
+                <ThreeDots color="#1e3e7b" height={20} width={40} />
+              ) : (
+                'ACESSAR'
+              )}
             </Access>
           </FormFields>
         </FormContainer>
