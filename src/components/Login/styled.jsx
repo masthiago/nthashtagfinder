@@ -99,6 +99,9 @@ export const Access = styled.button`
   font-size: 19px;
   font-weight: medium;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
     transition: all 0.1s ease;
