@@ -18,7 +18,6 @@ export default function Login() {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
-
   //updates `userName` and `password` states with input values and removes error message related to modified fields.
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -48,34 +47,34 @@ export default function Login() {
       setErrors(newErrors);
       return;
     }
-    
+
     instanceAxios
-    .get('Login', {
-      params: {
-        view: 'Grid view',
-        filterByFormula: `AND({Squad} = '05-23', {Email} = '${userName}', {Senha} = '${password}')`,
-      },
-    })
-    .then((response) => {
-      const records = response.data.records;
-  
-      if (records && records.length > 0) {
-        const record = records[0];
-        const squadValue = record.fields.Squad;
-  
+      .get('Login', {
+        params: {
+          view: 'Grid view',
+          filterByFormula: `AND({Squad} = '05-23', {Email} = '${userName}', {Senha} = '${password}')`,
+        },
+      })
+      .then((response) => {
+        const records = response.data.records;
+        const record = records && records.length > 0 ? records[0] : null;
+        const squadValue = record?.fields.Squad;
+
         if (squadValue === '05-23') {
           login();
           navigate('/search');
         } else {
           setErrors({ general: 'Credenciais inválidas' });
         }
-      } else {
-        setErrors({ general: 'Credenciais inválidas' });
-      }
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrors({ general: 'Ocorreu um erro durante a autenticação' });
+      })
+      .finally(() => {
+        setUserName('');
+        setPassword('');
+      });
   };
 
   return (
@@ -103,7 +102,6 @@ export default function Login() {
             />
             {errors.password && <ErrorText>{errors.password}</ErrorText>}
             {errors.general && <ErrorText>{errors.general}</ErrorText>}
-
             <Access type='submit' onClick={handleSubmit}>
               ACESSAR
             </Access>
