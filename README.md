@@ -1,73 +1,40 @@
 # nthashtagfinder
-Hashtag Finder. Projeto em equipe da Newtab Academy
+Hashtag Finder foi o Projeto desenvolvido em equipe na imersão da Newtab Academy
 
-## Getting Started with Create React App
+Durante o processo nossa equipe enfrentou diversos desafios para desenvolver. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Utilizamos a API do Twitter para buscar hashtags e o acesso por login. 
 
-## Available Scripts
+Seguimos as metodologias ágeis, utilizando o SCRUM. 
 
-In the project directory, you can run:
+Na primeira sprint, desenvolvemos a versão estática e responsiva, na segunda sprint, tornamos o projeto funcional. 
 
-### `npm start`
+Realizamos reuniões e utilizamos a ferramenta ClickUp para gerenciar tarefas. Com o uso de frameworks e bibliotecas do JavaScript, como React.js, React-router-dom, Styled-components, REST API e a plataforma Airtable. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Contamos com a plataforma GitHub para trabalhar em equipe e controlar as versões do projeto. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Por fim, utilizamos o Netlify para colocar o projeto em produção.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Teste a busca e acesse com o login abaixo para acompanhar os resultados 
+Link: https://nthashtagfinder.vercel.app/
 
-### `npm run build`
+Usuario: teste@teste.com.br
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Senha: 123 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Equipe
+Franciane Pires: https://github.com/Franppires 
 
-### `npm run eject`
+Gabriel Tomaz: https://github.com/Gabriel97Project
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Moizes Azevedo: https://github.com/MoisesAzevedo
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Paulo Ricardo: https://github.com/PauloDev07
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Thiago Medeiros: https://github.com/masthiago
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Clique na imagem abaixo e assista ao video do projeto em funcionamento
+[![nthashtagfinder](https://github.com/Franppires/nthashtagfinder/assets/104803568/ee26405f-054c-41d8-9662-dda9fd25bc87)](https://youtu.be/2O27fxSXzdA)
