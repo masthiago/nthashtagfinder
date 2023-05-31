@@ -44,6 +44,7 @@ export default class Results extends React.Component {
   handleSearchForm = async (event) => {
     event.preventDefault();
     this.tweets = [];
+    this.nextToken = null;
     this.hashtag = event.target.querySelector('.textSearch').value;
     this.setState({ loading: true, hashtagIsEmpty: false });
     const data = await doTheMagic(this.hashtag, this.nextToken);
