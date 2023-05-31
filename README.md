@@ -34,8 +34,8 @@ Teste a busca acessando o link abaixo e utilize os dados de login para acessar a
 
 
 ## Equipe
-* Franciane Pires: [GitHub](https://github.com/Franppires/), [LinkedIn]()
-* Gabriel Tomaz: [GitHub](https://github.com/Gabriel97Project/), [LinkedIn]()
-* Moizes Azevedo: [GitHub](https://github.com/MoisesAzevedo/), [LinkedIn]()
-* Paulo Ricardo: [GitHub](https://github.com/PauloDev07/), [LinkedIn]()
-* Thiago Medeiros: [GitHub](https://github.com/masthiago), [LinkedIn]()
+* Franciane Pires: [GitHub](https://github.com/Franppires/), [LinkedIn](https://www.linkedin.com/in/franciane-pires/)
+* Gabriel Tomaz: [GitHub](https://github.com/Gabriel97Project/), [LinkedIn](https://www.linkedin.com/in/gabriel-tomaz97-7a6617116/)
+* Moizes Azevedo: [GitHub](https://github.com/MoisesAzevedo/), [LinkedIn](https://www.linkedin.com/in/moises-azevedo-248092218)
+* Paulo Ricardo: [GitHub](https://github.com/PauloDev07/), [LinkedIn](https://www.linkedin.com/in/paulo-ricardo-trinch%C3%A3o-25025b208/)
+* Thiago Medeiros: [GitHub](https://github.com/masthiago), [LinkedIn](https://www.linkedin.com/in/thiagoasmedeiros/)
