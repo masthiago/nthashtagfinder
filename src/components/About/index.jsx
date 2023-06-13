@@ -8,14 +8,17 @@ import gitHubIcon from "../../assets/img/github.svg";
 import linkednIcon from "../../assets/img/linkedin.svg";
 import Airtable from "airtable";
 import reactSpinLogo from "../../assets/img/giphyreactspin.gif";
-
+import { ThreeDots } from 'react-loader-spinner';
 
 
 export default function AboutPageContent() {
 
   const [siteRecordState, setSiteRecordState] = useState([]);
+  const [developerState, setDeveloperState] = useState([]);
+
   useEffect(() => {
     let aboutRecords = [];
+    let developersRecords = [];
     let base = new Airtable({ apiKey: 'keykXHtsEPprqdSBF' }).base('app6wQWfM6eJngkD4');
     let squadId = '05-23';
 
@@ -39,30 +42,9 @@ export default function AboutPageContent() {
           });
           setSiteRecordState(atualizedResults);
         }
-
+        
       );
-  }, []);
-
-  /*
-    No requests get acima estamos pegando as informações da plataforma airtable. Utilizamos o airtable.js como 
-    framework de apoio. Criamos uma variavel com valor de array vazio no inicio do useeffect para armazenar as informações contidas
-    na lista do airtable (pageRecords) e após a pegarmos todas as informações contidas no airtable, a função done
-    é chamada para finalizar nosso get. Apos os dados serem armazenados na nossa variavel aboutRecords, depois que a função
-    done for finalizada, criamos outra variavel e como valor passamos a nossa variavel inicial (aboutRecords) com um map
-    (para pegar as informações que estao dentro da aboutRecords) e por fim, mudamos nosso state inicial com o valor da nossa variavel
-    intermediária (atualizedResults), dessa forma, garantimos que o estado inicial sempre vai estar atualizado
-    somente apos a função done ser chamada.
-  */
-
-  const [developerState, setDeveloperState] = useState([]);
-
-
-  useEffect(() => {
-    let developersRecords = [];
-    let base = new Airtable({ apiKey: 'keykXHtsEPprqdSBF' }).base('app6wQWfM6eJngkD4');
-    let squadId = '05-23';
-
-    base('Equipe')
+      base('Equipe')
       .select({
         filterByFormula: `Squad = '${squadId}'`,
         view: 'Grid s8'
@@ -91,13 +73,18 @@ export default function AboutPageContent() {
         }
 
       );
+      
   }, []);
 
-  /* 
-    Neste request temos a mesma situação do primeiro, porem no primeiro só pegamos uma informação do airtable. 
-    A diferença desse request é que vamos armazenar varias informações dentro da nossa array, entao temos
-    um objeto que recebe todas informações do airtble, depois de armazenar as informações e realizar o map,
-    atualizamos nosso state (developerState).
+  /*
+    No requests get acima estamos pegando as informações da plataforma airtable. Utilizamos o airtable.js como 
+    framework de apoio. Criamos uma variavel com valor de array vazio no inicio do useeffect para armazenar as informações contidas
+    na lista do airtable (pageRecords) e após a pegarmos todas as informações contidas no airtable, a função done
+    é chamada para finalizar nosso get. Apos os dados serem armazenados na nossa variavel aboutRecords, depois que a função
+    done for finalizada, criamos outra variavel e como valor passamos a nossa variavel inicial (aboutRecords) com um map
+    (para pegar as informações que estao dentro da aboutRecords) e por fim, mudamos nosso state inicial com o valor da nossa variavel
+    intermediária (atualizedResults), dessa forma, garantimos que o estado inicial sempre vai estar atualizado
+    somente apos a função done ser chamada.
   */
 
 
@@ -106,7 +93,7 @@ export default function AboutPageContent() {
       <>
         <Header />
         <LoadScreenStyle>
-          <img src={reactSpinLogo} alt="page loading" style={{ width: '200px', height: '200px' }} />
+          <ThreeDots/>
           <p style={{ fontSize: '30px', marginTop: '30px' }}>
             Carregando...
           </p>
