@@ -23,10 +23,11 @@ export const Wrapper = styled.div`
 // style for form container
 export const FormContainer = styled.div`
   width: 508px;
-  height: 558px;
+  height: 458px;
   background-color: rgba(24, 50, 107, 0.5);
   backdrop-filter: blur(15px);
   border-radius: 14px;
+  margin-top: 120px;
 
   @media screen and (max-width: 600px) {
     width: 320px;
